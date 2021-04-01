@@ -1,9 +1,12 @@
 [submodule "libs/websocketpp"]
 	path = libs/websocketpp
 	url = https://github.com/zaphoyd/websocketpp.git
+	ignore = dirty
 [submodule "libs/secp256k1"]
 	path = libs/secp256k1
 	url = https://github.com/bitcoin-core/secp256k1.git
+	ignore = dirty
 [submodule "libs/XKCP"]
 	path = libs/XKCP
 	url = https://github.com/XKCP/XKCP.git
+	ignore = dirty
