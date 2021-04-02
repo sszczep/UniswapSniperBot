@@ -14,3 +14,11 @@
 	path = libs/googletest
 	url = https://github.com/google/googletest.git
 	ignore = dirty
+[submodule "libs/doxygen"]
+	path = libs/doxygen
+	url = https://github.com/doxygen/doxygen.git
+	ignore = dirty
+[submodule "doxygen/theme"]
+	path = doxygen/theme
+	url = https://github.com/kcwongjoe/doxygen_theme_flat_design.git
+	ignore = dirty

@@ -78,18 +78,38 @@ clean-gtest:
 	rm -Rf libs.build/gtest
 	rm -Rf libs/googletest/build
 
+build-doxygen:
+ifeq ($(wildcard libs.build/doxygen),)
+	mkdir -p libs/doxygen/build
+	cd libs/doxygen/build && cmake -G "Unix Makefiles" ..
+	cd libs/doxygen/build && make
+
+	mkdir -p libs.build/doxygen/
+
+	cp libs/doxygen/build/bin/doxygen libs.build/doxygen/doxygen
+else
+	@echo "doxygen already built. To rebuild, type make clean-doxygen and build again"
+endif
+
+clean-doxygen:
+	rm -Rf libs.build/doxygen
+	rm -Rf libs/doxygen/build
+
 build-libs: build-websocketpp build-secp256k1 build-xkcp
 
 clean-libs: clean-websocketpp clean-secp256k1 clean-xkcp
 
-main: $(SOURCES)
+main: build-libs $(SOURCES)
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(LIBRARIES:%=-l%) $(SOURCES) main.cc -o build/$@
 
-test: $(TEST_SOURCES) $(SOURCES)
+test: build-gtest $(TEST_SOURCES) $(SOURCES)
 	mkdir -p build
 	$(CXX) $(TEST_CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(TEST_LIBRARIES:%=-l%) $(TEST_SOURCES) -o build/$@
 	./build/test
+
+docs: build-doxygen
+	libs.build/doxygen/doxygen doxygen/Doxyfile
 
 clean: clean-libs
 	rm -Rf main
