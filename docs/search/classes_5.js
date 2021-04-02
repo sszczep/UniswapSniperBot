@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['transactionconfig_27',['TransactionConfig',['../struct_blo_xroute_1_1_transaction_config.html',1,'BloXroute']]],
-  ['transactioninputdata_28',['TransactionInputData',['../struct_blo_xroute_1_1_transaction_input_data.html',1,'BloXroute']]]
+  ['transactionconfig_30',['TransactionConfig',['../struct_blo_xroute_1_1_transaction_config.html',1,'BloXroute']]],
+  ['transactioninputdata_31',['TransactionInputData',['../struct_blo_xroute_1_1_transaction_input_data.html',1,'BloXroute']]]
 ];

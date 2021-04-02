@@ -69,6 +69,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_blo_xroute_1_1_blo_xroute_bot-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BloXroute::BloXrouteBot Class Reference</div>  </div>
@@ -77,15 +79,71 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a09895a06b987cc24490bc6f44dd47569"><td class="memItemLeft" align="right" valign="top"><a id="a09895a06b987cc24490bc6f44dd47569"></a>
+<tr class="memitem:a5d58413cb9900cfa8e2ccb8ec5a90d74"><td class="memItemLeft" align="right" valign="top"><a id="a5d58413cb9900cfa8e2ccb8ec5a90d74"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BloXrouteBot</b> (<a class="el" href="struct_blo_xroute_1_1_connection_config.html">ConnectionConfig</a> *connectionConfig, <a class="el" href="struct_blo_xroute_1_1_listener_filters.html">ListenerFilters</a> *filters, <a class="el" href="struct_blo_xroute_1_1_transaction_config.html">TransactionConfig</a> *transactionConfig)</td></tr>
-<tr class="separator:a09895a06b987cc24490bc6f44dd47569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed64ac2491222701f0c22e50020acc93"><td class="memItemLeft" align="right" valign="top"><a id="aed64ac2491222701f0c22e50020acc93"></a>
+<tr class="separator:a5d58413cb9900cfa8e2ccb8ec5a90d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8705990b0f914b5dcd7da4de8f0bdcaf"><td class="memItemLeft" align="right" valign="top"><a id="a8705990b0f914b5dcd7da4de8f0bdcaf"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
-<tr class="separator:aed64ac2491222701f0c22e50020acc93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a8705990b0f914b5dcd7da4de8f0bdcaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a82912feadec659d7f35aa3febb49d9a2"><td class="memItemLeft" align="right" valign="top"><a id="a82912feadec659d7f35aa3febb49d9a2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blo_xroute_1_1_blo_xroute_bot.html#a82912feadec659d7f35aa3febb49d9a2">setInputData</a> ()</td></tr>
+<tr class="memdesc:a82912feadec659d7f35aa3febb49d9a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set input data string based on the boilerplate. <br /></td></tr>
+<tr class="separator:a82912feadec659d7f35aa3febb49d9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd8932ae3f98a8af9cf114e5da490b55"><td class="memItemLeft" align="right" valign="top"><a id="afd8932ae3f98a8af9cf114e5da490b55"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (char *message)</td></tr>
+<tr class="separator:afd8932ae3f98a8af9cf114e5da490b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b706a8d8a5a9b7d96c18ef5b2db4d29"><td class="memItemLeft" align="right" valign="top"><a id="a0b706a8d8a5a9b7d96c18ef5b2db4d29"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendSubscribeMessage</b> ()</td></tr>
+<tr class="separator:a0b706a8d8a5a9b7d96c18ef5b2db4d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25d1fa572de9127b9c08eabc594f4274"><td class="memItemLeft" align="right" valign="top"><a id="a25d1fa572de9127b9c08eabc594f4274"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>validateTransaction</b> (char *message)</td></tr>
+<tr class="separator:a25d1fa572de9127b9c08eabc594f4274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a406332fd26650ffa482470fd7ea798"><td class="memItemLeft" align="right" valign="top"><a id="a6a406332fd26650ffa482470fd7ea798"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>extractGasPriceFromMessage</b> (char *message)</td></tr>
+<tr class="separator:a6a406332fd26650ffa482470fd7ea798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81315eb42badbc52ba28652704e0d22b"><td class="memItemLeft" align="right" valign="top"><a id="a81315eb42badbc52ba28652704e0d22b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendTransaction</b> ()</td></tr>
+<tr class="separator:a81315eb42badbc52ba28652704e0d22b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0f1fd2edac280bedf66bbf716445d57"><td class="memItemLeft" align="right" valign="top"><a id="ab0f1fd2edac280bedf66bbf716445d57"></a>
+websocketpp::lib::shared_ptr&lt; websocketpp::lib::asio::ssl::context &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>onTLSInit</b> (websocketpp::connection_hdl)</td></tr>
+<tr class="separator:ab0f1fd2edac280bedf66bbf716445d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae571ea25796a8808a77abd6bf04316ae"><td class="memItemLeft" align="right" valign="top"><a id="ae571ea25796a8808a77abd6bf04316ae"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (websocketpp::connection_hdl connectionHandler)</td></tr>
+<tr class="separator:ae571ea25796a8808a77abd6bf04316ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae15deead1ce0072cba01d0f5335f58ec"><td class="memItemLeft" align="right" valign="top"><a id="ae15deead1ce0072cba01d0f5335f58ec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onMessage</b> (websocketpp::connection_hdl connectionHandler, WSClient::message_ptr message)</td></tr>
+<tr class="separator:ae15deead1ce0072cba01d0f5335f58ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac14ac84e51e3e4576d80fd2825e2977a"><td class="memItemLeft" align="right" valign="top"><a id="ac14ac84e51e3e4576d80fd2825e2977a"></a>
+WSClient&#160;</td><td class="memItemRight" valign="bottom"><b>mWSClient</b></td></tr>
+<tr class="separator:ac14ac84e51e3e4576d80fd2825e2977a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4740b98c6998fbf5f12249ce773a67b0"><td class="memItemLeft" align="right" valign="top"><a id="a4740b98c6998fbf5f12249ce773a67b0"></a>
+websocketpp::connection_hdl&#160;</td><td class="memItemRight" valign="bottom"><b>mConnectionHandler</b></td></tr>
+<tr class="separator:a4740b98c6998fbf5f12249ce773a67b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d8c58b7cefb4a6d612cb629cd270ac"><td class="memItemLeft" align="right" valign="top"><a id="a55d8c58b7cefb4a6d612cb629cd270ac"></a>
+<a class="el" href="struct_blo_xroute_1_1_listener_filters.html">ListenerFilters</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mListenerFilters</b></td></tr>
+<tr class="separator:a55d8c58b7cefb4a6d612cb629cd270ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc1502485c680b799224ca8731edb743"><td class="memItemLeft" align="right" valign="top"><a id="afc1502485c680b799224ca8731edb743"></a>
+<a class="el" href="struct_blo_xroute_1_1_transaction_config.html">TransactionConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mTransactionConfig</b></td></tr>
+<tr class="separator:afc1502485c680b799224ca8731edb743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6df017f098c7f3f425111ce34bbdbeb6"><td class="memItemLeft" align="right" valign="top"><a id="a6df017f098c7f3f425111ce34bbdbeb6"></a>
+<a class="el" href="class_transaction_1_1_e_t_h_transaction.html">ETHTransaction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mTX</b></td></tr>
+<tr class="separator:a6df017f098c7f3f425111ce34bbdbeb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dbf826a98b26ed81fdd649cc8f602ab"><td class="memItemLeft" align="right" valign="top"><a id="a8dbf826a98b26ed81fdd649cc8f602ab"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>mInputData</b> [InputDataLength+1]</td></tr>
+<tr class="separator:a8dbf826a98b26ed81fdd649cc8f602ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6a2d3797145af2a27c865ca8512f9e6"><td class="memItemLeft" align="right" valign="top"><a id="ad6a2d3797145af2a27c865ca8512f9e6"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>mGasPrice</b> [MaxValueHexLength]</td></tr>
+<tr class="separator:ad6a2d3797145af2a27c865ca8512f9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="bloxroute_8hpp_source.html">bloxroute.hpp</a></li>
+<li>bloxroute.cc</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.9.2-->

@@ -8,10 +8,10 @@
 
 using namespace Utils;
 
-/**
- * @brief Disables validation for faster processing speed
- * 
- */
+// /**
+//  * @brief Disables validation for faster processing speed
+//  * 
+//  */
 // #define RLP_OPTIMIZE
 
 namespace RLP {

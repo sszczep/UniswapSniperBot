@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_transaction_1_1_e_t_h_transaction-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Transaction::ETHTransaction Class Reference</div>  </div>
@@ -82,37 +83,48 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5701e3cfa9f222cb4378ac773f840a65"><td class="memItemLeft" align="right" valign="top"><a id="a5701e3cfa9f222cb4378ac773f840a65"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#a5701e3cfa9f222cb4378ac773f840a65">ETHTransaction</a> ()</td></tr>
-<tr class="memdesc:a5701e3cfa9f222cb4378ac773f840a65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new TX object. <br /></td></tr>
-<tr class="separator:a5701e3cfa9f222cb4378ac773f840a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3253087f386abe150ed82d6c7d36def2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#a3253087f386abe150ed82d6c7d36def2">setValues</a> (<a class="el" href="struct_transaction_1_1_e_t_h_values.html">ETHValues</a> *transactionValues)</td></tr>
-<tr class="memdesc:a3253087f386abe150ed82d6c7d36def2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets transaction's values.  <a href="class_transaction_1_1_e_t_h_transaction.html#a3253087f386abe150ed82d6c7d36def2">More...</a><br /></td></tr>
-<tr class="separator:a3253087f386abe150ed82d6c7d36def2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af22a0a3423345818a15d8a0a029f4a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#af22a0a3423345818a15d8a0a029f4a02">getSignature</a> (Byte privateKey[32], Byte signature[64], int *recid)</td></tr>
-<tr class="memdesc:af22a0a3423345818a15d8a0a029f4a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates transaction's signature.  <a href="class_transaction_1_1_e_t_h_transaction.html#af22a0a3423345818a15d8a0a029f4a02">More...</a><br /></td></tr>
-<tr class="separator:af22a0a3423345818a15d8a0a029f4a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5aa1b052a62e755d23d8cf35770eb34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#ad5aa1b052a62e755d23d8cf35770eb34">sign</a> (Byte privateKey[32])</td></tr>
-<tr class="memdesc:ad5aa1b052a62e755d23d8cf35770eb34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signs transaction.  <a href="class_transaction_1_1_e_t_h_transaction.html#ad5aa1b052a62e755d23d8cf35770eb34">More...</a><br /></td></tr>
-<tr class="separator:ad5aa1b052a62e755d23d8cf35770eb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b6b33706f2d07bb67b74f89f0f148ac"><td class="memItemLeft" align="right" valign="top">std::pair&lt; Buffer, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#a0b6b33706f2d07bb67b74f89f0f148ac">getBuffer</a> ()</td></tr>
-<tr class="memdesc:a0b6b33706f2d07bb67b74f89f0f148ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the signed transaction's buffer.  <a href="class_transaction_1_1_e_t_h_transaction.html#a0b6b33706f2d07bb67b74f89f0f148ac">More...</a><br /></td></tr>
-<tr class="separator:a0b6b33706f2d07bb67b74f89f0f148ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3c7d1c83e10ef5542d667967b867ab5"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#aa3c7d1c83e10ef5542d667967b867ab5">getHexString</a> (char *output, bool nullTerminated)</td></tr>
-<tr class="memdesc:aa3c7d1c83e10ef5542d667967b867ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the hexadecimal representation of the transaction's buffer.  <a href="class_transaction_1_1_e_t_h_transaction.html#aa3c7d1c83e10ef5542d667967b867ab5">More...</a><br /></td></tr>
-<tr class="separator:aa3c7d1c83e10ef5542d667967b867ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a84438114278b47921ee529dbadbd77"><td class="memItemLeft" align="right" valign="top"><a id="a9a84438114278b47921ee529dbadbd77"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#a9a84438114278b47921ee529dbadbd77">ETHTransaction</a> ()</td></tr>
+<tr class="memdesc:a9a84438114278b47921ee529dbadbd77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new TX object. <br /></td></tr>
+<tr class="separator:a9a84438114278b47921ee529dbadbd77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad15307851fe10b09aac85468e609adb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#ad15307851fe10b09aac85468e609adb1">setValues</a> (<a class="el" href="struct_transaction_1_1_e_t_h_values.html">ETHValues</a> *transactionValues)</td></tr>
+<tr class="memdesc:ad15307851fe10b09aac85468e609adb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets transaction's values.  <a href="class_transaction_1_1_e_t_h_transaction.html#ad15307851fe10b09aac85468e609adb1">More...</a><br /></td></tr>
+<tr class="separator:ad15307851fe10b09aac85468e609adb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae236675c05676d949540317ca8650143"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#ae236675c05676d949540317ca8650143">getSignature</a> (Byte privateKey[32], Byte signature[64], int *recid)</td></tr>
+<tr class="memdesc:ae236675c05676d949540317ca8650143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates transaction's signature.  <a href="class_transaction_1_1_e_t_h_transaction.html#ae236675c05676d949540317ca8650143">More...</a><br /></td></tr>
+<tr class="separator:ae236675c05676d949540317ca8650143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c3c1c8c03e1522b2201d0827935df1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#ad6c3c1c8c03e1522b2201d0827935df1">sign</a> (Byte privateKey[32])</td></tr>
+<tr class="memdesc:ad6c3c1c8c03e1522b2201d0827935df1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signs transaction.  <a href="class_transaction_1_1_e_t_h_transaction.html#ad6c3c1c8c03e1522b2201d0827935df1">More...</a><br /></td></tr>
+<tr class="separator:ad6c3c1c8c03e1522b2201d0827935df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435619768fd7beb4d0a8c082188666cf"><td class="memItemLeft" align="right" valign="top">std::pair&lt; Buffer, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#a435619768fd7beb4d0a8c082188666cf">getBuffer</a> ()</td></tr>
+<tr class="memdesc:a435619768fd7beb4d0a8c082188666cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the signed transaction's buffer.  <a href="class_transaction_1_1_e_t_h_transaction.html#a435619768fd7beb4d0a8c082188666cf">More...</a><br /></td></tr>
+<tr class="separator:a435619768fd7beb4d0a8c082188666cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2600271c585ff7359d82081f8ab22408"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#a2600271c585ff7359d82081f8ab22408">getHexString</a> (char *output, bool nullTerminated)</td></tr>
+<tr class="memdesc:a2600271c585ff7359d82081f8ab22408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the hexadecimal representation of the transaction's buffer.  <a href="class_transaction_1_1_e_t_h_transaction.html#a2600271c585ff7359d82081f8ab22408">More...</a><br /></td></tr>
+<tr class="separator:a2600271c585ff7359d82081f8ab22408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a87a440816fc9f0fcd8dc825ae7a738e8"><td class="memItemLeft" align="right" valign="top"><a id="a87a440816fc9f0fcd8dc825ae7a738e8"></a>
+<a class="el" href="class_r_l_p_1_1_r_l_p_encoder.html">RLP::RLPEncoder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#a87a440816fc9f0fcd8dc825ae7a738e8">mRLP</a></td></tr>
+<tr class="memdesc:a87a440816fc9f0fcd8dc825ae7a738e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object holding transaction data and encoding it. <br /></td></tr>
+<tr class="separator:a87a440816fc9f0fcd8dc825ae7a738e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee22fa1cec47e2e0acd6ae8a2b3431d2"><td class="memItemLeft" align="right" valign="top"><a id="aee22fa1cec47e2e0acd6ae8a2b3431d2"></a>
+secp256k1_context *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction_1_1_e_t_h_transaction.html#aee22fa1cec47e2e0acd6ae8a2b3431d2">mSecp256k1Context</a></td></tr>
+<tr class="memdesc:aee22fa1cec47e2e0acd6ae8a2b3431d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">secp256k1 context, it's created in constructor as it takes some time to initialize <br /></td></tr>
+<tr class="separator:aee22fa1cec47e2e0acd6ae8a2b3431d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="">Class for creating and signing Ethereum transactions. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3253087f386abe150ed82d6c7d36def2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3253087f386abe150ed82d6c7d36def2">&#9670;&nbsp;</a></span>setValues()</h2>
+<a id="ad15307851fe10b09aac85468e609adb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad15307851fe10b09aac85468e609adb1">&#9670;&nbsp;</a></span>setValues()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Transaction::ETHTransaction::setValues </td>
+          <td class="memname">void ETHTransaction::setValues </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_transaction_1_1_e_t_h_values.html">ETHValues</a> *&#160;</td>
           <td class="paramname"><em>transactionValues</em></td><td>)</td>
@@ -131,14 +143,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af22a0a3423345818a15d8a0a029f4a02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af22a0a3423345818a15d8a0a029f4a02">&#9670;&nbsp;</a></span>getSignature()</h2>
+<a id="ae236675c05676d949540317ca8650143"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae236675c05676d949540317ca8650143">&#9670;&nbsp;</a></span>getSignature()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Transaction::ETHTransaction::getSignature </td>
+          <td class="memname">void ETHTransaction::getSignature </td>
           <td>(</td>
           <td class="paramtype">Byte&#160;</td>
           <td class="paramname"><em>privateKey</em>[32], </td>
@@ -175,14 +187,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad5aa1b052a62e755d23d8cf35770eb34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5aa1b052a62e755d23d8cf35770eb34">&#9670;&nbsp;</a></span>sign()</h2>
+<a id="ad6c3c1c8c03e1522b2201d0827935df1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6c3c1c8c03e1522b2201d0827935df1">&#9670;&nbsp;</a></span>sign()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Transaction::ETHTransaction::sign </td>
+          <td class="memname">void ETHTransaction::sign </td>
           <td>(</td>
           <td class="paramtype">Byte&#160;</td>
           <td class="paramname"><em>privateKey</em>[32]</td><td>)</td>
@@ -201,14 +213,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0b6b33706f2d07bb67b74f89f0f148ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b6b33706f2d07bb67b74f89f0f148ac">&#9670;&nbsp;</a></span>getBuffer()</h2>
+<a id="a435619768fd7beb4d0a8c082188666cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a435619768fd7beb4d0a8c082188666cf">&#9670;&nbsp;</a></span>getBuffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::pair&lt;Buffer, size_t&gt; Transaction::ETHTransaction::getBuffer </td>
+          <td class="memname">std::pair&lt; Buffer, size_t &gt; ETHTransaction::getBuffer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -221,14 +233,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa3c7d1c83e10ef5542d667967b867ab5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3c7d1c83e10ef5542d667967b867ab5">&#9670;&nbsp;</a></span>getHexString()</h2>
+<a id="a2600271c585ff7359d82081f8ab22408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2600271c585ff7359d82081f8ab22408">&#9670;&nbsp;</a></span>getHexString()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* Transaction::ETHTransaction::getHexString </td>
+          <td class="memname">char * ETHTransaction::getHexString </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>output</em>, </td>
@@ -259,8 +271,9 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="transaction_8hpp_source.html">transaction.hpp</a></li>
+<li>transaction.cc</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.9.2-->
