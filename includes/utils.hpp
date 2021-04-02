@@ -24,12 +24,12 @@ namespace Utils {
   char byteToHexChar(Byte x);
 
   /**
-   * @brief Converts hex string to buffer
+   * @brief Converts hexadecimal string to buffer
    * 
    * @param input c string 
    * @param inputLength length of the input string
    * @param output output buffer
-   * @return pointer to the last byte
+   * @return pointer to the last byte, nullptr if string is empty
    */
   Buffer hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output);
 
@@ -47,9 +47,9 @@ namespace Utils {
    * 
    * @param input buffer
    * @param inputLength length of the input buffer 
-   * @param output output string
+   * @param output output string, padded to even length
    * @param nullTerminated should string be null terminated, defaults to false
-   * @return pointer to the last char 
+   * @return pointer to the last char, nullptr if buffer is empty
    */
   char *bufferToHexString(Buffer input, size_t inputLength, char *output, bool nullTerminated = false);
 
@@ -62,11 +62,11 @@ namespace Utils {
   Byte getMostSignificantNonZeroByte(std::uint64_t x);
 
   /**
-   * @brief Convert integer to bytes
+   * @brief Convert integer to buffer
    * 
-   * @param x input integer
+   * @param x input integer, requires 8 bytes
    * @param output output buffer
    * @return pointer to the last byte 
    */
-  Buffer intToBytes(std::uint64_t x, Buffer output);
+  Buffer intToBuffer(std::uint64_t x, Buffer output);
 }

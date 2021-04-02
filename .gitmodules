@@ -10,3 +10,7 @@
 	path = libs/XKCP
 	url = https://github.com/XKCP/XKCP.git
 	ignore = dirty
+[submodule "libs/googletest"]
+	path = libs/googletest
+	url = https://github.com/google/googletest.git
+	ignore = dirty

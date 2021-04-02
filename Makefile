@@ -1,9 +1,12 @@
 CXXFLAGS=-std=c++17 -O3 -DRLP_OPTIMIZE
-
 SOURCES=$(wildcard sources/*.cc)
 INCLUDES_PATHS=$(wildcard libs.build/*/includes) usr/local/opt/openssl/include includes
 LIBRARIES_PATHS=$(wildcard libs.build/*) /usr/local/opt/openssl/lib
 LIBRARIES=secp256k1 XKCP crypto ssl
+
+TEST_CXXFLAGS=-std=c++17
+TEST_SOURCES=$(wildcard tests/*.cc) $(SOURCES)
+TEST_LIBRARIES = $(LIBRARIES) gtest gtest_main pthread
 
 all: main
 
@@ -56,12 +59,37 @@ clean-xkcp:
 	rm -Rf libs.build/XKCP
 	cd libs/XKCP && make clean
 
+build-gtest:
+ifeq ($(wildcard libs.build/gtest),)
+	mkdir -p libs/googletest/build
+	cd libs/googletest/build && cmake .. -DBUILD_GMOCK=OFF
+	cd libs/googletest/build && make
+
+	mkdir -p libs.build/gtest/
+	mkdir -p libs.build/gtest/includes
+
+	cp -R libs/googletest/build/lib/ libs.build/gtest/
+	cp -R libs/googletest/googletest/include/gtest/ libs.build/gtest/includes
+else
+	@echo "gtest already built. To rebuild, type make clean-gtest and build again"
+endif
+
+clean-gtest:
+	rm -Rf libs.build/gtest
+	rm -Rf libs/googletest/build
+
 build-libs: build-websocketpp build-secp256k1 build-xkcp
 
 clean-libs: clean-websocketpp clean-secp256k1 clean-xkcp
 
 main: $(SOURCES)
-	$(CXX) $(CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(LIBRARIES:%=-l%) $(SOURCES) -o $@
+	mkdir -p build
+	$(CXX) $(CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(LIBRARIES:%=-l%) $(SOURCES) main.cc -o build/$@
+
+test: $(TEST_SOURCES) $(SOURCES)
+	mkdir -p build
+	$(CXX) $(TEST_CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(TEST_LIBRARIES:%=-l%) $(TEST_SOURCES) -o build/$@
+	./build/test
 
 clean: clean-libs
 	rm -Rf main

@@ -11,7 +11,7 @@ Buffer RLPEncoder::encodeLength(size_t length, std::size_t offset, Buffer output
   }
 
   Buffer lengthBytesStart = output + 1;
-  Buffer lengthBytesEnd = intToBytes(length, lengthBytesStart);
+  Buffer lengthBytesEnd = intToBuffer(length, lengthBytesStart);
 
   *output = getMostSignificantNonZeroByte(offset + 55 + (lengthBytesEnd - lengthBytesStart + 1));
 

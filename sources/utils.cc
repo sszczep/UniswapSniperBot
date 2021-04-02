@@ -15,6 +15,7 @@ namespace Utils {
   }
 
   Buffer hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output) {
+    if(inputLength == 0) return nullptr;
     if(inputLength % 2 == 1) *(output++) = hexCharToByte(*(input++));
     while(*input != '\0') {
       *(output++) = 16 * hexCharToByte(*input) + hexCharToByte(*(input + 1));
@@ -28,6 +29,7 @@ namespace Utils {
   }
 
   char *bufferToHexString(Buffer input, size_t inputLength, char *output, bool nullTerminated) {
+    if(inputLength == 0) return nullptr;
     Buffer inputEnd = input + inputLength;
     while(input != inputEnd) {
       *output = byteToHexChar((*input / 16) % 16);
@@ -44,6 +46,8 @@ namespace Utils {
   }
 
   Byte getMostSignificantNonZeroByte(std::uint64_t x) {
+    if(x == 0) return 0;
+
     Byte MSB;
     std::uint_fast8_t n = 7;
     while((MSB = (x >> 8 * (n--)) & 0xFF) == 0);
@@ -51,9 +55,15 @@ namespace Utils {
     return MSB;
   }
 
-  Buffer intToBytes(std::uint64_t x, Buffer output) {
+  Buffer intToBuffer(std::uint64_t x, Buffer output) {
     Buffer outputStart = output + 8;
     Buffer outputEnd = outputStart;
+
+    if(x == 0) {
+      *output = 0;
+      return output;
+    }
+
     for(; x != 0; x >>= 8) *(--outputStart) = x & 0xFF;
     std::size_t length = outputEnd - outputStart;
 

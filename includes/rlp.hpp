@@ -59,7 +59,7 @@ namespace RLP {
     Buffer mElementStart[1 + ElementsCount + 1] { mBuffer, mBuffer + MaximumEncodedLengthSize };
 
     /**
-     * @brief Encodes data length
+     * @brief Encodes data length, requires 9 bytes
      * 
      * @param length length of data
      * @param offset offset
