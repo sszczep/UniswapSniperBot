@@ -3,6 +3,10 @@
 #include <cstdint>
 #include <cstring>
 
+/**
+ * @brief Namespace holding all converters and other utilities
+ * 
+ */
 namespace Utils {
   using Byte = std::uint8_t;
   using Buffer = Byte*;
@@ -62,7 +66,7 @@ namespace Utils {
   }
 
   /**
-   * @brief 
+   * @brief Converts buffer to hexadecimal string
    * 
    * @param input buffer
    * @param inputLength length of the input buffer 

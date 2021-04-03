@@ -9,14 +9,14 @@
 
 using namespace Utils;
 
-/**
- * Disables validation for faster processing speed
- * 
- */
+// /**
+//  * @brief Disables validation for faster processing speed
+//  * 
+//  */
 // #define RLP_OPTIMIZE
 
 /**
- * Class for Recursive Length Prefix Encoding. 
+ * @brief Class for Recursive Length Prefix Encoding. 
  * It is the main encoding method used to serialize objects in Ethereum. 
  * 
  * @author Sebastian Szczepański
@@ -30,34 +30,34 @@ template<std::size_t BufferSize = 1024, std::size_t ElementsCount = 9>
 class RLP {
 
   /**
-   * Maximum number of bytes that encoded length takes.
+   * @brief Maximum number of bytes that encoded length takes.
    * 
    */
   static inline constexpr std::size_t MaximumEncodedLengthSize { 9 };
 
 
   /**
-   * Buffer holding encoded data
+   * @brief Buffer holding encoded data
    * 
    */
   Byte mBuffer[BufferSize];
 
   #ifndef RLP_OPTIMIZE
     /**
-     * Has the buffer been fully encoded
+     * @brief Has the buffer been fully encoded
      * 
      */
     bool mBufferEncoded { false };
   #endif
 
   /**
-   * Holds pointers to the buffer, represents start of the encoded block of certain element
+   * @brief Holds pointers to the buffer, represents start of the encoded block of certain element
    * 
    */
   Buffer mElementStart[1 + ElementsCount + 1] { mBuffer, mBuffer + MaximumEncodedLengthSize };
 
   /**
-   * Encodes data length, requires 9 bytes
+   * @brief Encodes data length, requires 9 bytes
    * 
    * @param length length of data
    * @param offset offset
@@ -80,7 +80,7 @@ class RLP {
   public:
 
   /**
-   * Encodes the element
+   * @brief Encodes the element
    * 
    * 
    * @param position position of the element
@@ -94,7 +94,7 @@ class RLP {
   }
 
   /**
-   * Encodes the element
+   * @brief Encodes the element
    * 
    * @param position position of the element
    * @param input input data
@@ -144,7 +144,7 @@ class RLP {
   }
 
   /**
-   * Encodes the element
+   * @brief Encodes the element
    * 
    * @param position position of the element
    * @param input input data
@@ -185,7 +185,7 @@ class RLP {
   }
 
   /**
-   * Encodes the buffer
+   * @brief Encodes the buffer
    * 
    * @return Encoded buffer start pointer and its length
    * @throws std::logic_error Throws when trying to encode the buffer without setting all elements first
@@ -213,7 +213,7 @@ class RLP {
   }
 
   /**
-   * Get the encoded buffer
+   * @brief Get the encoded buffer
    * 
    * @return Encoded buffer start pointer and its length
    * @throws std::logic_error Throws when getting not encoded buffer

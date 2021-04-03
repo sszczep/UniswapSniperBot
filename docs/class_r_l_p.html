@@ -74,19 +74,27 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Class for Recursive Length Prefix Encoding. It is the main encoding method used to serialize objects in Ethereum.  
+ <a href="class_r_l_p.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="rlp_8hpp_source.html">rlp.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a96d6e08b44fe2adacc7ba8c0250c19f7"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a96d6e08b44fe2adacc7ba8c0250c19f7">setElement</a> (std::size_t position, const char *input)</td></tr>
+<tr class="memdesc:a96d6e08b44fe2adacc7ba8c0250c19f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the element.  <a href="class_r_l_p.html#a96d6e08b44fe2adacc7ba8c0250c19f7">More...</a><br /></td></tr>
 <tr class="separator:a96d6e08b44fe2adacc7ba8c0250c19f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4e3c64be415c33619f887c22e015853"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#ad4e3c64be415c33619f887c22e015853">setElement</a> (std::size_t position, const char *input, std::size_t inputLength)</td></tr>
-<tr class="separator:ad4e3c64be415c33619f887c22e015853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a411ebc495457a62abb28124694a7ac18"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a411ebc495457a62abb28124694a7ac18">setElement</a> (std::size_t position, Buffer input, std::size_t inputLength)</td></tr>
-<tr class="separator:a411ebc495457a62abb28124694a7ac18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31ae581e81fe1a47a08fb302a668bb84"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a31ae581e81fe1a47a08fb302a668bb84">setElement</a> (std::size_t position, const char *input, std::size_t length)</td></tr>
+<tr class="memdesc:a31ae581e81fe1a47a08fb302a668bb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the element.  <a href="class_r_l_p.html#a31ae581e81fe1a47a08fb302a668bb84">More...</a><br /></td></tr>
+<tr class="separator:a31ae581e81fe1a47a08fb302a668bb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaf462e5413f346003bb6fcdded5180c"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#abaf462e5413f346003bb6fcdded5180c">setElement</a> (std::size_t position, Buffer input, std::size_t length)</td></tr>
+<tr class="memdesc:abaf462e5413f346003bb6fcdded5180c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the element.  <a href="class_r_l_p.html#abaf462e5413f346003bb6fcdded5180c">More...</a><br /></td></tr>
+<tr class="separator:abaf462e5413f346003bb6fcdded5180c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab443555491acf3f2a370e42d48c56314"><td class="memItemLeft" align="right" valign="top">std::pair&lt; Buffer, std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#ab443555491acf3f2a370e42d48c56314">encode</a> ()</td></tr>
+<tr class="memdesc:ab443555491acf3f2a370e42d48c56314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the buffer.  <a href="class_r_l_p.html#ab443555491acf3f2a370e42d48c56314">More...</a><br /></td></tr>
 <tr class="separator:ab443555491acf3f2a370e42d48c56314"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a194525ec4d29361713c42fce1ce394ab"><td class="memItemLeft" align="right" valign="top">std::pair&lt; Buffer, std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a194525ec4d29361713c42fce1ce394ab">getBuffer</a> ()</td></tr>
+<tr class="memdesc:a194525ec4d29361713c42fce1ce394ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the encoded buffer.  <a href="class_r_l_p.html#a194525ec4d29361713c42fce1ce394ab">More...</a><br /></td></tr>
 <tr class="separator:a194525ec4d29361713c42fce1ce394ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef69136e0f9ad7c60e400fa7c2c02aef"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#aef69136e0f9ad7c60e400fa7c2c02aef">getHexString</a> (char *output, bool nullTerminated=false)</td></tr>
 <tr class="memdesc:aef69136e0f9ad7c60e400fa7c2c02aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the hexadecimal representation of the encoded buffer.  <a href="class_r_l_p.html#aef69136e0f9ad7c60e400fa7c2c02aef">More...</a><br /></td></tr>
@@ -94,47 +102,55 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
-<tr class="memitem:a3dfe84c6a7321349936d1a3c28694f7f"><td class="memItemLeft" align="right" valign="top">static Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a3dfe84c6a7321349936d1a3c28694f7f">encodeLength</a> (size_t length, std::size_t offset, Buffer output)</td></tr>
-<tr class="separator:a3dfe84c6a7321349936d1a3c28694f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b42629a4a556546b0b745d0438ad9c2"><td class="memItemLeft" align="right" valign="top">static Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a6b42629a4a556546b0b745d0438ad9c2">encodeLength</a> (std::size_t length, std::size_t offset, Buffer output)</td></tr>
+<tr class="memdesc:a6b42629a4a556546b0b745d0438ad9c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes data length, requires 9 bytes.  <a href="class_r_l_p.html#a6b42629a4a556546b0b745d0438ad9c2">More...</a><br /></td></tr>
+<tr class="separator:a6b42629a4a556546b0b745d0438ad9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a5d39e0c2b9ddcfe476c3899342473641"><td class="memItemLeft" align="right" valign="top">Byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a5d39e0c2b9ddcfe476c3899342473641">mBuffer</a> [BufferSize]</td></tr>
+<tr class="memitem:a5d39e0c2b9ddcfe476c3899342473641"><td class="memItemLeft" align="right" valign="top"><a id="a5d39e0c2b9ddcfe476c3899342473641"></a>
+Byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a5d39e0c2b9ddcfe476c3899342473641">mBuffer</a> [BufferSize]</td></tr>
+<tr class="memdesc:a5d39e0c2b9ddcfe476c3899342473641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer holding encoded data. <br /></td></tr>
 <tr class="separator:a5d39e0c2b9ddcfe476c3899342473641"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a239b7a4cd85672c6d3caff11bcc3f23d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a239b7a4cd85672c6d3caff11bcc3f23d">mBufferEncoded</a> { false }</td></tr>
+<tr class="memitem:a239b7a4cd85672c6d3caff11bcc3f23d"><td class="memItemLeft" align="right" valign="top"><a id="a239b7a4cd85672c6d3caff11bcc3f23d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a239b7a4cd85672c6d3caff11bcc3f23d">mBufferEncoded</a> { false }</td></tr>
+<tr class="memdesc:a239b7a4cd85672c6d3caff11bcc3f23d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has the buffer been fully encoded. <br /></td></tr>
 <tr class="separator:a239b7a4cd85672c6d3caff11bcc3f23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa15a6b129134c6171c1ced2cc78af145"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#aa15a6b129134c6171c1ced2cc78af145">mElementStart</a> [1+ElementsCount+1] { <a class="el" href="class_r_l_p.html#a5d39e0c2b9ddcfe476c3899342473641">mBuffer</a>, <a class="el" href="class_r_l_p.html#a5d39e0c2b9ddcfe476c3899342473641">mBuffer</a> + <a class="el" href="class_r_l_p.html#a5871a2e42630525f6d368c8f66d57757">MaximumEncodedLengthSize</a> }</td></tr>
+<tr class="memitem:aa15a6b129134c6171c1ced2cc78af145"><td class="memItemLeft" align="right" valign="top"><a id="aa15a6b129134c6171c1ced2cc78af145"></a>
+Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#aa15a6b129134c6171c1ced2cc78af145">mElementStart</a> [1+ElementsCount+1] { <a class="el" href="class_r_l_p.html#a5d39e0c2b9ddcfe476c3899342473641">mBuffer</a>, <a class="el" href="class_r_l_p.html#a5d39e0c2b9ddcfe476c3899342473641">mBuffer</a> + <a class="el" href="class_r_l_p.html#a5871a2e42630525f6d368c8f66d57757">MaximumEncodedLengthSize</a> }</td></tr>
+<tr class="memdesc:aa15a6b129134c6171c1ced2cc78af145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds pointers to the buffer, represents start of the encoded block of certain element. <br /></td></tr>
 <tr class="separator:aa15a6b129134c6171c1ced2cc78af145"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:a5871a2e42630525f6d368c8f66d57757"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a5871a2e42630525f6d368c8f66d57757">MaximumEncodedLengthSize</a> { 9 }</td></tr>
+<tr class="memitem:a5871a2e42630525f6d368c8f66d57757"><td class="memItemLeft" align="right" valign="top"><a id="a5871a2e42630525f6d368c8f66d57757"></a>
+static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_l_p.html#a5871a2e42630525f6d368c8f66d57757">MaximumEncodedLengthSize</a> { 9 }</td></tr>
+<tr class="memdesc:a5871a2e42630525f6d368c8f66d57757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of bytes that encoded length takes. <br /></td></tr>
 <tr class="separator:a5871a2e42630525f6d368c8f66d57757"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt;<br />
+<div class="textblock"><h3>template&lt;std::size_t BufferSize = 1024, std::size_t ElementsCount = 9&gt;<br />
 class RLP&lt; BufferSize, ElementsCount &gt;</h3>
 
-<p class="">Disables validation for faster processing speed Class for Recursive Length Prefix Encoding. It is the main encoding method used to serialize objects in Ethereum.</p>
+<p class="">Class for Recursive Length Prefix Encoding. It is the main encoding method used to serialize objects in Ethereum. </p>
 <dl class="section author"><dt>Author</dt><dd>Sebastian Szczepański </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://eth.wiki/fundamentals/rlp">https://eth.wiki/fundamentals/rlp</a></dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">BufferSize</td><td><a class="el" href="class_r_l_p.html">RLP</a> buffer size </td></tr>
-    <tr><td class="paramname">ElementsCount</td><td>Number of elements to encode. Ethereum transactions require 9: nonce, gas price, gas limit, to, value, data, v, r, s</td></tr>
+    <tr><td class="paramname">BufferSize</td><td><a class="el" href="class_r_l_p.html" title="Class for Recursive Length Prefix Encoding. It is the main encoding method used to serialize objects ...">RLP</a> buffer size </td></tr>
+    <tr><td class="paramname">ElementsCount</td><td>Number of elements to encode. Ethereum transactions require 9: nonce, gas price, gas limit, to, value, data, v, r, s </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Check if the algorithm matches official definition </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3dfe84c6a7321349936d1a3c28694f7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3dfe84c6a7321349936d1a3c28694f7f">&#9670;&nbsp;</a></span>encodeLength()</h2>
+<a id="a6b42629a4a556546b0b745d0438ad9c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b42629a4a556546b0b745d0438ad9c2">&#9670;&nbsp;</a></span>encodeLength()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
+template&lt;std::size_t BufferSize = 1024, std::size_t ElementsCount = 9&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -142,7 +158,7 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
         <tr>
           <td class="memname">static Buffer <a class="el" href="class_r_l_p.html">RLP</a>&lt; BufferSize, ElementsCount &gt;::encodeLength </td>
           <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>length</em>, </td>
         </tr>
         <tr>
@@ -169,7 +185,8 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
-<p class="">Encodes data length, requires 9 bytes</p>
+
+<p>Encodes data length, requires 9 bytes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">length</td><td>length of data </td></tr>
@@ -188,7 +205,7 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
+template&lt;std::size_t BufferSize = 1024, std::size_t ElementsCount = 9&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -217,7 +234,8 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
-<p class="">Encodes the element</p>
+
+<p>Encodes the element. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">position</td><td>position of the element </td></tr>
@@ -236,13 +254,13 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
 
 </div>
 </div>
-<a id="ad4e3c64be415c33619f887c22e015853"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4e3c64be415c33619f887c22e015853">&#9670;&nbsp;</a></span>setElement() <span class="overload">[2/3]</span></h2>
+<a id="a31ae581e81fe1a47a08fb302a668bb84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31ae581e81fe1a47a08fb302a668bb84">&#9670;&nbsp;</a></span>setElement() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
+template&lt;std::size_t BufferSize = 1024, std::size_t ElementsCount = 9&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -263,7 +281,7 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>inputLength</em>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -277,12 +295,13 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
-<p class="">Encodes the element</p>
+
+<p>Encodes the element. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">position</td><td>position of the element </td></tr>
     <tr><td class="paramname">input</td><td>input data </td></tr>
-    <tr><td class="paramname">inputLength</td><td>input length </td></tr>
+    <tr><td class="paramname">length</td><td>input length </td></tr>
   </table>
   </dd>
 </dl>
@@ -297,13 +316,13 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
 
 </div>
 </div>
-<a id="a411ebc495457a62abb28124694a7ac18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a411ebc495457a62abb28124694a7ac18">&#9670;&nbsp;</a></span>setElement() <span class="overload">[3/3]</span></h2>
+<a id="abaf462e5413f346003bb6fcdded5180c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaf462e5413f346003bb6fcdded5180c">&#9670;&nbsp;</a></span>setElement() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
+template&lt;std::size_t BufferSize = 1024, std::size_t ElementsCount = 9&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -324,7 +343,7 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>inputLength</em>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -338,12 +357,13 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
-<p class="">Encodes the element</p>
+
+<p>Encodes the element. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">position</td><td>position of the element </td></tr>
     <tr><td class="paramname">input</td><td>input data </td></tr>
-    <tr><td class="paramname">inputLength</td><td>input length </td></tr>
+    <tr><td class="paramname">length</td><td>input length </td></tr>
   </table>
   </dd>
 </dl>
@@ -364,7 +384,7 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
+template&lt;std::size_t BufferSize = 1024, std::size_t ElementsCount = 9&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -382,7 +402,8 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
-<p class="">Encodes the buffer</p>
+
+<p>Encodes the buffer. </p>
 <dl class="section return"><dt>Returns</dt><dd>Encoded buffer start pointer and its length </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
@@ -399,7 +420,7 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
+template&lt;std::size_t BufferSize = 1024, std::size_t ElementsCount = 9&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -417,7 +438,8 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
-<p class="">Get the encoded buffer</p>
+
+<p>Get the encoded buffer. </p>
 <dl class="section return"><dt>Returns</dt><dd>Encoded buffer start pointer and its length </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
@@ -434,7 +456,7 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
+template&lt;std::size_t BufferSize = 1024, std::size_t ElementsCount = 9&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -479,107 +501,6 @@ template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </d
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a5871a2e42630525f6d368c8f66d57757"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5871a2e42630525f6d368c8f66d57757">&#9670;&nbsp;</a></span>MaximumEncodedLengthSize</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr std::size_t <a class="el" href="class_r_l_p.html">RLP</a>&lt; BufferSize, ElementsCount &gt;::MaximumEncodedLengthSize { 9 }</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p class="">Maximum number of bytes that encoded length takes. </p>
-
-</div>
-</div>
-<a id="a5d39e0c2b9ddcfe476c3899342473641"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d39e0c2b9ddcfe476c3899342473641">&#9670;&nbsp;</a></span>mBuffer</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Byte <a class="el" href="class_r_l_p.html">RLP</a>&lt; BufferSize, ElementsCount &gt;::mBuffer[BufferSize]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p class="">Buffer holding encoded data </p>
-
-</div>
-</div>
-<a id="a239b7a4cd85672c6d3caff11bcc3f23d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a239b7a4cd85672c6d3caff11bcc3f23d">&#9670;&nbsp;</a></span>mBufferEncoded</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="class_r_l_p.html">RLP</a>&lt; BufferSize, ElementsCount &gt;::mBufferEncoded { false }</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p class="">Has the buffer been fully encoded </p>
-
-</div>
-</div>
-<a id="aa15a6b129134c6171c1ced2cc78af145"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa15a6b129134c6171c1ced2cc78af145">&#9670;&nbsp;</a></span>mElementStart</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::size_t BufferSize = 9, std::size_t ElementsCount = 1024&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Buffer <a class="el" href="class_r_l_p.html">RLP</a>&lt; BufferSize, ElementsCount &gt;::mElementStart[1+ElementsCount+1] { <a class="el" href="class_r_l_p.html#a5d39e0c2b9ddcfe476c3899342473641">mBuffer</a>, <a class="el" href="class_r_l_p.html#a5d39e0c2b9ddcfe476c3899342473641">mBuffer</a> + <a class="el" href="class_r_l_p.html#a5871a2e42630525f6d368c8f66d57757">MaximumEncodedLengthSize</a> }</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p class="">Holds pointers to the buffer, represents start of the encoded block of certain element </p>
 
 </div>
 </div>

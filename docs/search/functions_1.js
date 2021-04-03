@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['getbuffer_37',['getBuffer',['../class_transaction_1_1_e_t_h_transaction.html#a435619768fd7beb4d0a8c082188666cf',1,'Transaction::ETHTransaction::getBuffer()'],['../class_r_l_p.html#a194525ec4d29361713c42fce1ce394ab',1,'RLP::getBuffer()']]],
-  ['gethexstring_38',['getHexString',['../class_transaction_1_1_e_t_h_transaction.html#a2600271c585ff7359d82081f8ab22408',1,'Transaction::ETHTransaction::getHexString()'],['../class_r_l_p.html#aef69136e0f9ad7c60e400fa7c2c02aef',1,'RLP::getHexString()']]],
-  ['getsignature_39',['getSignature',['../class_transaction_1_1_e_t_h_transaction.html#ae236675c05676d949540317ca8650143',1,'Transaction::ETHTransaction']]]
+  ['encode_43',['encode',['../class_r_l_p.html#ab443555491acf3f2a370e42d48c56314',1,'RLP']]],
+  ['encodelength_44',['encodeLength',['../class_r_l_p.html#a6b42629a4a556546b0b745d0438ad9c2',1,'RLP']]],
+  ['ethtransaction_45',['ETHTransaction',['../class_transaction_1_1_e_t_h_transaction.html#a9a84438114278b47921ee529dbadbd77',1,'Transaction::ETHTransaction']]]
 ];

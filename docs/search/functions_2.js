@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['setelement_40',['setElement',['../class_r_l_p.html#a96d6e08b44fe2adacc7ba8c0250c19f7',1,'RLP::setElement(std::size_t position, const char *input)'],['../class_r_l_p.html#ad4e3c64be415c33619f887c22e015853',1,'RLP::setElement(std::size_t position, const char *input, std::size_t inputLength)'],['../class_r_l_p.html#a411ebc495457a62abb28124694a7ac18',1,'RLP::setElement(std::size_t position, Buffer input, std::size_t inputLength)']]],
-  ['setinputdata_41',['setInputData',['../class_blo_xroute_1_1_blo_xroute_bot.html#a82912feadec659d7f35aa3febb49d9a2',1,'BloXroute::BloXrouteBot']]],
-  ['setvalues_42',['setValues',['../class_transaction_1_1_e_t_h_transaction.html#ad15307851fe10b09aac85468e609adb1',1,'Transaction::ETHTransaction']]],
-  ['sign_43',['sign',['../class_transaction_1_1_e_t_h_transaction.html#ad6c3c1c8c03e1522b2201d0827935df1',1,'Transaction::ETHTransaction']]]
+  ['getbuffer_46',['getBuffer',['../class_transaction_1_1_e_t_h_transaction.html#a435619768fd7beb4d0a8c082188666cf',1,'Transaction::ETHTransaction::getBuffer()'],['../class_r_l_p.html#a194525ec4d29361713c42fce1ce394ab',1,'RLP::getBuffer()']]],
+  ['gethexstring_47',['getHexString',['../class_transaction_1_1_e_t_h_transaction.html#a2600271c585ff7359d82081f8ab22408',1,'Transaction::ETHTransaction::getHexString()'],['../class_r_l_p.html#aef69136e0f9ad7c60e400fa7c2c02aef',1,'RLP::getHexString()']]],
+  ['getmostsignificantnonzerobyte_48',['getMostSignificantNonZeroByte',['../namespace_utils.html#a26b0ccb81bc34222ef1ba5b8ac41ef98',1,'Utils']]],
+  ['getsignature_49',['getSignature',['../class_transaction_1_1_e_t_h_transaction.html#ae236675c05676d949540317ca8650143',1,'Transaction::ETHTransaction']]]
 ];
