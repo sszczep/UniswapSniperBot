@@ -13,7 +13,7 @@ using namespace Utils;
  * Disables validation for faster processing speed
  * 
  */
-#define RLP_OPTIMIZE
+// #define RLP_OPTIMIZE
 
 /**
  * Class for Recursive Length Prefix Encoding. 

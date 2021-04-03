@@ -1,4 +1,4 @@
-CXXFLAGS=-std=c++17 -O3
+CXXFLAGS=-std=c++17 -O3 -DRLP_OPTIMIZE
 SOURCES=$(wildcard sources/*.cc)
 INCLUDES_PATHS=$(wildcard libs.build/*/includes) usr/local/opt/openssl/include includes
 LIBRARIES_PATHS=$(wildcard libs.build/*) /usr/local/opt/openssl/lib
