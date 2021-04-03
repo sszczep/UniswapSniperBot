@@ -25,10 +25,8 @@ using namespace Utils;
  * 
  * @tparam BufferSize RLP buffer size
  * @tparam ElementsCount Number of elements to encode. Ethereum transactions require 9: nonce, gas price, gas limit, to, value, data, v, r, s
- * 
- * @todo Check if the algorithm matches official definition
  */
-template<std::size_t BufferSize = 9, std::size_t ElementsCount = 1024>
+template<std::size_t BufferSize = 1024, std::size_t ElementsCount = 9>
 class RLP {
 
   /**
@@ -66,7 +64,7 @@ class RLP {
    * @param output output buffer
    * @return Pointer to the last byte in the buffer 
    */
-  static Buffer encodeLength(size_t length, std::size_t offset, Buffer output) {
+  static Buffer encodeLength(std::size_t length, std::size_t offset, Buffer output) {
     if(length < 56) {
       *output = length + offset;
       return output;
@@ -75,8 +73,7 @@ class RLP {
     Buffer lengthBytesStart = output + 1;
     Buffer lengthBytesEnd = intToBuffer(length, lengthBytesStart);
 
-    *output = getMostSignificantNonZeroByte(offset + 55 + (lengthBytesEnd - lengthBytesStart + 1));
-
+    *output = (lengthBytesEnd - lengthBytesStart + 1) + offset + 55;
     return lengthBytesEnd;
   }
 
@@ -101,14 +98,14 @@ class RLP {
    * 
    * @param position position of the element
    * @param input input data
-   * @param inputLength input length
+   * @param length input length
    * @return Pointer to the last byte of the encoded element 
    * @throws std::out_of_range Throws when setting element on invalid position
    * @throws std::logic_error Throws when setting element whlie previous elements are not set
    */
-  Buffer setElement(std::size_t position, const char *input, std::size_t inputLength) {
+  Buffer setElement(std::size_t position, const char *input, std::size_t length) {
     #ifndef RLP_OPTIMIZE
-      if(position > ElementsCount) throw std::out_of_range("Position out of range");
+      if(position < 1 || position > ElementsCount) throw std::out_of_range("Position out of range");
     #endif
 
     Buffer buffer = mElementStart[position];
@@ -118,21 +115,21 @@ class RLP {
     
     Buffer bufferEnd = nullptr;
 
-    if(inputLength == 0) {
-      buffer[0] = 128;
+    if(length == 0) {
+      *buffer = 128;
       bufferEnd = buffer;
-    } else if(inputLength == 1) {
-      buffer[0] = hexCharToByte(input[0]);
+    } else if(length == 1) {
+      *buffer = hexCharToByte(input[0]);
       bufferEnd = buffer;
-    } else if(inputLength == 2) {
+    } else if(length == 2) {
       Byte byte = 16 * hexCharToByte(input[0]) + hexCharToByte(input[1]);
       if(byte < 128) {
-        buffer[0] = byte;
+        *buffer = byte;
         bufferEnd = buffer;
       }
     } else {
-      Buffer encodedLengthEnd = encodeLength((inputLength + 1) / 2, 128, buffer);
-      Buffer encodedInputEnd = hexStringToBuffer(input, inputLength, encodedLengthEnd + 1);
+      Buffer encodedLengthEnd = encodeLength((length + 1) / 2, 128, buffer);
+      Buffer encodedInputEnd = hexStringToBuffer(input, length, encodedLengthEnd + 1);
       bufferEnd = encodedInputEnd;
     }
 
@@ -151,14 +148,14 @@ class RLP {
    * 
    * @param position position of the element
    * @param input input data
-   * @param inputLength input length
+   * @param length input length
    * @return Pointer to the last byte of the encoded element 
    * @throws std::out_of_range Throws when setting element on invalid position
    * @throws std::logic_error Throws when setting element whlie previous elements are not set
    */
-  Buffer setElement(std::size_t position, Buffer input, std::size_t inputLength) {
+  Buffer setElement(std::size_t position, Buffer input, std::size_t length) {
     #ifndef RLP_OPTIMIZE
-      if(position > ElementsCount) throw std::out_of_range("Position out of range");
+      if(position < 1 || position > ElementsCount) throw std::out_of_range("Position out of range");
     #endif
 
     Buffer buffer = mElementStart[position];
@@ -168,13 +165,13 @@ class RLP {
     
     Buffer bufferEnd = nullptr;
 
-    if(inputLength == 1 && input[0] < 128) {
-      buffer[0] = input[0];
+    if(length == 1 && input[0] < 128) {
+      *buffer = *input;
       bufferEnd = buffer;
     } else {
-      Buffer encodedLengthEnd = encodeLength(inputLength, 128, buffer);
-      memcpy(encodedLengthEnd + 1, input, inputLength);
-      bufferEnd = encodedLengthEnd + inputLength;
+      Buffer encodedLengthEnd = encodeLength(length, 128, buffer);
+      memcpy(encodedLengthEnd + 1, input, length);
+      bufferEnd = encodedLengthEnd + length;
     }
     
     mElementStart[position + 1] = bufferEnd + 1;
