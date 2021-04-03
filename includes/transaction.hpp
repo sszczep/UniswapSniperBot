@@ -34,7 +34,7 @@ namespace Transaction {
      * @brief Object holding transaction data and encoding it
      * 
      */
-    RLP::RLPEncoder mRLP;
+    RLP<> mRLP;
 
     /**
      * @brief secp256k1 context, it's created in constructor as it takes some time to initialize
