@@ -1,18 +1,17 @@
 CXXFLAGS=-std=c++17 -O3 -DRLP_OPTIMIZE
 SOURCES=$(wildcard sources/*.cc)
-INCLUDES_PATHS=$(wildcard libs.build/*/includes) usr/local/opt/openssl/include includes
+INCLUDES_PATHS=$(wildcard libs.build/*/includes) /usr/local/opt/openssl/include includes
 LIBRARIES_PATHS=$(wildcard libs.build/*) /usr/local/opt/openssl/lib
 LIBRARIES=secp256k1 XKCP crypto ssl
 
 TEST_CXXFLAGS=-std=c++17
 TEST_SOURCES=$(wildcard tests/*.cc) $(SOURCES)
-TEST_LIBRARIES = $(LIBRARIES) gtest gtest_main pthread
+TEST_LIBRARIES = $(LIBRARIES) gtest gmock gmock_main pthread
 
 all: main
 
 build-websocketpp:
 ifeq ($(wildcard libs.build/websocketpp),)
-	mkdir -p libs.build/websocketpp/
 	mkdir -p libs.build/websocketpp/includes
 
 	cp -R libs/websocketpp/websocketpp libs.build/websocketpp/includes
@@ -29,7 +28,6 @@ ifeq ($(wildcard libs.build/secp256k1),)
 	cd libs/secp256k1 && ./configure --disable-benchmark --disable-tests --disable-openssl_tests --disable-exhaustive_tests --enable-module_recovery
 	cd libs/secp256k1 && make
 
-	mkdir -p libs.build/secp256k1
 	mkdir -p libs.build/secp256k1/includes
 
 	cp libs/secp256k1/.libs/libsecp256k1.a libs.build/secp256k1/libsecp256k1.a
@@ -46,7 +44,6 @@ build-xkcp:
 ifeq ($(wildcard libs.build/XKCP),)
 	cd libs/XKCP && make generic64/libXKCP.a
 
-	mkdir -p libs.build/XKCP
 	mkdir -p libs.build/XKCP/includes
 
 	cp libs/XKCP/bin/generic64/libXKCP.a libs.build/XKCP/libXKCP.a
@@ -62,14 +59,14 @@ clean-xkcp:
 build-gtest:
 ifeq ($(wildcard libs.build/gtest),)
 	mkdir -p libs/googletest/build
-	cd libs/googletest/build && cmake .. -DBUILD_GMOCK=OFF
+	cd libs/googletest/build && cmake ..
 	cd libs/googletest/build && make
 
-	mkdir -p libs.build/gtest/
-	mkdir -p libs.build/gtest/includes
+	mkdir -p libs.build/gtest/includes/{gtest,gmock}
 
 	cp -R libs/googletest/build/lib/ libs.build/gtest/
-	cp -R libs/googletest/googletest/include/gtest/ libs.build/gtest/includes
+	cp -R libs/googletest/googletest/include/gtest/ libs.build/gtest/includes/gtest/
+	cp -R libs/googletest/googlemock/include/gmock/ libs.build/gtest/includes/gmock/
 else
 	@echo "gtest already built. To rebuild, type make clean-gtest and build again"
 endif
