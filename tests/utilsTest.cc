@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include <utils.hpp>
 
@@ -62,12 +62,12 @@ TEST(Utils, hexStringToBuffer) {
   bufferEnd = Utils::hexStringToBuffer(input, 0, buffer);
   ASSERT_EQ(bufferEnd, nullptr);
 
-  input[0] = '0';
+  memcpy(input, "0", 1);
   bufferEnd = Utils::hexStringToBuffer(input, 1, buffer);
   ASSERT_EQ(bufferEnd - buffer, 0);
   ASSERT_EQ(buffer[0], 0);
 
-  input[0] = '1', input[1] = 'C', input[2] = '1', input[3] = 'e', input[4] = '1', input[5] = '7', input[6] = '6', input[7] = '9';
+  memcpy(input, "1C1e1769", 8);
   bufferEnd = Utils::hexStringToBuffer(input, 8, buffer);
   ASSERT_EQ(bufferEnd - buffer, 3);
   ASSERT_EQ(buffer[0], 28);
@@ -75,7 +75,7 @@ TEST(Utils, hexStringToBuffer) {
   ASSERT_EQ(buffer[2], 23);
   ASSERT_EQ(buffer[3], 105);
 
-  input[0] = 'D', input[1] = '5', input[2] = '5', input[3] = 'f', input[4] = '9', input[5] = '2', input[6] = 'F', input[7] = 'd', input[8] = '5';
+  memcpy(input, "D55f92Fd5", 9);
   bufferEnd = Utils::hexStringToBuffer(input, 9, buffer);
   ASSERT_EQ(bufferEnd - buffer, 4);
   ASSERT_EQ(buffer[0], 13);
@@ -96,7 +96,7 @@ TEST(Utils, bufferToHexString) {
   buffer[0] = 0;
   outEnd = Utils::bufferToHexString(buffer, 1, out);
   ASSERT_EQ(outEnd - out, 1);
-  ASSERT_EQ(memcmp("00", out, 2), 0);
+  ASSERT_THAT(out, ::testing::StartsWith("00"));
 
   buffer[0] = 28;
   buffer[1] = 30;
@@ -104,7 +104,7 @@ TEST(Utils, bufferToHexString) {
   buffer[3] = 105;
   outEnd = Utils::bufferToHexString(buffer, 4, out);
   ASSERT_EQ(outEnd - out, 7);
-  ASSERT_EQ(memcmp("1c1e1769", out, 8), 0);
+  ASSERT_THAT(out, ::testing::StartsWith("1c1e1769"));
 
   buffer[0] = 13;
   buffer[1] = 85;
@@ -113,7 +113,7 @@ TEST(Utils, bufferToHexString) {
   buffer[4] = 213;
   outEnd = Utils::bufferToHexString(buffer, 5, out);
   ASSERT_EQ(outEnd - out, 9);
-  ASSERT_EQ(memcmp("0d55f92fd5", out, 10), 0);
+  ASSERT_THAT(out, ::testing::StartsWith("0d55f92fd5"));
 }
 
 TEST(Utils, bufferToHexStringNullTerminated) {
