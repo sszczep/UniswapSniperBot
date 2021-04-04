@@ -46,10 +46,14 @@ namespace Utils {
    */
   inline Buffer hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output) {
     if(inputLength == 0) return nullptr;
-    if(inputLength % 2 == 1) *(output++) = hexCharToByte(*(input++));
-    while(*input != '\0') {
+    if(inputLength % 2 == 1) {
+      *(output++) = hexCharToByte(*(input++));
+      inputLength--;
+    }
+    while(inputLength > 0) {
       *(output++) = 16 * hexCharToByte(*input) + hexCharToByte(*(input + 1));
       input += 2;
+      inputLength -= 2;
     }
     return output - 1;
   }
