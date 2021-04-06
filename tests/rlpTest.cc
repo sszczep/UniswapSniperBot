@@ -10,11 +10,11 @@ TEST(RLP, encodeLength) {
 
   // If a string is 0-55 bytes long, the RLP encoding consists of a single byte with value 0x80 plus the length of the string
   // The range of the first byte is thus [0x80, 0xb7]
-  bufferEnd = RLP<>::encodeLength(0, 0x80, buffer);
+  bufferEnd = RLP<0, 0>::encodeLength(0, 0x80, buffer);
   ASSERT_EQ(bufferEnd - buffer, 0);
   ASSERT_EQ(buffer[0], 0x80);
 
-  bufferEnd = RLP<>::encodeLength(55, 0x80, buffer);
+  bufferEnd = RLP<0, 0>::encodeLength(55, 0x80, buffer);
   ASSERT_EQ(bufferEnd - buffer, 0);
   ASSERT_EQ(buffer[0], 0xb7);
 
@@ -22,7 +22,7 @@ TEST(RLP, encodeLength) {
   // plus the length in bytes of the length of the string in binary form, followed by the length of the string.
   // The range of the first byte is thus [0xb8, 0xbf].
   // For example, a length-1024 string would be encoded as \xb9\x04\x00
-  bufferEnd = RLP<>::encodeLength(1024, 0x80, buffer);
+  bufferEnd = RLP<0, 0>::encodeLength(1024, 0x80, buffer);
   ASSERT_EQ(bufferEnd - buffer, 2);
   ASSERT_EQ(buffer[0], 0xb9);
   ASSERT_EQ(buffer[1], 0x04);

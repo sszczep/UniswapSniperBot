@@ -23,12 +23,12 @@ using namespace Utils;
  * @see https://eth.wiki/fundamentals/rlp
  * 
  * @tparam BufferSize RLP buffer size
- * @tparam ElementsCount Number of elements to encode. Ethereum transactions require 9: nonce, gas price, gas limit, to, value, data, v, r, s
+ * @tparam ElementsCount Number of elements to encode
  * 
  * @todo Refactor getBuffer method - should return bufferEnd as pointer and take pointer to buffer as an argument
  * @todo Add decoding functionality
  */
-template<std::size_t BufferSize = 1024, std::size_t ElementsCount = 9>
+template<std::size_t BufferSize, std::size_t ElementsCount>
 class RLP {
 
   private:
@@ -123,19 +123,23 @@ class RLP {
     Buffer bufferEnd = nullptr;
 
     if(length == 0) {
-      *buffer = 128;
+      *buffer = 0x80;
       bufferEnd = buffer;
     } else if(length == 1) {
       *buffer = hexCharToByte(input[0]);
       bufferEnd = buffer;
     } else if(length == 2) {
       Byte byte = 16 * hexCharToByte(input[0]) + hexCharToByte(input[1]);
-      if(byte < 128) {
+      if(byte < 0x80) {
         *buffer = byte;
         bufferEnd = buffer;
+      } else {
+        *buffer = 0x81;
+        *(buffer + 1) = byte;
+        bufferEnd = buffer + 1;
       }
     } else {
-      Buffer encodedLengthEnd = encodeLength((length + 1) / 2, 128, buffer);
+      Buffer encodedLengthEnd = encodeLength((length + 1) / 2, 0x80, buffer);
       Buffer encodedInputEnd = hexStringToBuffer(input, length, encodedLengthEnd + 1);
       bufferEnd = encodedInputEnd;
     }
@@ -169,11 +173,17 @@ class RLP {
     
     Buffer bufferEnd = nullptr;
 
-    if(length == 1 && input[0] < 128) {
-      *buffer = *input;
-      bufferEnd = buffer;
+    if(length == 1) {
+      if(input[0] < 0x80) {
+        *buffer = *input;
+        bufferEnd = buffer;
+      } else {
+        *buffer = 0x81;
+        *(buffer + 1) = *input;
+        bufferEnd = buffer + 1;
+      }
     } else {
-      Buffer encodedLengthEnd = encodeLength(length, 128, buffer);
+      Buffer encodedLengthEnd = encodeLength(length, 0x80, buffer);
       memcpy(encodedLengthEnd + 1, input, length);
       bufferEnd = encodedLengthEnd + length;
     }
@@ -198,7 +208,7 @@ class RLP {
 
     std::size_t encodedDataLength = mElementStart[ElementsCount + 1] - mElementStart[1];
 
-    Buffer encodedLengthEnd = encodeLength(encodedDataLength, 192, mBuffer);
+    Buffer encodedLengthEnd = encodeLength(encodedDataLength, 0xc0, mBuffer);
     std::size_t encodedLengthLength = (encodedLengthEnd - mBuffer) + 1;
     Buffer encodedLengthStart = mBuffer + (MaximumEncodedLengthSize - encodedLengthLength);
 
