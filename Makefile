@@ -4,11 +4,11 @@ INCLUDES_PATHS=$(wildcard libs.build/*/includes) /usr/local/opt/openssl/include 
 LIBRARIES_PATHS=$(wildcard libs.build/*) /usr/local/opt/openssl/lib
 LIBRARIES=ssl crypto secp256k1 XKCP
 
-TEST_CXXFLAGS=-std=c++17 -pthread
+TEST_CXXFLAGS=$(CXXFLAGS) -pthread
 TEST_SOURCES=$(wildcard tests/*.cc) $(SOURCES)
 TEST_LIBRARIES=$(LIBRARIES) gtest gtest_main gmock gmock_main
 
-BENCHMARK_CXXFLAGS=-std=c++17
+BENCHMARK_CXXFLAGS=$(CXXFLAGS) -pthread
 BENCHMARK_SOURCES=$(wildcard benchmarks/*.cc) $(SOURCES)
 BENCHMARK_LIBRARIES=$(LIBRARIES) benchmark benchmark_main
 
