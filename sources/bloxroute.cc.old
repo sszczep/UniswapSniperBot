@@ -88,10 +88,14 @@ void BloXrouteBot::onOpen(websocketpp::connection_hdl connectionHandler) {
 void BloXrouteBot::onMessage(websocketpp::connection_hdl connectionHandler, WSClient::message_ptr message) {
   char *messageStr = (char*) message->get_payload().c_str();
 
-  if(validateTransaction(messageStr)) {
-    extractGasPriceFromMessage(messageStr);
-    sendTransaction();
-  }
+  printf("%s\n", messageStr);
+
+  // if(validateTransaction(messageStr)) {
+  //   extractGasPriceFromMessage(messageStr);
+  //   sendTransaction();
+  // }
+
+  fflush(stdout);
 }
 
 BloXrouteBot::BloXrouteBot(ConnectionConfig *connectionConfig, ListenerFilters *listenerFilters, TransactionConfig *transactionConfig)

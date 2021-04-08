@@ -75,90 +75,97 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespace_utils.html">   10</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_utils.html">Utils</a> {</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <span class="keyword">using</span> Byte = std::uint8_t;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keyword">using</span> Buffer = Byte*;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">   20</a></span>&#160;  <span class="keyword">inline</span> Byte <a class="code" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">hexCharToByte</a>(<span class="keywordtype">char</span> x) {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">if</span>(x &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; x &lt;= <span class="charliteral">&#39;9&#39;</span>) <span class="keywordflow">return</span> x - <span class="charliteral">&#39;0&#39;</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span>(x &gt;= <span class="charliteral">&#39;A&#39;</span> &amp;&amp; x &lt;= <span class="charliteral">&#39;F&#39;</span>) <span class="keywordflow">return</span> x - <span class="charliteral">&#39;A&#39;</span> + 10;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span>(x &gt;= <span class="charliteral">&#39;a&#39;</span> &amp;&amp; x &lt;= <span class="charliteral">&#39;f&#39;</span>) <span class="keywordflow">return</span> x - <span class="charliteral">&#39;a&#39;</span> + 10;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">   33</a></span>&#160;  <span class="keyword">inline</span> <span class="keywordtype">char</span> <a class="code" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">byteToHexChar</a>(Byte x) {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span>(x &gt;= 0 &amp;&amp; x &lt;= 9) <span class="keywordflow">return</span> x + <span class="charliteral">&#39;0&#39;</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span>(x &gt;= 10 &amp;&amp; x &lt;= 15) <span class="keywordflow">return</span> (x - 10) + <span class="charliteral">&#39;a&#39;</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">return</span> <span class="charliteral">&#39;0&#39;</span>; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="namespace_utils.html#a9a32e1f08c3e1dd2dc9ed15086313e15">   47</a></span>&#160;  <span class="keyword">inline</span> Buffer <a class="code" href="namespace_utils.html#a9a32e1f08c3e1dd2dc9ed15086313e15">hexStringToBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *input, std::size_t inputLength, Buffer output) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">if</span>(inputLength == 0) <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span>(inputLength % 2 == 1) *(output++) = <a class="code" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">hexCharToByte</a>(*(input++));</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">while</span>(*input != <span class="charliteral">&#39;\0&#39;</span>) {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      *(output++) = 16 * <a class="code" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">hexCharToByte</a>(*input) + <a class="code" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">hexCharToByte</a>(*(input + 1));</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      input += 2;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> output - 1;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="namespace_utils.html#a7f5ee434a0a9130d364d6a6d554ba997">   64</a></span>&#160;  <span class="keyword">inline</span> Buffer <a class="code" href="namespace_utils.html#a9a32e1f08c3e1dd2dc9ed15086313e15">hexStringToBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *input, Buffer output) {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespace_utils.html#a9a32e1f08c3e1dd2dc9ed15086313e15">hexStringToBuffer</a>(input, strlen(input), output);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  }</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">   22</a></span>&#160;  <span class="keyword">inline</span> Byte <a class="code" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">hexCharToByte</a>(<span class="keywordtype">char</span> x) {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span>(x &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; x &lt;= <span class="charliteral">&#39;9&#39;</span>) <span class="keywordflow">return</span> x - <span class="charliteral">&#39;0&#39;</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">if</span>(x &gt;= <span class="charliteral">&#39;A&#39;</span> &amp;&amp; x &lt;= <span class="charliteral">&#39;F&#39;</span>) <span class="keywordflow">return</span> x - <span class="charliteral">&#39;A&#39;</span> + 10;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span>(x &gt;= <span class="charliteral">&#39;a&#39;</span> &amp;&amp; x &lt;= <span class="charliteral">&#39;f&#39;</span>) <span class="keywordflow">return</span> x - <span class="charliteral">&#39;a&#39;</span> + 10;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid argument&quot;</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">   37</a></span>&#160;  <span class="keyword">inline</span> <span class="keywordtype">char</span> <a class="code" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">byteToHexChar</a>(Byte x) {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span>(x &gt;= 0 &amp;&amp; x &lt;= 9) <span class="keywordflow">return</span> x + <span class="charliteral">&#39;0&#39;</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">if</span>(x &gt;= 10 &amp;&amp; x &lt;= 15) <span class="keywordflow">return</span> (x - 10) + <span class="charliteral">&#39;a&#39;</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid argument&quot;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d">   52</a></span>&#160;  <span class="keyword">inline</span> std::size_t <a class="code" href="namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d">hexStringToBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *input, std::size_t inputLength, Buffer output, <span class="keywordtype">bool</span> stripZeroes = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span>(stripZeroes) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="keywordflow">while</span>(*input == <span class="charliteral">&#39;0&#39;</span>) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        ++input;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        --inputLength;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span>(inputLength == 0) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::size_t outputLength = (inputLength + 1) / 2;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span>(inputLength % 2 == 1) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      *(output++) = <a class="code" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">hexCharToByte</a>(*(input++));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      --inputLength;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="namespace_utils.html#a4624a39dcfe37daa7c333d6fa8977057">   77</a></span>&#160;  <span class="keyword">inline</span> <span class="keywordtype">char</span> *<a class="code" href="namespace_utils.html#a4624a39dcfe37daa7c333d6fa8977057">bufferToHexString</a>(Buffer input, <span class="keywordtype">size_t</span> inputLength, <span class="keywordtype">char</span> *output, <span class="keywordtype">bool</span> nullTerminated = <span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span>(inputLength == 0) <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    Buffer inputEnd = input + inputLength;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">while</span>(input != inputEnd) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      *output = <a class="code" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">byteToHexChar</a>((*input / 16) % 16);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      *(output + 1) = <a class="code" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">byteToHexChar</a>(*input % 16);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      ++input;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      output += 2;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span>(nullTerminated) {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      *output = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordflow">return</span> output;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">return</span> output - 1;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="namespace_utils.html#a26b0ccb81bc34222ef1ba5b8ac41ef98">  100</a></span>&#160;  <span class="keyword">inline</span> Byte <a class="code" href="namespace_utils.html#a26b0ccb81bc34222ef1ba5b8ac41ef98">getMostSignificantNonZeroByte</a>(std::uint64_t x) {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">if</span>(x == 0) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    Byte MSB;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    std::uint_fast8_t n = 7;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">while</span>((MSB = (x &gt;&gt; 8 * (n--)) &amp; 0xFF) == 0);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">return</span> MSB;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">while</span>(inputLength &gt; 0) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      *(output++) = 16 * <a class="code" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">hexCharToByte</a>(*input) + <a class="code" href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">hexCharToByte</a>(*(input + 1));</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      input += 2;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      inputLength -= 2;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> outputLength;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="namespace_utils.html#ac8dd0e7f428459c6b023f01998e8a99a">   85</a></span>&#160;  <span class="keyword">inline</span> std::size_t <a class="code" href="namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d">hexStringToBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *input, Buffer output, <span class="keywordtype">bool</span> stripZeroes = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d">hexStringToBuffer</a>(input, strlen(input), output, stripZeroes);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="namespace_utils.html#a89a60079c452d7f63763a0f5401d5c41">   98</a></span>&#160;  <span class="keyword">inline</span> std::size_t <a class="code" href="namespace_utils.html#a89a60079c452d7f63763a0f5401d5c41">bufferToHexString</a>(Buffer input, std::size_t inputLength, <span class="keywordtype">char</span> *output, <span class="keywordtype">bool</span> nullTerminated = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span>(inputLength == 0) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    Buffer inputEnd = input + inputLength;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">while</span>(input != inputEnd) {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;      *output = <a class="code" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">byteToHexChar</a>((*input / 16) % 16);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;      *(output + 1) = <a class="code" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">byteToHexChar</a>(*input % 16);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      ++input;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;      output += 2;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="namespace_utils.html#a7e09e755976b99e10677229142fa1925">  117</a></span>&#160;  <span class="keyword">inline</span> Buffer <a class="code" href="namespace_utils.html#a7e09e755976b99e10677229142fa1925">intToBuffer</a>(std::uint64_t x, Buffer output) {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    Buffer outputStart = output + 8;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    Buffer outputEnd = outputStart;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">if</span>(x == 0) {</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;      *output = 0;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      <span class="keywordflow">return</span> output;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">for</span>(; x != 0; x &gt;&gt;= 8) *(--outputStart) = x &amp; 0xFF;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    std::size_t length = outputEnd - outputStart;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="comment">// Move elements to the beginning of buffer</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    memmove(output, outputStart, length);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">return</span> output + length - 1;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">if</span>(nullTerminated) *output = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">return</span> inputLength * 2;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="namespace_utils.html#a2e33ee8fcb5bac12d9748230ee08ce69">  122</a></span>&#160;  <span class="keyword">inline</span> std::size_t <a class="code" href="namespace_utils.html#a2e33ee8fcb5bac12d9748230ee08ce69">intToBuffer</a>(std::uint64_t x, Buffer output) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    std::size_t length;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">if</span>(x &gt; 0xFFFFFFFFFFFFFF) length = 8;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFFFFFFFFFFFF) length = 7;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFFFFFFFFFF) length = 6;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFFFFFFFF) length = 5;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFFFFFF) length = 4;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFFFF) length = 3;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFF) length = 2;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0) length = 1;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x == 0) {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      *output = 0;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    Buffer outputStart = output + length;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordflow">for</span>(; x != 0; x &gt;&gt;= 8) *(--outputStart) = x &amp; 0xFF;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordflow">return</span> length;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  }</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
 <div class="ttc" id="anamespace_utils_html"><div class="ttname"><a href="namespace_utils.html">Utils</a></div><div class="ttdoc">Namespace holding all converters and other utilities.</div><div class="ttdef"><b>Definition:</b> utils.hpp:10</div></div>
-<div class="ttc" id="anamespace_utils_html_a26b0ccb81bc34222ef1ba5b8ac41ef98"><div class="ttname"><a href="namespace_utils.html#a26b0ccb81bc34222ef1ba5b8ac41ef98">Utils::getMostSignificantNonZeroByte</a></div><div class="ttdeci">Byte getMostSignificantNonZeroByte(std::uint64_t x)</div><div class="ttdoc">Get the most significant non zero byte.</div><div class="ttdef"><b>Definition:</b> utils.hpp:100</div></div>
-<div class="ttc" id="anamespace_utils_html_a4624a39dcfe37daa7c333d6fa8977057"><div class="ttname"><a href="namespace_utils.html#a4624a39dcfe37daa7c333d6fa8977057">Utils::bufferToHexString</a></div><div class="ttdeci">char * bufferToHexString(Buffer input, size_t inputLength, char *output, bool nullTerminated=false)</div><div class="ttdoc">Converts buffer to hexadecimal string.</div><div class="ttdef"><b>Definition:</b> utils.hpp:77</div></div>
-<div class="ttc" id="anamespace_utils_html_a7e09e755976b99e10677229142fa1925"><div class="ttname"><a href="namespace_utils.html#a7e09e755976b99e10677229142fa1925">Utils::intToBuffer</a></div><div class="ttdeci">Buffer intToBuffer(std::uint64_t x, Buffer output)</div><div class="ttdoc">Convert integer to buffer.</div><div class="ttdef"><b>Definition:</b> utils.hpp:117</div></div>
-<div class="ttc" id="anamespace_utils_html_a9a32e1f08c3e1dd2dc9ed15086313e15"><div class="ttname"><a href="namespace_utils.html#a9a32e1f08c3e1dd2dc9ed15086313e15">Utils::hexStringToBuffer</a></div><div class="ttdeci">Buffer hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output)</div><div class="ttdoc">Converts hexadecimal string to buffer.</div><div class="ttdef"><b>Definition:</b> utils.hpp:47</div></div>
-<div class="ttc" id="anamespace_utils_html_ab9ebab0bc42f100ee26f57b15605483b"><div class="ttname"><a href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">Utils::byteToHexChar</a></div><div class="ttdeci">char byteToHexChar(Byte x)</div><div class="ttdoc">Converts byte to hexadecimal char.</div><div class="ttdef"><b>Definition:</b> utils.hpp:33</div></div>
-<div class="ttc" id="anamespace_utils_html_ac27cca59cdf2ce0a04b59db27aac4c2d"><div class="ttname"><a href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">Utils::hexCharToByte</a></div><div class="ttdeci">Byte hexCharToByte(char x)</div><div class="ttdoc">Converts hexadecimal char to byte.</div><div class="ttdef"><b>Definition:</b> utils.hpp:20</div></div>
+<div class="ttc" id="anamespace_utils_html_a2e33ee8fcb5bac12d9748230ee08ce69"><div class="ttname"><a href="namespace_utils.html#a2e33ee8fcb5bac12d9748230ee08ce69">Utils::intToBuffer</a></div><div class="ttdeci">std::size_t intToBuffer(std::uint64_t x, Buffer output)</div><div class="ttdoc">Converts integer to buffer.</div><div class="ttdef"><b>Definition:</b> utils.hpp:122</div></div>
+<div class="ttc" id="anamespace_utils_html_a89a60079c452d7f63763a0f5401d5c41"><div class="ttname"><a href="namespace_utils.html#a89a60079c452d7f63763a0f5401d5c41">Utils::bufferToHexString</a></div><div class="ttdeci">std::size_t bufferToHexString(Buffer input, std::size_t inputLength, char *output, bool nullTerminated=false)</div><div class="ttdoc">Converts buffer to hexadecimal string.</div><div class="ttdef"><b>Definition:</b> utils.hpp:98</div></div>
+<div class="ttc" id="anamespace_utils_html_a9dd0c827b2b115c0f9f4a4935eea051d"><div class="ttname"><a href="namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d">Utils::hexStringToBuffer</a></div><div class="ttdeci">std::size_t hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output, bool stripZeroes=false)</div><div class="ttdoc">Converts hexadecimal string to buffer.</div><div class="ttdef"><b>Definition:</b> utils.hpp:52</div></div>
+<div class="ttc" id="anamespace_utils_html_ab9ebab0bc42f100ee26f57b15605483b"><div class="ttname"><a href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">Utils::byteToHexChar</a></div><div class="ttdeci">char byteToHexChar(Byte x)</div><div class="ttdoc">Converts byte to hexadecimal char.</div><div class="ttdef"><b>Definition:</b> utils.hpp:37</div></div>
+<div class="ttc" id="anamespace_utils_html_ac27cca59cdf2ce0a04b59db27aac4c2d"><div class="ttname"><a href="namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d">Utils::hexCharToByte</a></div><div class="ttdeci">Byte hexCharToByte(char x)</div><div class="ttdoc">Converts hexadecimal char to byte.</div><div class="ttdef"><b>Definition:</b> utils.hpp:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->

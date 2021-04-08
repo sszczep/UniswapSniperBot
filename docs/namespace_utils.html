@@ -91,21 +91,18 @@ Functions</h2></td></tr>
 <tr class="memitem:ab9ebab0bc42f100ee26f57b15605483b"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">byteToHexChar</a> (Byte x)</td></tr>
 <tr class="memdesc:ab9ebab0bc42f100ee26f57b15605483b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts byte to hexadecimal char.  <a href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">More...</a><br /></td></tr>
 <tr class="separator:ab9ebab0bc42f100ee26f57b15605483b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a32e1f08c3e1dd2dc9ed15086313e15"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#a9a32e1f08c3e1dd2dc9ed15086313e15">hexStringToBuffer</a> (const char *input, std::size_t inputLength, Buffer output)</td></tr>
-<tr class="memdesc:a9a32e1f08c3e1dd2dc9ed15086313e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts hexadecimal string to buffer.  <a href="namespace_utils.html#a9a32e1f08c3e1dd2dc9ed15086313e15">More...</a><br /></td></tr>
-<tr class="separator:a9a32e1f08c3e1dd2dc9ed15086313e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f5ee434a0a9130d364d6a6d554ba997"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#a7f5ee434a0a9130d364d6a6d554ba997">hexStringToBuffer</a> (const char *input, Buffer output)</td></tr>
-<tr class="memdesc:a7f5ee434a0a9130d364d6a6d554ba997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts hexadecimal string to buffer.  <a href="namespace_utils.html#a7f5ee434a0a9130d364d6a6d554ba997">More...</a><br /></td></tr>
-<tr class="separator:a7f5ee434a0a9130d364d6a6d554ba997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4624a39dcfe37daa7c333d6fa8977057"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#a4624a39dcfe37daa7c333d6fa8977057">bufferToHexString</a> (Buffer input, size_t inputLength, char *output, bool nullTerminated=false)</td></tr>
-<tr class="memdesc:a4624a39dcfe37daa7c333d6fa8977057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts buffer to hexadecimal string.  <a href="namespace_utils.html#a4624a39dcfe37daa7c333d6fa8977057">More...</a><br /></td></tr>
-<tr class="separator:a4624a39dcfe37daa7c333d6fa8977057"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26b0ccb81bc34222ef1ba5b8ac41ef98"><td class="memItemLeft" align="right" valign="top">Byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#a26b0ccb81bc34222ef1ba5b8ac41ef98">getMostSignificantNonZeroByte</a> (std::uint64_t x)</td></tr>
-<tr class="memdesc:a26b0ccb81bc34222ef1ba5b8ac41ef98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the most significant non zero byte.  <a href="namespace_utils.html#a26b0ccb81bc34222ef1ba5b8ac41ef98">More...</a><br /></td></tr>
-<tr class="separator:a26b0ccb81bc34222ef1ba5b8ac41ef98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e09e755976b99e10677229142fa1925"><td class="memItemLeft" align="right" valign="top">Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#a7e09e755976b99e10677229142fa1925">intToBuffer</a> (std::uint64_t x, Buffer output)</td></tr>
-<tr class="memdesc:a7e09e755976b99e10677229142fa1925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert integer to buffer.  <a href="namespace_utils.html#a7e09e755976b99e10677229142fa1925">More...</a><br /></td></tr>
-<tr class="separator:a7e09e755976b99e10677229142fa1925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd0c827b2b115c0f9f4a4935eea051d"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d">hexStringToBuffer</a> (const char *input, std::size_t inputLength, Buffer output, bool stripZeroes=false)</td></tr>
+<tr class="memdesc:a9dd0c827b2b115c0f9f4a4935eea051d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts hexadecimal string to buffer.  <a href="namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d">More...</a><br /></td></tr>
+<tr class="separator:a9dd0c827b2b115c0f9f4a4935eea051d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8dd0e7f428459c6b023f01998e8a99a"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#ac8dd0e7f428459c6b023f01998e8a99a">hexStringToBuffer</a> (const char *input, Buffer output, bool stripZeroes=false)</td></tr>
+<tr class="memdesc:ac8dd0e7f428459c6b023f01998e8a99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts hexadecimal null-terminated string to buffer.  <a href="namespace_utils.html#ac8dd0e7f428459c6b023f01998e8a99a">More...</a><br /></td></tr>
+<tr class="separator:ac8dd0e7f428459c6b023f01998e8a99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89a60079c452d7f63763a0f5401d5c41"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#a89a60079c452d7f63763a0f5401d5c41">bufferToHexString</a> (Buffer input, std::size_t inputLength, char *output, bool nullTerminated=false)</td></tr>
+<tr class="memdesc:a89a60079c452d7f63763a0f5401d5c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts buffer to hexadecimal string.  <a href="namespace_utils.html#a89a60079c452d7f63763a0f5401d5c41">More...</a><br /></td></tr>
+<tr class="separator:a89a60079c452d7f63763a0f5401d5c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e33ee8fcb5bac12d9748230ee08ce69"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_utils.html#a2e33ee8fcb5bac12d9748230ee08ce69">intToBuffer</a> (std::uint64_t x, Buffer output)</td></tr>
+<tr class="memdesc:a2e33ee8fcb5bac12d9748230ee08ce69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts integer to buffer.  <a href="namespace_utils.html#a2e33ee8fcb5bac12d9748230ee08ce69">More...</a><br /></td></tr>
+<tr class="separator:a2e33ee8fcb5bac12d9748230ee08ce69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="">Namespace holding all converters and other utilities. </p>
@@ -137,11 +134,17 @@ Functions</h2></td></tr>
 <p>Converts hexadecimal char to byte. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>hexadecimal char </td></tr>
+    <tr><td class="paramname">x</td><td>input hexadecimal char </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Byte </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>output byte</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Throws when input is not valid hexadecimal char </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -172,16 +175,22 @@ Functions</h2></td></tr>
 <p>Converts byte to hexadecimal char. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>byte </td></tr>
+    <tr><td class="paramname">x</td><td>input byte </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Char </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>output char</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Throws when input is not valid hexadecimal value </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a9a32e1f08c3e1dd2dc9ed15086313e15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a32e1f08c3e1dd2dc9ed15086313e15">&#9670;&nbsp;</a></span>hexStringToBuffer() <span class="overload">[1/2]</span></h2>
+<a id="a9dd0c827b2b115c0f9f4a4935eea051d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dd0c827b2b115c0f9f4a4935eea051d">&#9670;&nbsp;</a></span>hexStringToBuffer() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,7 +199,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Buffer Utils::hexStringToBuffer </td>
+          <td class="memname">std::size_t Utils::hexStringToBuffer </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>input</em>, </td>
@@ -205,7 +214,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Buffer&#160;</td>
-          <td class="paramname"><em>output</em>&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>stripZeroes</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -223,18 +238,19 @@ Functions</h2></td></tr>
 <p>Converts hexadecimal string to buffer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input</td><td>c string </td></tr>
+    <tr><td class="paramname">input</td><td>input hexadecimal c-string </td></tr>
     <tr><td class="paramname">inputLength</td><td>length of the input string </td></tr>
     <tr><td class="paramname">output</td><td>output buffer </td></tr>
+    <tr><td class="paramname">stripZeroes</td><td>should input string be trimmed of leading zeroes </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the last byte, nullptr if string is empty </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>output buffer length </dd></dl>
 
 </div>
 </div>
-<a id="a7f5ee434a0a9130d364d6a6d554ba997"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f5ee434a0a9130d364d6a6d554ba997">&#9670;&nbsp;</a></span>hexStringToBuffer() <span class="overload">[2/2]</span></h2>
+<a id="ac8dd0e7f428459c6b023f01998e8a99a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8dd0e7f428459c6b023f01998e8a99a">&#9670;&nbsp;</a></span>hexStringToBuffer() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,7 +259,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Buffer Utils::hexStringToBuffer </td>
+          <td class="memname">std::size_t Utils::hexStringToBuffer </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>input</em>, </td>
@@ -252,7 +268,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Buffer&#160;</td>
-          <td class="paramname"><em>output</em>&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>stripZeroes</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -267,20 +289,21 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Converts hexadecimal string to buffer. </p>
+<p>Converts hexadecimal null-terminated string to buffer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input</td><td>null-terminated c string </td></tr>
+    <tr><td class="paramname">input</td><td>input hexadecimal null-terminated c-string </td></tr>
     <tr><td class="paramname">output</td><td>output buffer </td></tr>
+    <tr><td class="paramname">stripZeroes</td><td>should input string be trimmed of leading zeroes </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the last byte </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>output buffer length </dd></dl>
 
 </div>
 </div>
-<a id="a4624a39dcfe37daa7c333d6fa8977057"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4624a39dcfe37daa7c333d6fa8977057">&#9670;&nbsp;</a></span>bufferToHexString()</h2>
+<a id="a89a60079c452d7f63763a0f5401d5c41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89a60079c452d7f63763a0f5401d5c41">&#9670;&nbsp;</a></span>bufferToHexString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +312,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">char* Utils::bufferToHexString </td>
+          <td class="memname">std::size_t Utils::bufferToHexString </td>
           <td>(</td>
           <td class="paramtype">Buffer&#160;</td>
           <td class="paramname"><em>input</em>, </td>
@@ -297,7 +320,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>inputLength</em>, </td>
         </tr>
         <tr>
@@ -328,19 +351,19 @@ Functions</h2></td></tr>
 <p>Converts buffer to hexadecimal string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input</td><td>buffer </td></tr>
+    <tr><td class="paramname">input</td><td>input buffer </td></tr>
     <tr><td class="paramname">inputLength</td><td>length of the input buffer </td></tr>
-    <tr><td class="paramname">output</td><td>output string, padded to even length </td></tr>
+    <tr><td class="paramname">output</td><td>output hexadecimal c-string, padded to even length </td></tr>
     <tr><td class="paramname">nullTerminated</td><td>should string be null terminated, defaults to false </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the last char, nullptr if buffer is empty </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>output c-string length (without null terminator) </dd></dl>
 
 </div>
 </div>
-<a id="a26b0ccb81bc34222ef1ba5b8ac41ef98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26b0ccb81bc34222ef1ba5b8ac41ef98">&#9670;&nbsp;</a></span>getMostSignificantNonZeroByte()</h2>
+<a id="a2e33ee8fcb5bac12d9748230ee08ce69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e33ee8fcb5bac12d9748230ee08ce69">&#9670;&nbsp;</a></span>intToBuffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -349,42 +372,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Byte Utils::getMostSignificantNonZeroByte </td>
-          <td>(</td>
-          <td class="paramtype">std::uint64_t&#160;</td>
-          <td class="paramname"><em>x</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the most significant non zero byte. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>input integer </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Byte </dd></dl>
-
-</div>
-</div>
-<a id="a7e09e755976b99e10677229142fa1925"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e09e755976b99e10677229142fa1925">&#9670;&nbsp;</a></span>intToBuffer()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Buffer Utils::intToBuffer </td>
+          <td class="memname">std::size_t Utils::intToBuffer </td>
           <td>(</td>
           <td class="paramtype">std::uint64_t&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -408,15 +396,15 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Convert integer to buffer. </p>
+<p>Converts integer to buffer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>input integer, requires 8 bytes </td></tr>
+    <tr><td class="paramname">x</td><td>input integer </td></tr>
     <tr><td class="paramname">output</td><td>output buffer </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the last byte </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>output buffer length </dd></dl>
 
 </div>
 </div>

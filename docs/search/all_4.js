@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hexchartobyte_13',['hexCharToByte',['../namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d',1,'Utils']]],
-  ['hexstringtobuffer_14',['hexStringToBuffer',['../namespace_utils.html#a9a32e1f08c3e1dd2dc9ed15086313e15',1,'Utils::hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output)'],['../namespace_utils.html#a7f5ee434a0a9130d364d6a6d554ba997',1,'Utils::hexStringToBuffer(const char *input, Buffer output)']]]
+  ['hexchartobyte_7',['hexCharToByte',['../namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d',1,'Utils']]],
+  ['hexstringtobuffer_8',['hexStringToBuffer',['../namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d',1,'Utils::hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output, bool stripZeroes=false)'],['../namespace_utils.html#ac8dd0e7f428459c6b023f01998e8a99a',1,'Utils::hexStringToBuffer(const char *input, Buffer output, bool stripZeroes=false)']]]
 ];

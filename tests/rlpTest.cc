@@ -1,306 +1,124 @@
 #include <gmock/gmock.h>
 
-// Hacky solution to access private members of the class
-#define private public
 #include <rlp.hpp>
+#include <utils.hpp>
 
 TEST(RLP, encodeLength) {
-  Byte buffer[9];
-  Buffer bufferEnd;
+  Utils::Byte output[2];
+  std::size_t outputLength;
 
-  // If a string is 0-55 bytes long, the RLP encoding consists of a single byte with value 0x80 plus the length of the string
-  // The range of the first byte is thus [0x80, 0xb7]
-  bufferEnd = RLP<0, 0>::encodeLength(0, 0x80, buffer);
-  ASSERT_EQ(bufferEnd - buffer, 0);
-  ASSERT_EQ(buffer[0], 0x80);
+  // Single item encoding
+  outputLength = RLP::encodeLength(0, 0x80, output);
+  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(output[0], 0x80);
 
-  bufferEnd = RLP<0, 0>::encodeLength(55, 0x80, buffer);
-  ASSERT_EQ(bufferEnd - buffer, 0);
-  ASSERT_EQ(buffer[0], 0xb7);
+  outputLength = RLP::encodeLength(55, 0x80, output);
+  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(output[0], 0xb7);
 
-  // If a string is more than 55 bytes long, the RLP encoding consists of a single byte with value 0xb7 
-  // plus the length in bytes of the length of the string in binary form, followed by the length of the string.
-  // The range of the first byte is thus [0xb8, 0xbf].
-  // For example, a length-1024 string would be encoded as \xb9\x04\x00
-  bufferEnd = RLP<0, 0>::encodeLength(1024, 0x80, buffer);
-  ASSERT_EQ(bufferEnd - buffer, 2);
-  ASSERT_EQ(buffer[0], 0xb9);
-  ASSERT_EQ(buffer[1], 0x04);
-  ASSERT_EQ(buffer[2], 0x00);
+  outputLength = RLP::encodeLength(56, 0x80, output);
+  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(output[0], 0xb8);
+  ASSERT_EQ(output[1], 56);
+
+  // Payload encoding
+  outputLength = RLP::encodeLength(0, 0xc0, output);
+  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(output[0], 0xc0);
+
+  outputLength = RLP::encodeLength(55, 0xc0, output);
+  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(output[0], 0xf7);
+
+  outputLength = RLP::encodeLength(56, 0xc0, output);
+  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(output[0], 0xf8);
+  ASSERT_EQ(output[1], 56);
 }
 
-TEST(RLP, setElementNullTerminatedString) {
-  RLP<1024, 1> rlp;
+TEST(RLP, encodeSingle) {
+  Utils::Byte inputBuffer[56];
+  RLP::Item input = { .length = 0, .buffer = inputBuffer };
+  Utils::Byte output[58];
+  std::size_t outputLength;
 
-  rlp.setElement(1, "");
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x80);
+  input.length = 0;
+  outputLength = RLP::encode(&input, output);
+  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(output[0], 0x80);
 
-  rlp.setElement(1, "0");
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x00);
+  input.length = 1;
+  input.buffer[0] = 0x00;
+  outputLength = RLP::encode(&input, output);
+  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(output[0], 0x00);
 
-  rlp.setElement(1, "F");
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x0f);
+  input.length = 1;
+  input.buffer[0] = 0x7f;
+  outputLength = RLP::encode(&input, output);
+  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(output[0], 0x7f);
 
-  rlp.setElement(1, "400");
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 3);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x82);
-  ASSERT_EQ(rlp.mElementStart[1][1], 0x04);
-  ASSERT_EQ(rlp.mElementStart[1][2], 0x00);
+  input.length = 1;
+  input.buffer[0] = 0x80;
+  outputLength = RLP::encode(&input, output);
+  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(output[0], 0x81);
+  ASSERT_EQ(output[1], 0x80);
+
+  input.length = 55;
+  memset(input.buffer, 0xff, 55);
+  outputLength = RLP::encode(&input, output);
+  ASSERT_EQ(outputLength, 56);
+  ASSERT_EQ(output[0], 0xb7);
+  ASSERT_TRUE(memcmp(input.buffer, output + 1, 55) == 0);
+
+  input.length = 56;
+  memset(input.buffer, 0xff, 56);
+  outputLength = RLP::encode(&input, output);
+  ASSERT_EQ(outputLength, 58);
+  ASSERT_EQ(output[0], 0xb8);
+  ASSERT_EQ(output[1], 56);
+  ASSERT_TRUE(memcmp(input.buffer, output + 2, 56) == 0);
 }
 
-TEST(RLP, setElementNullTerminatedStringThrows) {
-  RLP<1024, 2> rlp;
+TEST(RLP, encodeList) {
+  Utils::Byte inputBuffer1[54];
+  Utils::Byte inputBuffer2[0];
+  RLP::Item input[] = {{ .length = 0, .buffer = inputBuffer1 }, {.length = 0, .buffer = inputBuffer2 }};
+  Utils::Byte output[58];
+  std::size_t outputLength;
 
-  try {
-    rlp.setElement(0, "");
-    FAIL() << "Expected std::out_of_range";
-  } catch(std::out_of_range const &err) {
-    ASSERT_EQ(std::string("Position out of range"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::out_of_range";
-  }
+  // Empty list
+  outputLength = RLP::encode(input, 0, output);
+  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(output[0], 0xc0);
 
-  try {
-    rlp.setElement(3, "");
-    FAIL() << "Expected std::out_of_range";
-  } catch(std::out_of_range const &err) {
-    ASSERT_EQ(std::string("Position out of range"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::out_of_range";
-  }
+  // One empty item
+  input[0].length = 0;
+  outputLength = RLP::encode(input, 1, output);
+  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(output[0], 0xc1);
+  ASSERT_EQ(output[1], 0x80);
 
-  try {
-    rlp.setElement(2, "");
-    FAIL() << "Expected std::logic_error";
-  } catch(std::logic_error const &err) {
-    ASSERT_EQ(std::string("Previous positions have not been filled"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::logic_error";
-  }
-}
+  // One item, payload size = 55 bytes
+  input[0].length = 54;
+  memset(input[0].buffer, 0xff, 54);
+  outputLength = RLP::encode(input, 1, output);
+  ASSERT_EQ(outputLength, 56);
+  ASSERT_EQ(output[0], 0xf7);
+  ASSERT_EQ(output[1], 0xb6);
+  ASSERT_TRUE(memcmp(input[0].buffer, output + 2, 54) == 0);
 
-TEST(RLP, setElementString) {
-  RLP<1024, 1> rlp;
-  char input[3];
-
-  rlp.setElement(1, input, 0);
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x80);
-
-  input[0] = '0';
-  rlp.setElement(1, input, 1);
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x00);
-
-  input[0] = 'F';
-  rlp.setElement(1, input, 1);
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x0f);
-
-  input[0] = '4', input[1] = '0', input[2] = '0';
-  rlp.setElement(1, input, 3);
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 3);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x82);
-  ASSERT_EQ(rlp.mElementStart[1][1], 0x04);
-  ASSERT_EQ(rlp.mElementStart[1][2], 0x00);
-}
-
-TEST(RLP, setElementStringThrows) {
-  RLP<1024, 2> rlp;
-  char *input = nullptr;
-
-  try {
-    rlp.setElement(0, input, 0);
-    FAIL() << "Expected std::out_of_range";
-  } catch(std::out_of_range const &err) {
-    ASSERT_EQ(std::string("Position out of range"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::out_of_range";
-  }
-
-  try {
-    rlp.setElement(3, input, 0);
-    FAIL() << "Expected std::out_of_range";
-  } catch(std::out_of_range const &err) {
-    ASSERT_EQ(std::string("Position out of range"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::out_of_range";
-  }
-
-  try {
-    rlp.setElement(2, input, 0);
-    FAIL() << "Expected std::logic_error";
-  } catch(std::logic_error const &err) {
-    ASSERT_EQ(std::string("Previous positions have not been filled"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::logic_error";
-  }
-}
-
-TEST(RLP, setElementBuffer) {
-  RLP<1024, 1> rlp;
-  Byte input[2];
-
-  rlp.setElement(1, input, 0);
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x80);
-
-  input[0] = 0x00;
-  rlp.setElement(1, input, 1);
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x00);
-
-  input[0] = 0x0F;
-  rlp.setElement(1, input, 1);
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 1);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x0f);
-
-  input[0] = 0x04, input[1] = 0x00;
-  rlp.setElement(1, input, 2);
-  ASSERT_EQ(rlp.mElementStart[2] - rlp.mElementStart[1], 3);
-  ASSERT_EQ(rlp.mElementStart[1][0], 0x82);
-  ASSERT_EQ(rlp.mElementStart[1][1], 0x04);
-  ASSERT_EQ(rlp.mElementStart[1][2], 0x00);
-}
-
-TEST(RLP, setElementBufferThrows) {
-  RLP<1024, 2> rlp;
-  Buffer input = nullptr;
-
-  try {
-    rlp.setElement(0, input, 0);
-    FAIL() << "Expected std::out_of_range";
-  } catch(std::out_of_range const &err) {
-    ASSERT_EQ(std::string("Position out of range"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::out_of_range";
-  }
-
-  try {
-    rlp.setElement(3, input, 0);
-    FAIL() << "Expected std::out_of_range";
-  } catch(std::out_of_range const &err) {
-    ASSERT_EQ(std::string("Position out of range"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::out_of_range";
-  }
-
-  try {
-    rlp.setElement(2, input, 0);
-    FAIL() << "Expected std::logic_error";
-  } catch(std::logic_error const &err) {
-    ASSERT_EQ(std::string("Previous positions have not been filled"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::logic_error";
-  }
-}
-
-TEST(RLP, encode) {
-  RLP<1024, 0> emptyPayload;
-  emptyPayload.encode();
-  ASSERT_EQ(emptyPayload.mElementStart[1] - emptyPayload.mElementStart[0], 1);
-  ASSERT_EQ(emptyPayload.mElementStart[0][0], 0xc0);
-
-  RLP<1024, 1> payload0;
-  payload0.mElementStart[2] = payload0.mElementStart[1] + 0;
-  payload0.encode();
-  ASSERT_EQ(payload0.mElementStart[1] - payload0.mElementStart[0], 1);
-  ASSERT_EQ(payload0.mElementStart[0][0], 0xc0);
-
-  RLP<1024, 1> payload55;
-  payload55.mElementStart[2] = payload55.mElementStart[1] + 55;
-  payload55.encode();
-  ASSERT_EQ(payload55.mElementStart[1] - payload55.mElementStart[0], 1);
-  ASSERT_EQ(payload55.mElementStart[0][0], 0xf7);
-
-  RLP<1024, 1> payload56;
-  payload56.mElementStart[2] = payload56.mElementStart[1] + 56;
-  payload56.encode();
-  ASSERT_EQ(payload56.mElementStart[1] - payload56.mElementStart[0], 2);
-  ASSERT_EQ(payload56.mElementStart[0][0], 0xf8);
-  ASSERT_EQ(payload56.mElementStart[0][1], 56);
-}
-
-TEST(RLP, encodeThrows) {
-  RLP<1024, 1> rlp;
-  
-  try {
-    rlp.encode();
-    FAIL() << "Expected std::logic_error";
-  } catch(std::logic_error const &err) {
-    ASSERT_EQ(std::string("Buffer has not been filled. Cannot encode"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::logic_error";
-  }
-}
-
-TEST(RLP, getBuffer) {
-  RLP<1024, 4> rlp; 
-
-  rlp.setElement(1, "");
-  rlp.setElement(2, "0");
-  rlp.setElement(3, "F");
-  rlp.setElement(4, "400");
-  rlp.encode();
-
-  auto [buffer, bufferLength] = rlp.getBuffer();
-
-  ASSERT_EQ(bufferLength, 7);
-  ASSERT_EQ(buffer[0], 0xc6);
-  ASSERT_EQ(buffer[1], 0x80);
-  ASSERT_EQ(buffer[2], 0x00);
-  ASSERT_EQ(buffer[3], 0x0f);
-  ASSERT_EQ(buffer[4], 0x82);
-  ASSERT_EQ(buffer[5], 0x04);
-  ASSERT_EQ(buffer[6], 0x00);
-}
-
-TEST(RLP, getBufferThrows) {
-  RLP<1024, 0> rlp;
-
-  try {
-  rlp.getBuffer();
-  FAIL() << "Expected std::logic_error";
-} catch(std::logic_error const &err) {
-  ASSERT_EQ(std::string("Buffer has not been encoded"), err.what());
-} catch(...) {
-  FAIL() << "Expected std::logic_error";
-}
-}
-
-TEST(RLP, getHexString) {
-  RLP<1024, 4> rlp; 
-
-  rlp.setElement(1, "");
-  rlp.setElement(2, "0");
-  rlp.setElement(3, "F");
-  rlp.setElement(4, "400");
-  rlp.encode();
-
-  char output[14];
-  char *outputEnd = rlp.getHexString(output, false);
-  ASSERT_EQ(outputEnd - output + 1, 14);
-  ASSERT_THAT(output, ::testing::StartsWith("c680000f820400"));
-
-  char outputNullTerminated[15];
-  char *outputNullTerminatedEnd = rlp.getHexString(outputNullTerminated, true);
-  ASSERT_EQ(outputNullTerminatedEnd - outputNullTerminated + 1, 15);
-  ASSERT_STREQ(outputNullTerminated, "c680000f820400");
-}
-
-TEST(RLP, getHexStringThrows) {
-  RLP<1024, 0> rlp;
-  char *output = nullptr;
-
-  try {
-    rlp.getHexString(output);
-    FAIL() << "Expected std::logic_error";
-  } catch(std::logic_error const &err) {
-    ASSERT_EQ(std::string("Buffer has not been encoded"), err.what());
-  } catch(...) {
-    FAIL() << "Expected std::logic_error";
-  }
+  // Two items, payload size = 56 bytes
+  input[0].length = 54;
+  memset(input[0].buffer, 0xff, 54);
+  input[1].length = 0;
+  outputLength = RLP::encode(input, 2, output);
+  ASSERT_EQ(outputLength, 58);
+  ASSERT_EQ(output[0], 0xf8);
+  ASSERT_EQ(output[1], 56);
+  ASSERT_EQ(output[2], 0xb6);
+  ASSERT_TRUE(memcmp(input[0].buffer, output + 3, 54) == 0);
+  ASSERT_EQ(output[57], 0x80);
 }

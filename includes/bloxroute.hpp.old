@@ -14,8 +14,6 @@
 #include <transaction.hpp>
 #include <utils.hpp>
 
-using Transaction::ETHTransaction;
-
 namespace BloXroute {
   // Example message: {"jsonrpc":"2.0","id":null,"method":"subscribe","params":{"subscription":"78ab93a9-d72a-4c7e-af3b-b6e53e0f5dff","result":{"txContents":{"input":"0xf305d7190000000000000000000000006de037ef9ad2725eb40118bb1702ebb27e4aeb2400000000000000000000000000000000000000000000003a33adee216bcee43a000000000000000000000000000000000000000000000039e92e572e0dd441ce0000000000000000000000000000000000000000000000000dcef33a6f838000000000000000000000000000bb421ebb2dbcc63db9f1f2f1466eb39a2334870d000000000000000000000000000000000000000000000000000000006064f670","gasPrice":"0x2e19b83c00"}}}}
   
@@ -69,7 +67,7 @@ namespace BloXroute {
   struct TransactionConfig {
     Byte privateKey[32];
     TransactionInputData *transactionInputData;
-    Transaction::ETHValues *transactionValues;
+    Transaction::InputValues *transactionValues;
   };
 
   class BloXrouteBot {
@@ -77,7 +75,7 @@ namespace BloXroute {
     websocketpp::connection_hdl mConnectionHandler;
     ListenerFilters *mListenerFilters;
     TransactionConfig *mTransactionConfig;
-    ETHTransaction mTX;
+    Transaction mTX;
 
     char mInputData[InputDataLength + 1];
     char mGasPrice[MaxValueHexLength];

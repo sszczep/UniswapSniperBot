@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['connectionconfig_3',['ConnectionConfig',['../struct_blo_xroute_1_1_connection_config.html',1,'BloXroute']]],
-  ['customwsconfig_4',['CustomWSConfig',['../struct_blo_xroute_1_1_custom_w_s_config.html',1,'BloXroute']]]
+  ['buffertohexstring_1',['bufferToHexString',['../namespace_utils.html#a89a60079c452d7f63763a0f5401d5c41',1,'Utils']]],
+  ['bytetohexchar_2',['byteToHexChar',['../namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b',1,'Utils']]]
 ];

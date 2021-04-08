@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['maximumencodedlengthsize_40',['MaximumEncodedLengthSize',['../namespace_r_l_p.html#afc89b5ce8031514da986365f537ec0bb',1,'RLP']]]
+  ['quantitybuffersize_37',['quantityBufferSize',['../namespace_transaction.html#ad3fdd0de59351b948b7b6a4a56b4906c',1,'Transaction']]]
 ];

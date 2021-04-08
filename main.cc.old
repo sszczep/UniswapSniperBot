@@ -23,7 +23,7 @@ int main() {
     .targetTokenAddress = "48bef6bd05bd23b5e6800cf0406e524b517af250"
   };
 
-  Transaction::ETHValues transactionValues {
+  Transaction::InputValues transactionValues {
     .nonce = "1",
     .gasLimit = "30d40",
     .to = "7a250d5630B4cF539739dF2C5dAcb4c659F2488D",

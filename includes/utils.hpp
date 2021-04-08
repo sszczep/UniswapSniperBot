@@ -2,10 +2,10 @@
 
 #include <cstdint>
 #include <cstring>
+#include <stdexcept>
 
 /**
- * @brief Namespace holding all converters and other utilities
- * 
+ * @brief Namespace holding all converters and other utilities.
  */
 namespace Utils {
   using Byte = std::uint8_t;
@@ -14,72 +14,90 @@ namespace Utils {
   /**
    * @brief Converts hexadecimal char to byte.
    * 
-   * @param x hexadecimal char
-   * @return Byte 
+   * @param x input hexadecimal char
+   * @return output byte 
+   * 
+   * @throws std::invalid_argument Throws when input is not valid hexadecimal char
    */
   inline Byte hexCharToByte(char x) {
     if(x >= '0' && x <= '9') return x - '0';
     if(x >= 'A' && x <= 'F') return x - 'A' + 10;
     if(x >= 'a' && x <= 'f') return x - 'a' + 10;
-    return 0;
+    throw std::invalid_argument("Invalid argument");
   }
 
   /**
-   * @brief Converts byte to hexadecimal char
+   * @brief Converts byte to hexadecimal char.
    * 
-   * @param x byte
-   * @return Char 
+   * @param x input byte
+   * @return output char 
+   * 
+   * @throws std::invalid_argument Throws when input is not valid hexadecimal value
    */
   inline char byteToHexChar(Byte x) {
     if(x >= 0 && x <= 9) return x + '0';
     if(x >= 10 && x <= 15) return (x - 10) + 'a';
-    return '0'; 
+    throw std::invalid_argument("Invalid argument");
   }
 
   /**
-   * @brief Converts hexadecimal string to buffer
+   * @brief Converts hexadecimal string to buffer.
    * 
-   * @param input c string 
+   * @param input input hexadecimal c-string
    * @param inputLength length of the input string
    * @param output output buffer
-   * @return Pointer to the last byte, nullptr if string is empty
+   * @param stripZeroes should input string be trimmed of leading zeroes
+   * @return output buffer length
    */
-  inline Buffer hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output) {
-    if(inputLength == 0) return nullptr;
+  inline std::size_t hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output, bool stripZeroes = false) {
+    if(stripZeroes) {
+      while(*input == '0') {
+        ++input;
+        --inputLength;
+      }
+    }
+    if(inputLength == 0) return 0;
+
+    std::size_t outputLength = (inputLength + 1) / 2;
+
     if(inputLength % 2 == 1) {
       *(output++) = hexCharToByte(*(input++));
-      inputLength--;
+      --inputLength;
     }
+
     while(inputLength > 0) {
       *(output++) = 16 * hexCharToByte(*input) + hexCharToByte(*(input + 1));
       input += 2;
       inputLength -= 2;
     }
-    return output - 1;
+
+    return outputLength;
   }
 
   /**
-   * @brief Converts hexadecimal string to buffer
+   * @brief Converts hexadecimal null-terminated string to buffer.
    * 
-   * @param input null-terminated c string 
+   * @param input input hexadecimal null-terminated c-string 
    * @param output output buffer
-   * @return Pointer to the last byte
+   * @param stripZeroes should input string be trimmed of leading zeroes
+   * @return output buffer length
    */
-  inline Buffer hexStringToBuffer(const char *input, Buffer output) {
-    return hexStringToBuffer(input, strlen(input), output);
+  inline std::size_t hexStringToBuffer(const char *input, Buffer output, bool stripZeroes = false) {
+    return hexStringToBuffer(input, strlen(input), output, stripZeroes);
   }
 
   /**
-   * @brief Converts buffer to hexadecimal string
+   * @brief Converts buffer to hexadecimal string.
    * 
-   * @param input buffer
+   * @param input input buffer
    * @param inputLength length of the input buffer 
-   * @param output output string, padded to even length
+   * @param output output hexadecimal c-string, padded to even length
    * @param nullTerminated should string be null terminated, defaults to false
-   * @return Pointer to the last char, nullptr if buffer is empty
+   * @return output c-string length (without null terminator)
    */
-  inline char *bufferToHexString(Buffer input, size_t inputLength, char *output, bool nullTerminated = false) {
-    if(inputLength == 0) return nullptr;
+  inline std::size_t bufferToHexString(Buffer input, std::size_t inputLength, char *output, bool nullTerminated = false) {
+    if(inputLength == 0) return 0;
+
     Buffer inputEnd = input + inputLength;
     while(input != inputEnd) {
       *output = byteToHexChar((*input / 16) % 16);
@@ -89,50 +107,35 @@ namespace Utils {
       output += 2;
     }
 
-    if(nullTerminated) {
-      *output = '\0';
-      return output;
-    } else return output - 1;
+    if(nullTerminated) *output = '\0';
+    
+    return inputLength * 2;
   }
 
   /**
-   * @brief Get the most significant non zero byte
+   * @brief Converts integer to buffer.
    * 
    * @param x input integer
-   * @return Byte 
-   */
-  inline Byte getMostSignificantNonZeroByte(std::uint64_t x) {
-    if(x == 0) return 0;
-
-    Byte MSB;
-    std::uint_fast8_t n = 7;
-    while((MSB = (x >> 8 * (n--)) & 0xFF) == 0);
-
-    return MSB;
-  }
-
-  /**
-   * @brief Convert integer to buffer
-   * 
-   * @param x input integer, requires 8 bytes
    * @param output output buffer
-   * @return Pointer to the last byte 
+   * @return output buffer length
    */
-  inline Buffer intToBuffer(std::uint64_t x, Buffer output) {
-    Buffer outputStart = output + 8;
-    Buffer outputEnd = outputStart;
-
-    if(x == 0) {
+  inline std::size_t intToBuffer(std::uint64_t x, Buffer output) {
+    std::size_t length;
+    if(x > 0xFFFFFFFFFFFFFF) length = 8;
+    else if(x > 0xFFFFFFFFFFFF) length = 7;
+    else if(x > 0xFFFFFFFFFF) length = 6;
+    else if(x > 0xFFFFFFFF) length = 5;
+    else if(x > 0xFFFFFF) length = 4;
+    else if(x > 0xFFFF) length = 3;
+    else if(x > 0xFF) length = 2;
+    else if(x > 0) length = 1;
+    else if(x == 0) {
       *output = 0;
-      return output;
+      return 1;
     }
 
+    Buffer outputStart = output + length;
     for(; x != 0; x >>= 8) *(--outputStart) = x & 0xFF;
-    std::size_t length = outputEnd - outputStart;
-
-    // Move elements to the beginning of buffer
-    memmove(output, outputStart, length);
-
-    return output + length - 1;
+    return length;
   }
 }

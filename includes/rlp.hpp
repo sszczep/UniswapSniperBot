@@ -3,78 +3,41 @@
 #include <cstdint>
 #include <cstring>
 #include <string>
-#include <stdexcept>
 
 #include "utils.hpp"
 
 using namespace Utils;
 
-// /**
-//  * @brief Disables validation for faster processing speed
-//  * 
-//  */
-// #define RLP_OPTIMIZE
-
 /**
- * @brief Class for Recursive Length Prefix Encoding. 
+ * @brief Functions for Recursive Length Prefix Encoding. 
  * It is the main encoding method used to serialize objects in Ethereum. 
  * 
- * @author Sebastian Szczepański
  * @see https://eth.wiki/fundamentals/rlp
- * 
- * @tparam BufferSize RLP buffer size
- * @tparam ElementsCount Number of elements to encode
- * 
- * @todo Refactor getBuffer method - should return bufferEnd as pointer and take pointer to buffer as an argument
- * @todo Add decoding functionality
  */
-template<std::size_t BufferSize, std::size_t ElementsCount>
-class RLP {
-
-  private:
-
+namespace RLP {
   /**
-   * @brief Maximum number of bytes that encoded length takes.
-   * 
+   * @brief Struct holding single item data - its byte representation and length.
    */
-  static inline constexpr std::size_t MaximumEncodedLengthSize { 9 };
+  struct Item {
+    std::size_t length;
+    Buffer buffer;
+  };
 
   /**
-   * @brief Buffer holding encoded data
+   * @brief Encodes length.
    * 
-   */
-  Byte mBuffer[BufferSize];
-
-  #ifndef RLP_OPTIMIZE
-    /**
-     * @brief Has the buffer been fully encoded
-     * 
-     */
-    bool mBufferEncoded { false };
-  #endif
-
-  /**
-   * @brief Holds pointers to the buffer, represents start of the encoded block of certain element
-   * 
-   */
-  Buffer mElementStart[1 + ElementsCount + 1] { mBuffer, mBuffer + MaximumEncodedLengthSize };
-
-  /**
-   * @brief Encodes data length, requires 9 bytes
-   * 
-   * @param length length of data
+   * @param length length
    * @param offset offset
    * @param output output buffer
-   * @return Pointer to the last byte in the buffer 
+   * @return output buffer length
    */
-  static Buffer encodeLength(std::size_t length, std::size_t offset, Buffer output) {
+  inline std::size_t encodeLength(std::size_t length, std::size_t offset, Buffer output) {
     if(length < 56) {
       *output = length + offset;
-      return output;
+      return 1;
     }
 
-    Buffer lengthBytesStart = output + 1;
-    Buffer lengthBytesEnd = intToBuffer(length, lengthBytesStart);
+    std::size_t bytesLength = intToBuffer(length, output + 1);
 
     // Why 55?
     // Documentation outlines: 
@@ -82,172 +45,57 @@ class RLP {
     // If the total payload of a list is more than 55 bytes long, the RLP encoding consists of a single byte with value 0xf7 [...]
     // When encoding string, we specify offset of 128 (0x80), add 55 and receive 183 (0xb7)
     // When encoding total payload, we specify offset of 192 (0xc0), add 55 and receive 247 (0xf7)
-    *output = (lengthBytesEnd - lengthBytesStart + 1) + offset + 55;
-    return lengthBytesEnd;
-  }
-
-  public:
-
-  /**
-   * @brief Encodes the element
-   * 
-   * 
-   * @param position position of the element
-   * @param input input data
-   * @throws std::out_of_range Throws when setting element on invalid position
-   * @throws std::logic_error Throws when setting element whlie previous elements are not set
-   */
-  void setElement(std::size_t position, const char *input) {
-    setElement(position, input, strlen(input));
+    *output = bytesLength + offset + 55;
+    return bytesLength + 1;
   }
 
   /**
-   * @brief Encodes the element
+   * @brief Encodes single item.
    * 
-   * @param position position of the element
-   * @param input input data
-   * @param length input length
-   * @throws std::out_of_range Throws when setting element on invalid position
-   * @throws std::logic_error Throws when setting element whlie previous elements are not set
+   * @param input input item
+   * @param output output buffer
+   * @return output buffer length
    */
-  void setElement(std::size_t position, const char *input, std::size_t length) {
-    #ifndef RLP_OPTIMIZE
-      if(position < 1 || position > ElementsCount) throw std::out_of_range("Position out of range");
-    #endif
-
-    Buffer buffer = mElementStart[position];
-    #ifndef RLP_OPTIMIZE
-      if(buffer == nullptr) throw std::logic_error("Previous positions have not been filled");
-    #endif
-    
-    Buffer bufferEnd = nullptr;
-
-    if(length == 0) {
-      *buffer = 0x80;
-      bufferEnd = buffer;
-    } else if(length == 1) {
-      *buffer = hexCharToByte(input[0]);
-      bufferEnd = buffer;
-    } else if(length == 2) {
-      Byte byte = 16 * hexCharToByte(input[0]) + hexCharToByte(input[1]);
-      if(byte < 0x80) {
-        *buffer = byte;
-        bufferEnd = buffer;
-      } else {
-        *buffer = 0x81;
-        *(buffer + 1) = byte;
-        bufferEnd = buffer + 1;
-      }
-    } else {
-      Buffer encodedLengthEnd = encodeLength((length + 1) / 2, 0x80, buffer);
-      Buffer encodedInputEnd = hexStringToBuffer(input, length, encodedLengthEnd + 1);
-      bufferEnd = encodedInputEnd;
+  inline std::size_t encode(Item *input, Buffer output) {
+    // Empty item encoding returns 0x80
+    if(input->length == 0) {
+      *output = 0x80;
+      return 1;
     }
 
-    mElementStart[position + 1] = bufferEnd + 1;
-      
-    #ifndef RLP_OPTIMIZE
-      for(std::size_t i = position + 2; i <= ElementsCount; i++) mElementStart[i] = nullptr;
-      mBufferEncoded = false;
-    #endif
-  }
-
-  /**
-   * @brief Encodes the element
-   * 
-   * @param position position of the element
-   * @param input input data
-   * @param length input length
-   * @throws std::out_of_range Throws when setting element on invalid position
-   * @throws std::logic_error Throws when setting element whlie previous elements are not set
-   */
-  void setElement(std::size_t position, Buffer input, std::size_t length) {
-    #ifndef RLP_OPTIMIZE
-      if(position < 1 || position > ElementsCount) throw std::out_of_range("Position out of range");
-    #endif
-
-    Buffer buffer = mElementStart[position];
-    #ifndef RLP_OPTIMIZE
-      if(buffer == nullptr) throw std::logic_error("Previous positions have not been filled");
-    #endif
-    
-    Buffer bufferEnd = nullptr;
-
-    if(length == 1) {
-      if(input[0] < 0x80) {
-        *buffer = *input;
-        bufferEnd = buffer;
-      } else {
-        *buffer = 0x81;
-        *(buffer + 1) = *input;
-        bufferEnd = buffer + 1;
-      }
-    } else {
-      Buffer encodedLengthEnd = encodeLength(length, 0x80, buffer);
-      memcpy(encodedLengthEnd + 1, input, length);
-      bufferEnd = encodedLengthEnd + length;
+    // For a single byte whose value is in the [0x00, 0x7f] range, that byte is its own RLP encoding
+    if(input->length == 1 && *(input->buffer) < 0x80){
+      *output = *(input->buffer);
+      return 1;
     }
-    
-    mElementStart[position + 1] = bufferEnd + 1;
-      
-    #ifndef RLP_OPTIMIZE
-      for(std::size_t i = position + 2; i <= ElementsCount; i++) mElementStart[i] = nullptr;
-      mBufferEncoded = false;
-    #endif
+
+    std::size_t encodedLengthLength = encodeLength(input->length, 0x80, output);
+    memcpy(output + encodedLengthLength, input->buffer, input->length);
+
+    return encodedLengthLength + input->length;
   }
 
   /**
-   * @brief Encodes the buffer
+   * @brief Encodes list of items.
    * 
-   * @throws std::logic_error Throws when trying to encode the buffer without setting all elements first
+   * @param input list of input items
+   * @param inputLength list length
+   * @param output output buffer
+   * @return output buffer length
    */
-  void encode() {
-    #ifndef RLP_OPTIMIZE
-      if(mElementStart[ElementsCount + 1] == nullptr) throw std::logic_error("Buffer has not been filled. Cannot encode");
-    #endif
+  inline std::size_t encode(Item input[], std::size_t inputLength, Buffer output) {
+    std::size_t payloadLength = 0;
+    for(std::size_t i = 0; i < inputLength; i++) {
+      // Shift output buffer by 9 as it is maximum encodeLength length
+      payloadLength += encode(input + i, output + payloadLength + 9);
+    }
 
-    std::size_t encodedDataLength = mElementStart[ElementsCount + 1] - mElementStart[1];
+    // Encode payload length
+    std::size_t encodedLengthLength = encodeLength(payloadLength, 0xc0, output);
 
-    Buffer encodedLengthEnd = encodeLength(encodedDataLength, 0xc0, mBuffer);
-    std::size_t encodedLengthLength = (encodedLengthEnd - mBuffer) + 1;
-    Buffer encodedLengthStart = mBuffer + (MaximumEncodedLengthSize - encodedLengthLength);
+    // Move payload to the encoded length
+    memmove(output + encodedLengthLength, output + 9, payloadLength);
 
-    memmove(encodedLengthStart, mBuffer, encodedLengthLength);
-
-    mElementStart[0] = encodedLengthStart;
-
-    #ifndef RLP_OPTIMIZE
-      mBufferEncoded = true;
-    #endif 
+    return encodedLengthLength + payloadLength;
   }
-
-  /**
-   * @brief Get the encoded buffer
-   * 
-   * @return Encoded buffer start pointer and its length
-   * @throws std::logic_error Throws when getting not encoded buffer
-   */
-  std::pair<Buffer, std::size_t> getBuffer() {
-    #ifndef RLP_OPTIMIZE
-      if(!mBufferEncoded) throw std::logic_error("Buffer has not been encoded");
-    #endif
-
-    return { mElementStart[0], mElementStart[ElementsCount + 1] - mElementStart[0] };
-  }
-
-  /**
-   * @brief Get the hexadecimal representation of the encoded buffer
-   * 
-   * @param output output string
-   * @param nullTerminated should string be null terminated, defaults to false
-   * @return Pointer to the last char
-   * @throws std::logic_error Throws when getting not encoded buffer
-   */
-  char *getHexString(char *output, bool nullTerminated = false) {
-    #ifndef RLP_OPTIMIZE
-      if(!mBufferEncoded) throw std::logic_error("Buffer has not been encoded");
-    #endif
-
-    return bufferToHexString(mElementStart[0], mElementStart[ElementsCount + 1] - mElementStart[0], output, nullTerminated);
-  }
-};
+}
