@@ -9,8 +9,6 @@ static void encodeLength(benchmark::State &state) {
   for(auto _ : state) {
     benchmark::DoNotOptimize(RLP::encodeLength(255, 0x80, output));
   }
-
-  state.SetItemsProcessed(state.iterations());
 }
 
 static void encodeItem(benchmark::State &state) {
@@ -27,8 +25,6 @@ static void encodeItem(benchmark::State &state) {
   for(auto _ : state) {
     benchmark::DoNotOptimize(RLP::encode(&item, output));
   }
-
-  state.SetItemsProcessed(state.iterations());
 }
 
 static void encodeList(benchmark::State &state) {
@@ -47,8 +43,6 @@ static void encodeList(benchmark::State &state) {
   for(auto _ : state) {
     benchmark::DoNotOptimize(RLP::encode(items, 9, output));
   }
-
-  state.SetItemsProcessed(state.iterations());
 }
 
 BENCHMARK(encodeLength)->Name("RLP::encodeLength");
