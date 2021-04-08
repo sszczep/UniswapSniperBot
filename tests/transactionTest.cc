@@ -13,8 +13,8 @@ TEST(Transaction, signWithLeadingZeroes) {
     .gasPrice = "0000000000",
     .gasLimit = "00000010100000",
     .to = "F0109fC8DF283027b6285cc889F5aA624EaC1F55",
-    .value = "0",
     .data = "000000000000000000000000abc",
+    .value = "0",
   };
 
   Utils::Byte transaction[512];
@@ -35,8 +35,8 @@ TEST(Transaction, signWith63bitR) {
     .gasPrice = "D55698372431",
     .gasLimit = "1E8480",
     .to = "F0109fC8DF283027b6285cc889F5aA624EaC1F55",
-    .value = "3B9ACA00",
     .data = "",
+    .value = "3B9ACA00",
   };
 
   Utils::Byte transaction[512];
@@ -57,8 +57,8 @@ TEST(Transaction, signWith62bitRS) {
     .gasPrice = "0",
     .gasLimit = "7C6D",
     .to = "F0109fC8DF283027b6285cc889F5aA624EaC1F55",
-    .value = "0",
     .data = "",
+    .value = "0",
   };
 
   Utils::Byte transaction[512];
