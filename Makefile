@@ -1,14 +1,14 @@
-CXXFLAGS=-std=c++17 -O3
+CXXFLAGS=-std=c++17 -O3 -Wall -Werror -pthread
 SOURCES=$(wildcard sources/*.cc)
-INCLUDES_PATHS=$(wildcard libs.build/*/includes) /usr/local/opt/openssl/include includes
-LIBRARIES_PATHS=$(wildcard libs.build/*) /usr/local/opt/openssl/lib
+INCLUDES_PATHS=$(wildcard libs.build/*/includes) includes
+LIBRARIES_PATHS=$(wildcard libs.build/*)
 LIBRARIES=ssl crypto secp256k1 XKCP
 
-TEST_CXXFLAGS=$(CXXFLAGS) -pthread
+TEST_CXXFLAGS=$(CXXFLAGS)
 TEST_SOURCES=$(wildcard tests/*.cc) $(SOURCES)
 TEST_LIBRARIES=$(LIBRARIES) gtest gtest_main gmock gmock_main
 
-BENCHMARK_CXXFLAGS=$(CXXFLAGS) -pthread
+BENCHMARK_CXXFLAGS=$(CXXFLAGS)
 BENCHMARK_SOURCES=$(wildcard benchmarks/*.cc) $(SOURCES)
 BENCHMARK_LIBRARIES=$(LIBRARIES) benchmark benchmark_main
 
