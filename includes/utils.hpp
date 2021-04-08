@@ -120,7 +120,7 @@ namespace Utils {
    * @return output buffer length
    */
   inline std::size_t intToBuffer(std::uint64_t x, Buffer output) {
-    std::size_t length;
+    std::size_t length = 0;
     if(x > 0xFFFFFFFFFFFFFF) length = 8;
     else if(x > 0xFFFFFFFFFFFF) length = 7;
     else if(x > 0xFFFFFFFFFF) length = 6;
@@ -129,7 +129,7 @@ namespace Utils {
     else if(x > 0xFFFF) length = 3;
     else if(x > 0xFF) length = 2;
     else if(x > 0) length = 1;
-    else if(x == 0) {
+    else {
       *output = 0;
       return 1;
     }
