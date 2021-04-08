@@ -67,8 +67,8 @@ namespace Transaction {
    * @param output output hash buffer
    * @return output buffer length (always 32)
    */
-  inline std::size_t keccak256(Utils::Buffer input, std::size_t inputLength, Utils::Buffer output) {
-    KeccakWidth1600_Sponge(1088, 512, input, inputLength, 0x01, output, 32);
+  inline std::size_t keccak256(Utils::Buffer input, std::size_t inputLength, Utils::Buffer hash) {
+    KeccakWidth1600_Sponge(1088, 512, input, inputLength, 0x01, hash, 32);
     return 32;
   }
   
