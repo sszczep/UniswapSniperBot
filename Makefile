@@ -6,7 +6,11 @@ LIBRARIES=pthread ssl crypto secp256k1 XKCP
 
 TEST_CXXFLAGS=-std=c++17
 TEST_SOURCES=$(wildcard tests/*.cc) $(SOURCES)
-TEST_LIBRARIES =$(LIBRARIES) gtest gmock gtest_main gmock_main
+TEST_LIBRARIES=$(LIBRARIES) gtest gmock gmock_main
+
+BENCHMARK_CXXFLAGS=-std=c++17
+BENCHMARK_SOURCES=$(wildcard benchmarks/*.cc) $(SOURCES)
+BENCHMARK_LIBRARIES=$(LIBRARIES) benchmark benchmark_main
 
 all: main
 
@@ -76,6 +80,24 @@ clean-gtest:
 	rm -Rf libs.build/gtest
 	rm -Rf libs/googletest/build
 
+build-benchmark:
+ifeq ($(wildcard libs.build/benchmark),)
+	cd libs/benchmark && cmake -E make_directory "build"
+	cd libs/benchmark && cmake -DBENCHMARK_ENABLE_TESTING=off -DCMAKE_BUILD_TYPE=Release -S . -B "build"
+	cd libs/benchmark && cmake --build "build" --config Release
+
+	mkdir -p libs.build/benchmark/includes
+
+	cp -R libs/benchmark/build/src/*.a libs.build/benchmark/
+	cp -R libs/benchmark/include/. libs.build/benchmark/includes/
+else
+	@echo "benchmark already built. To rebuild, type make clean-benchmark and build again"
+endif
+
+clean-benchmark:
+	rm -Rf libs.build/benchmark
+	rm -Rf libs/benchmark/build
+
 build-doxygen:
 ifeq ($(wildcard libs.build/doxygen),)
 	mkdir -p libs/doxygen/build
@@ -105,8 +127,12 @@ test: build-gtest $(TEST_SOURCES) $(SOURCES)
 	mkdir -p build
 	$(CXX) $(TEST_CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(TEST_SOURCES) $(TEST_LIBRARIES:%=-l%) -o build/$@
 
+benchmark: build-benchmark $(BENCHMARK_SOURCES) $(SOURCES)
+	mkdir -p build
+	$(CXX) $(BENCHMARK_CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(BENCHMARK_SOURCES) $(BENCHMARK_LIBRARIES:%=-l%) -o build/$@
+
 docs: build-doxygen
 	libs.build/doxygen/doxygen doxygen/Doxyfile
 
 clean: clean-libs
-	rm -Rf main
+	rm -Rf build
