@@ -38,7 +38,7 @@ TEST(RLP, encodeLength) {
 
 TEST(RLP, encodeSingle) {
   Utils::Byte inputBuffer[56];
-  RLP::Item input = { .length = 0, .buffer = inputBuffer };
+  RLP::Item input = { .buffer = inputBuffer, .length = 0 };
   Utils::Byte output[58];
   std::size_t outputLength;
 
@@ -84,9 +84,9 @@ TEST(RLP, encodeSingle) {
 
 TEST(RLP, encodeList) {
   Utils::Byte inputBuffer1[54];
-  Utils::Byte inputBuffer2[0];
-  RLP::Item input[] = {{ .length = 0, .buffer = inputBuffer1 }, {.length = 0, .buffer = inputBuffer2 }};
-  Utils::Byte output[58];
+  Utils::Buffer inputBuffer2 = nullptr;
+  RLP::Item input[] = {{ .buffer = inputBuffer1, .length = 0 }, { .buffer = inputBuffer2, .length = 0 }};
+  Utils::Byte output[65];
   std::size_t outputLength;
 
   // Empty list

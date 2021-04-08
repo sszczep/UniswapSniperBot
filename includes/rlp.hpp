@@ -19,8 +19,8 @@ namespace RLP {
    * @brief Struct holding single item data - its byte representation and length.
    */
   struct Item {
-    std::size_t length;
     Buffer buffer;
+    std::size_t length;
   };
 
   /**
