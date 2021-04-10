@@ -123,11 +123,11 @@ main: build-libs $(SOURCES)
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(SOURCES) main.cc $(LIBRARIES:%=-l%) -o build/$@
 
-test: build-gtest $(TEST_SOURCES) $(SOURCES)
+test: build-libs build-gtest $(TEST_SOURCES) $(SOURCES)
 	mkdir -p build
 	$(CXX) $(TEST_CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(TEST_SOURCES) $(TEST_LIBRARIES:%=-l%) -o build/$@
 
-benchmark: build-benchmark $(BENCHMARK_SOURCES) $(SOURCES)
+benchmark: build-libs build-benchmark $(BENCHMARK_SOURCES) $(SOURCES)
 	mkdir -p build
 	$(CXX) $(BENCHMARK_CXXFLAGS) $(INCLUDES_PATHS:%=-I%) $(LIBRARIES_PATHS:%=-L%) $(BENCHMARK_SOURCES) $(BENCHMARK_LIBRARIES:%=-l%) -o build/$@
 
