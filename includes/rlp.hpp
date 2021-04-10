@@ -56,7 +56,7 @@ namespace RLP {
    * @param output output buffer
    * @return output buffer length
    */
-  inline std::size_t encode(Item *input, Buffer output) {
+  inline std::size_t encodeItem(Item *input, Buffer output) {
     // Empty item encoding returns 0x80
     if(input->length == 0) {
       *output = 0x80;
@@ -83,11 +83,11 @@ namespace RLP {
    * @param output output buffer
    * @return output buffer length
    */
-  inline std::size_t encode(Item input[], std::size_t inputLength, Buffer output) {
+  inline std::size_t encodeList(Item input[], std::size_t inputLength, Buffer output) {
     std::size_t payloadLength = 0;
     for(std::size_t i = 0; i < inputLength; i++) {
       // Shift output buffer by 9 as it is maximum encodeLength length
-      payloadLength += encode(input + i, output + payloadLength + 9);
+      payloadLength += encodeItem(input + i, output + payloadLength + 9);
     }
 
     // Encode payload length

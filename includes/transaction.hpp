@@ -140,7 +140,7 @@ namespace Transaction {
 
     /* Get transaction's signature */
 
-    std::size_t transactionLength = RLP::encode(rlpInput, 9, transaction);
+    std::size_t transactionLength = RLP::encodeList(rlpInput, 9, transaction);
 
     Utils::Byte hash[32];
     keccak256(transaction, transactionLength, hash);
@@ -173,6 +173,6 @@ namespace Transaction {
 
     /* Encode signed transaction and return buffer length */
 
-    return RLP::encode(rlpInput, 9, transaction);
+    return RLP::encodeList(rlpInput, 9, transaction);
   }
 }

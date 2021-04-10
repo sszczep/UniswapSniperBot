@@ -23,7 +23,7 @@ static void encodeItem(benchmark::State &state) {
   Utils::Byte output[2 + 255];
 
   for(auto _ : state) {
-    benchmark::DoNotOptimize(RLP::encode(&item, output));
+    benchmark::DoNotOptimize(RLP::encodeItem(&item, output));
   }
 }
 
@@ -41,10 +41,10 @@ static void encodeList(benchmark::State &state) {
   Utils::Byte output[9 + (2 + 255) * 9];
 
   for(auto _ : state) {
-    benchmark::DoNotOptimize(RLP::encode(items, 9, output));
+    benchmark::DoNotOptimize(RLP::encodeList(items, 9, output));
   }
 }
 
 BENCHMARK(encodeLength)->Name("RLP::encodeLength");
-BENCHMARK(encodeItem)->Name("RLP::encode (item)");
-BENCHMARK(encodeList)->Name("RLP::encode (list of items)");
+BENCHMARK(encodeItem)->Name("RLP::encodeItem");
+BENCHMARK(encodeList)->Name("RLP::encodeList");

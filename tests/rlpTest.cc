@@ -36,46 +36,46 @@ TEST(RLP, encodeLength) {
   ASSERT_EQ(output[1], 56);
 }
 
-TEST(RLP, encodeSingle) {
+TEST(RLP, encodeItem) {
   Utils::Byte inputBuffer[56];
   RLP::Item input = { .buffer = inputBuffer, .length = 0 };
   Utils::Byte output[58];
   std::size_t outputLength;
 
   input.length = 0;
-  outputLength = RLP::encode(&input, output);
+  outputLength = RLP::encodeItem(&input, output);
   ASSERT_EQ(outputLength, 1);
   ASSERT_EQ(output[0], 0x80);
 
   input.length = 1;
   input.buffer[0] = 0x00;
-  outputLength = RLP::encode(&input, output);
+  outputLength = RLP::encodeItem(&input, output);
   ASSERT_EQ(outputLength, 1);
   ASSERT_EQ(output[0], 0x00);
 
   input.length = 1;
   input.buffer[0] = 0x7f;
-  outputLength = RLP::encode(&input, output);
+  outputLength = RLP::encodeItem(&input, output);
   ASSERT_EQ(outputLength, 1);
   ASSERT_EQ(output[0], 0x7f);
 
   input.length = 1;
   input.buffer[0] = 0x80;
-  outputLength = RLP::encode(&input, output);
+  outputLength = RLP::encodeItem(&input, output);
   ASSERT_EQ(outputLength, 2);
   ASSERT_EQ(output[0], 0x81);
   ASSERT_EQ(output[1], 0x80);
 
   input.length = 55;
   memset(input.buffer, 0xff, 55);
-  outputLength = RLP::encode(&input, output);
+  outputLength = RLP::encodeItem(&input, output);
   ASSERT_EQ(outputLength, 56);
   ASSERT_EQ(output[0], 0xb7);
   ASSERT_TRUE(memcmp(input.buffer, output + 1, 55) == 0);
 
   input.length = 56;
   memset(input.buffer, 0xff, 56);
-  outputLength = RLP::encode(&input, output);
+  outputLength = RLP::encodeItem(&input, output);
   ASSERT_EQ(outputLength, 58);
   ASSERT_EQ(output[0], 0xb8);
   ASSERT_EQ(output[1], 56);
@@ -90,13 +90,13 @@ TEST(RLP, encodeList) {
   std::size_t outputLength;
 
   // Empty list
-  outputLength = RLP::encode(input, 0, output);
+  outputLength = RLP::encodeList(input, 0, output);
   ASSERT_EQ(outputLength, 1);
   ASSERT_EQ(output[0], 0xc0);
 
   // One empty item
   input[0].length = 0;
-  outputLength = RLP::encode(input, 1, output);
+  outputLength = RLP::encodeList(input, 1, output);
   ASSERT_EQ(outputLength, 2);
   ASSERT_EQ(output[0], 0xc1);
   ASSERT_EQ(output[1], 0x80);
@@ -104,7 +104,7 @@ TEST(RLP, encodeList) {
   // One item, payload size = 55 bytes
   input[0].length = 54;
   memset(input[0].buffer, 0xff, 54);
-  outputLength = RLP::encode(input, 1, output);
+  outputLength = RLP::encodeList(input, 1, output);
   ASSERT_EQ(outputLength, 56);
   ASSERT_EQ(output[0], 0xf7);
   ASSERT_EQ(output[1], 0xb6);
@@ -114,7 +114,7 @@ TEST(RLP, encodeList) {
   input[0].length = 54;
   memset(input[0].buffer, 0xff, 54);
   input[1].length = 0;
-  outputLength = RLP::encode(input, 2, output);
+  outputLength = RLP::encodeList(input, 2, output);
   ASSERT_EQ(outputLength, 58);
   ASSERT_EQ(output[0], 0xf8);
   ASSERT_EQ(output[1], 56);
