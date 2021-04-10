@@ -23,5 +23,26 @@ static void ecdsa(benchmark::State &state) {
   }
 }
 
+static void sign(benchmark::State &state) {
+  Utils::Byte privateKey[32];
+  hexStringToBuffer("4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318", privateKey);
+
+  Transaction::Values values = {
+    .nonce = "000001",
+    .gasPrice = "0000000000",
+    .gasLimit = "00000010100000",
+    .to = "F0109fC8DF283027b6285cc889F5aA624EaC1F55",
+    .data = "000000000000000000000000abc",
+    .value = "0",
+  };
+
+  Utils::Byte transaction[512];
+
+  for(auto _ : state) {
+    benchmark::DoNotOptimize(Transaction::sign(&values, privateKey, transaction));
+  }
+}
+
 BENCHMARK(keccak256)->Name("Transaction::keccak256");
 BENCHMARK(ecdsa)->Name("Transaction::ecdsa");
+BENCHMARK(sign)->Name("Transaction::sign");
