@@ -9,29 +9,29 @@ TEST(RLP, encodeLength) {
 
   // Single item encoding
   outputLength = RLP::encodeLength(0, 0x80, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0x80);
 
   outputLength = RLP::encodeLength(55, 0x80, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0xb7);
 
   outputLength = RLP::encodeLength(56, 0x80, output);
-  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(outputLength, 2UL);
   ASSERT_EQ(output[0], 0xb8);
   ASSERT_EQ(output[1], 56);
 
   // Payload encoding
   outputLength = RLP::encodeLength(0, 0xc0, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0xc0);
 
   outputLength = RLP::encodeLength(55, 0xc0, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0xf7);
 
   outputLength = RLP::encodeLength(56, 0xc0, output);
-  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(outputLength, 2UL);
   ASSERT_EQ(output[0], 0xf8);
   ASSERT_EQ(output[1], 56);
 }
@@ -44,39 +44,39 @@ TEST(RLP, encodeItem) {
 
   input.length = 0;
   outputLength = RLP::encodeItem(&input, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0x80);
 
   input.length = 1;
   input.buffer[0] = 0x00;
   outputLength = RLP::encodeItem(&input, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0x00);
 
   input.length = 1;
   input.buffer[0] = 0x7f;
   outputLength = RLP::encodeItem(&input, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0x7f);
 
   input.length = 1;
   input.buffer[0] = 0x80;
   outputLength = RLP::encodeItem(&input, output);
-  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(outputLength, 2UL);
   ASSERT_EQ(output[0], 0x81);
   ASSERT_EQ(output[1], 0x80);
 
   input.length = 55;
   memset(input.buffer, 0xff, 55);
   outputLength = RLP::encodeItem(&input, output);
-  ASSERT_EQ(outputLength, 56);
+  ASSERT_EQ(outputLength, 56UL);
   ASSERT_EQ(output[0], 0xb7);
   ASSERT_TRUE(memcmp(input.buffer, output + 1, 55) == 0);
 
   input.length = 56;
   memset(input.buffer, 0xff, 56);
   outputLength = RLP::encodeItem(&input, output);
-  ASSERT_EQ(outputLength, 58);
+  ASSERT_EQ(outputLength, 58UL);
   ASSERT_EQ(output[0], 0xb8);
   ASSERT_EQ(output[1], 56);
   ASSERT_TRUE(memcmp(input.buffer, output + 2, 56) == 0);
@@ -91,13 +91,13 @@ TEST(RLP, encodeList) {
 
   // Empty list
   outputLength = RLP::encodeList(input, 0, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0xc0);
 
   // One empty item
   input[0].length = 0;
   outputLength = RLP::encodeList(input, 1, output);
-  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(outputLength, 2UL);
   ASSERT_EQ(output[0], 0xc1);
   ASSERT_EQ(output[1], 0x80);
 
@@ -105,7 +105,7 @@ TEST(RLP, encodeList) {
   input[0].length = 54;
   memset(input[0].buffer, 0xff, 54);
   outputLength = RLP::encodeList(input, 1, output);
-  ASSERT_EQ(outputLength, 56);
+  ASSERT_EQ(outputLength, 56UL);
   ASSERT_EQ(output[0], 0xf7);
   ASSERT_EQ(output[1], 0xb6);
   ASSERT_TRUE(memcmp(input[0].buffer, output + 2, 54) == 0);
@@ -115,7 +115,7 @@ TEST(RLP, encodeList) {
   memset(input[0].buffer, 0xff, 54);
   input[1].length = 0;
   outputLength = RLP::encodeList(input, 2, output);
-  ASSERT_EQ(outputLength, 58);
+  ASSERT_EQ(outputLength, 58UL);
   ASSERT_EQ(output[0], 0xf8);
   ASSERT_EQ(output[1], 56);
   ASSERT_EQ(output[2], 0xb6);

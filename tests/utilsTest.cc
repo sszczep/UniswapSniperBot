@@ -33,16 +33,16 @@ TEST(Utils, hexStringToBuffer) {
   std::size_t outputLength;
 
   outputLength = Utils::hexStringToBuffer(input, 0, output);
-  ASSERT_EQ(outputLength, 0);
+  ASSERT_EQ(outputLength, 0UL);
 
   memcpy(input, "0", 1);
   outputLength = Utils::hexStringToBuffer(input, 1, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0);
 
   memcpy(input, "1C1e1769", 8);
   outputLength = Utils::hexStringToBuffer(input, 8, output);
-  ASSERT_EQ(outputLength, 4);
+  ASSERT_EQ(outputLength, 4UL);
   ASSERT_EQ(output[0], 28);
   ASSERT_EQ(output[1], 30);
   ASSERT_EQ(output[2], 23);
@@ -50,7 +50,7 @@ TEST(Utils, hexStringToBuffer) {
 
   memcpy(input, "D55f92Fd5", 9);
   outputLength = Utils::hexStringToBuffer(input, 9, output);
-  ASSERT_EQ(outputLength, 5);
+  ASSERT_EQ(outputLength, 5UL);
   ASSERT_EQ(output[0], 13);
   ASSERT_EQ(output[1], 85);
   ASSERT_EQ(output[2], 249);
@@ -59,11 +59,11 @@ TEST(Utils, hexStringToBuffer) {
 
   memcpy(input, "000", 3);
   outputLength = Utils::hexStringToBuffer(input, 3, output, true);
-  ASSERT_EQ(outputLength, 0);
+  ASSERT_EQ(outputLength, 0UL);
 
   memcpy(input, "00012", 5);
   outputLength = Utils::hexStringToBuffer(input, 5, output, true);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 18);
 }
 
@@ -72,21 +72,21 @@ TEST(Utils, hexStringToBufferNullTerminated) {
   std::size_t outputLength;
 
   outputLength = Utils::hexStringToBuffer("", output);
-  ASSERT_EQ(outputLength, 0);
+  ASSERT_EQ(outputLength, 0UL);
 
   outputLength = Utils::hexStringToBuffer("0", output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0);
 
   outputLength = Utils::hexStringToBuffer("1C1e1769", output);
-  ASSERT_EQ(outputLength, 4);
+  ASSERT_EQ(outputLength, 4UL);
   ASSERT_EQ(output[0], 28);
   ASSERT_EQ(output[1], 30);
   ASSERT_EQ(output[2], 23);
   ASSERT_EQ(output[3], 105);
 
   outputLength = Utils::hexStringToBuffer("D55f92Fd5", output);
-  ASSERT_EQ(outputLength, 5);
+  ASSERT_EQ(outputLength, 5UL);
   ASSERT_EQ(output[0], 13);
   ASSERT_EQ(output[1], 85);
   ASSERT_EQ(output[2], 249);
@@ -94,10 +94,10 @@ TEST(Utils, hexStringToBufferNullTerminated) {
   ASSERT_EQ(output[4], 213);
 
   outputLength = Utils::hexStringToBuffer("000", output, true);
-  ASSERT_EQ(outputLength, 0);
+  ASSERT_EQ(outputLength, 0UL);
 
   outputLength = Utils::hexStringToBuffer("00012", output, true);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 18);
 }
 
@@ -107,11 +107,11 @@ TEST(Utils, bufferToHexString) {
   std::size_t outputLength;
 
   outputLength = Utils::bufferToHexString(input, 0, output);
-  ASSERT_EQ(outputLength, 0);
+  ASSERT_EQ(outputLength, 0UL);
 
   input[0] = 0;
   outputLength = Utils::bufferToHexString(input, 1, output);
-  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(outputLength, 2UL);
   ASSERT_THAT(output, ::testing::StartsWith("00"));
 
   input[0] = 28;
@@ -119,7 +119,7 @@ TEST(Utils, bufferToHexString) {
   input[2] = 23;
   input[3] = 105;
   outputLength = Utils::bufferToHexString(input, 4, output);
-  ASSERT_EQ(outputLength, 8);
+  ASSERT_EQ(outputLength, 8UL);
   ASSERT_THAT(output, ::testing::StartsWith("1c1e1769"));
 
   input[0] = 13;
@@ -128,7 +128,7 @@ TEST(Utils, bufferToHexString) {
   input[3] = 47;
   input[4] = 213;
   outputLength = Utils::bufferToHexString(input, 5, output);
-  ASSERT_EQ(outputLength, 10);
+  ASSERT_EQ(outputLength, 10UL);
   ASSERT_THAT(output, ::testing::StartsWith("0d55f92fd5"));
 }
 
@@ -138,11 +138,11 @@ TEST(Utils, bufferToHexStringNullTerminated) {
   std::size_t outputLength;
 
   outputLength = Utils::bufferToHexString(input, 0, output, true);
-  ASSERT_EQ(outputLength, 0);
+  ASSERT_EQ(outputLength, 0UL);
 
   input[0] = 0;
   outputLength = Utils::bufferToHexString(input, 1, output, true);
-  ASSERT_EQ(outputLength, 2);
+  ASSERT_EQ(outputLength, 2UL);
   ASSERT_STREQ("00", output);
 
   input[0] = 28;
@@ -150,7 +150,7 @@ TEST(Utils, bufferToHexStringNullTerminated) {
   input[2] = 23;
   input[3] = 105;
   outputLength = Utils::bufferToHexString(input, 4, output, true);
-  ASSERT_EQ(outputLength, 8);
+  ASSERT_EQ(outputLength, 8UL);
   ASSERT_STREQ("1c1e1769", output);
 
   input[0] = 13;
@@ -159,7 +159,7 @@ TEST(Utils, bufferToHexStringNullTerminated) {
   input[3] = 47;
   input[4] = 213;
   outputLength = Utils::bufferToHexString(input, 5, output, true);
-  ASSERT_EQ(outputLength, 10);
+  ASSERT_EQ(outputLength, 10UL);
   ASSERT_STREQ("0d55f92fd5", output);
 }
 
@@ -168,18 +168,18 @@ TEST(Utils, intToBuffer) {
   std::size_t outputLength;
 
   outputLength = Utils::intToBuffer(0, output);
-  ASSERT_EQ(outputLength, 1);
+  ASSERT_EQ(outputLength, 1UL);
   ASSERT_EQ(output[0], 0);
 
   outputLength = Utils::intToBuffer(471734121, output);
-  ASSERT_EQ(outputLength, 4);
+  ASSERT_EQ(outputLength, 4UL);
   ASSERT_EQ(output[0], 28);
   ASSERT_EQ(output[1], 30);
   ASSERT_EQ(output[2], 23);
   ASSERT_EQ(output[3], 105);
 
   outputLength = Utils::intToBuffer(57276968917, output);
-  ASSERT_EQ(outputLength, 5);
+  ASSERT_EQ(outputLength, 5UL);
   ASSERT_EQ(output[0], 13);
   ASSERT_EQ(output[1], 85);
   ASSERT_EQ(output[2], 249);

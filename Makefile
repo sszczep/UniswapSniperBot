@@ -1,4 +1,4 @@
-CXXFLAGS=-std=c++17 -O3 -Wall -Werror -pthread
+CXXFLAGS=-std=c++17 -O3 -Wall -Wextra -Werror -pthread
 SOURCES=$(wildcard sources/*.cc)
 INCLUDES_PATHS=$(wildcard libs.build/*/includes) includes
 LIBRARIES_PATHS=$(wildcard libs.build/*)
