@@ -15,27 +15,29 @@ static void byteToHexChar(benchmark::State &state) {
 }
 
 static void hexStringToBuffer(benchmark::State &state) {
-  Utils::Byte output[8];
+  Utils::Byte output[32];
 
   for(auto _ : state) {
-    benchmark::DoNotOptimize(Utils::hexStringToBuffer("ffffffffffffffff", 16, output));
+    benchmark::DoNotOptimize(Utils::hexStringToBuffer("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", 64, output));
   }
 }
 
 static void hexStringToBufferNT(benchmark::State &state) {
-  Utils::Byte output[8];
+  Utils::Byte output[32];
 
   for(auto _ : state) {
-    benchmark::DoNotOptimize(Utils::hexStringToBuffer("ffffffffffffffff", output));
+    benchmark::DoNotOptimize(Utils::hexStringToBuffer("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", output));
   }
 }
 
 static void bufferToHexString(benchmark::State &state) {
-  Utils::Byte input[8] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-  char output[16];
+  Utils::Byte input[32];
+  char output[64];
+
+  memset(input, 0xFF, 32);
 
   for(auto _ : state) {
-    benchmark::DoNotOptimize(Utils::bufferToHexString(input, 8, output));
+    benchmark::DoNotOptimize(Utils::bufferToHexString(input, 32, output));
   }
 }
 
