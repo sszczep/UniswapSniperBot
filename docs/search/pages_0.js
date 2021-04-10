@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uniswapsniperbot_39',['UniswapSniperBot',['../index.html',1,'']]]
+  ['uniswapsniperbot_41',['UniswapSniperBot',['../index.html',1,'']]]
 ];

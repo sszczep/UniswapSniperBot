@@ -85,12 +85,12 @@ Functions</h2></td></tr>
 <tr class="memitem:aebb3f48b84500a4e1286c4827d1c35a8"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_r_l_p.html#aebb3f48b84500a4e1286c4827d1c35a8">encodeLength</a> (std::size_t length, std::size_t offset, Buffer output)</td></tr>
 <tr class="memdesc:aebb3f48b84500a4e1286c4827d1c35a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes length.  <a href="namespace_r_l_p.html#aebb3f48b84500a4e1286c4827d1c35a8">More...</a><br /></td></tr>
 <tr class="separator:aebb3f48b84500a4e1286c4827d1c35a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05bde921b674c257d665fe1141d62752"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_r_l_p.html#a05bde921b674c257d665fe1141d62752">encode</a> (<a class="el" href="struct_r_l_p_1_1_item.html">Item</a> *input, Buffer output)</td></tr>
-<tr class="memdesc:a05bde921b674c257d665fe1141d62752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes single item.  <a href="namespace_r_l_p.html#a05bde921b674c257d665fe1141d62752">More...</a><br /></td></tr>
-<tr class="separator:a05bde921b674c257d665fe1141d62752"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af34642928911ade5581eb0afb2d8f313"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_r_l_p.html#af34642928911ade5581eb0afb2d8f313">encode</a> (<a class="el" href="struct_r_l_p_1_1_item.html">Item</a> input[], std::size_t inputLength, Buffer output)</td></tr>
-<tr class="memdesc:af34642928911ade5581eb0afb2d8f313"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes list of items.  <a href="namespace_r_l_p.html#af34642928911ade5581eb0afb2d8f313">More...</a><br /></td></tr>
-<tr class="separator:af34642928911ade5581eb0afb2d8f313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad231e73604b4765f19a620a5e4d754c5"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_r_l_p.html#ad231e73604b4765f19a620a5e4d754c5">encodeItem</a> (<a class="el" href="struct_r_l_p_1_1_item.html">Item</a> *input, Buffer output)</td></tr>
+<tr class="memdesc:ad231e73604b4765f19a620a5e4d754c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes single item.  <a href="namespace_r_l_p.html#ad231e73604b4765f19a620a5e4d754c5">More...</a><br /></td></tr>
+<tr class="separator:ad231e73604b4765f19a620a5e4d754c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de9991557761945e39e40d13417db85"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_r_l_p.html#a1de9991557761945e39e40d13417db85">encodeList</a> (<a class="el" href="struct_r_l_p_1_1_item.html">Item</a> input[], std::size_t inputLength, Buffer output)</td></tr>
+<tr class="memdesc:a1de9991557761945e39e40d13417db85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes list of items.  <a href="namespace_r_l_p.html#a1de9991557761945e39e40d13417db85">More...</a><br /></td></tr>
+<tr class="separator:a1de9991557761945e39e40d13417db85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="">Functions for Recursive Length Prefix Encoding. It is the main encoding method used to serialize objects in Ethereum. </p>
@@ -149,8 +149,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a05bde921b674c257d665fe1141d62752"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05bde921b674c257d665fe1141d62752">&#9670;&nbsp;</a></span>encode() <span class="overload">[1/2]</span></h2>
+<a id="ad231e73604b4765f19a620a5e4d754c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad231e73604b4765f19a620a5e4d754c5">&#9670;&nbsp;</a></span>encodeItem()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +159,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t RLP::encode </td>
+          <td class="memname">std::size_t RLP::encodeItem </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_r_l_p_1_1_item.html">Item</a> *&#160;</td>
           <td class="paramname"><em>input</em>, </td>
@@ -195,8 +195,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af34642928911ade5581eb0afb2d8f313"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af34642928911ade5581eb0afb2d8f313">&#9670;&nbsp;</a></span>encode() <span class="overload">[2/2]</span></h2>
+<a id="a1de9991557761945e39e40d13417db85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de9991557761945e39e40d13417db85">&#9670;&nbsp;</a></span>encodeList()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,7 +205,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t RLP::encode </td>
+          <td class="memname">std::size_t RLP::encodeList </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_r_l_p_1_1_item.html">Item</a>&#160;</td>
           <td class="paramname"><em>input</em>[], </td>

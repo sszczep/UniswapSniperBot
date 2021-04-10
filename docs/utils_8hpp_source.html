@@ -141,7 +141,7 @@ $(function() {
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  }</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
 <div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="namespace_utils.html#a2e33ee8fcb5bac12d9748230ee08ce69">  122</a></span>&#160;  <span class="keyword">inline</span> std::size_t <a class="code" href="namespace_utils.html#a2e33ee8fcb5bac12d9748230ee08ce69">intToBuffer</a>(std::uint64_t x, Buffer output) {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    std::size_t length;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    std::size_t length = 0;</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">if</span>(x &gt; 0xFFFFFFFFFFFFFF) length = 8;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFFFFFFFFFFFF) length = 7;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFFFFFFFFFF) length = 6;</div>
@@ -150,7 +150,7 @@ $(function() {
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFFFF) length = 3;</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0xFF) length = 2;</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x &gt; 0) length = 1;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(x == 0) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      *output = 0;</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>

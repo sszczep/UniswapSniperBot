@@ -78,14 +78,14 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_transaction_1_1_values.html">Values</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct holding QUANTITY and DATA values to <a class="el" href="namespace_r_l_p.html#a05bde921b674c257d665fe1141d62752" title="Encodes single item.">RLP::encode</a>. For difference between them, read here: <a href="https://eth.wiki/json-rpc/API">https://eth.wiki/json-rpc/API</a>.  <a href="struct_transaction_1_1_values.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct holding QUANTITY and DATA values to RLP::encode. For difference between them, read here: <a href="https://eth.wiki/json-rpc/API">https://eth.wiki/json-rpc/API</a>.  <a href="struct_transaction_1_1_values.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae23d56270045444c7a9dc8209c5dd34a"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#ae23d56270045444c7a9dc8209c5dd34a">keccak256</a> (Utils::Buffer input, std::size_t inputLength, Utils::Buffer output)</td></tr>
-<tr class="memdesc:ae23d56270045444c7a9dc8209c5dd34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">KECCAK256 hashing function.  <a href="namespace_transaction.html#ae23d56270045444c7a9dc8209c5dd34a">More...</a><br /></td></tr>
-<tr class="separator:ae23d56270045444c7a9dc8209c5dd34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab40d6cc6fb99d739ae4161e146d16ae1"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#ab40d6cc6fb99d739ae4161e146d16ae1">keccak256</a> (Utils::Buffer input, std::size_t inputLength, Utils::Buffer hash)</td></tr>
+<tr class="memdesc:ab40d6cc6fb99d739ae4161e146d16ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">KECCAK256 hashing function.  <a href="namespace_transaction.html#ab40d6cc6fb99d739ae4161e146d16ae1">More...</a><br /></td></tr>
+<tr class="separator:ab40d6cc6fb99d739ae4161e146d16ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6900bf45f94d1b84970b1b0fa7333777"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#a6900bf45f94d1b84970b1b0fa7333777">ecdsa</a> (Utils::Buffer hash, Utils::Buffer privateKey, Utils::Buffer signature, int *recid)</td></tr>
 <tr class="memdesc:a6900bf45f94d1b84970b1b0fa7333777"><td class="mdescLeft">&#160;</td><td class="mdescRight">ECDSA hashing function.  <a href="namespace_transaction.html#a6900bf45f94d1b84970b1b0fa7333777">More...</a><br /></td></tr>
 <tr class="separator:a6900bf45f94d1b84970b1b0fa7333777"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,8 +114,8 @@ const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="">Functions for Ethereum transactions. Currently only supports mainnet. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ae23d56270045444c7a9dc8209c5dd34a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae23d56270045444c7a9dc8209c5dd34a">&#9670;&nbsp;</a></span>keccak256()</h2>
+<a id="ab40d6cc6fb99d739ae4161e146d16ae1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab40d6cc6fb99d739ae4161e146d16ae1">&#9670;&nbsp;</a></span>keccak256()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,7 +139,7 @@ const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Utils::Buffer&#160;</td>
-          <td class="paramname"><em>output</em>&#160;</td>
+          <td class="paramname"><em>hash</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
