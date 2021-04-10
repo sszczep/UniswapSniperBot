@@ -35,7 +35,7 @@ namespace Utils {
    * @throws std::invalid_argument Throws when input is not valid hexadecimal value
    */
   inline char byteToHexChar(Byte x) {
-    if(x >= 0 && x <= 9) return x + '0';
+    if(x <= 9) return x + '0';
     if(x >= 10 && x <= 15) return (x - 10) + 'a';
     throw std::invalid_argument("Invalid argument");
   }

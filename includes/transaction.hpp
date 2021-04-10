@@ -112,15 +112,15 @@ namespace Transaction {
     /* Create RLP input data */
 
     RLP::Item rlpInput[] = {
-      { .buffer = nonce },
-      { .buffer = gasPrice },
-      { .buffer = gasLimit },
-      { .buffer = to },
-      { .buffer = value },
-      { .buffer = data },
-      { .buffer = v },
-      { .buffer = r },
-      { .buffer = s },
+      { .buffer = nonce, .length = 0 },
+      { .buffer = gasPrice, .length = 0 },
+      { .buffer = gasLimit, .length = 0 },
+      { .buffer = to, .length = 0 },
+      { .buffer = value, .length = 0 },
+      { .buffer = data, .length = 0 },
+      { .buffer = v, .length = 0 },
+      { .buffer = r, .length = 0 },
+      { .buffer = s, .length = 0 },
     };
 
     /* Assign values for first encode */
