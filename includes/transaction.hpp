@@ -64,7 +64,7 @@ namespace Transaction {
    * 
    * @param input input buffer
    * @param inputLength input buffer length
-   * @param output output hash buffer
+   * @param hash output hash buffer
    * @return output buffer length (always 32)
    */
   inline std::size_t keccak256(Utils::Buffer input, std::size_t inputLength, Utils::Buffer hash) {
