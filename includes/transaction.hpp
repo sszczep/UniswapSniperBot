@@ -15,7 +15,8 @@ extern "C" {
  */
 namespace Transaction {
   /**
-   * @brief secp256k1 context, preinitialized as it's very slow to create.
+   * @brief SECP256K1 context, allows preinitialization as it's very slow to create.
+   * @see createSecp256k1() and destroySecp256k1()
    * 
    * The purpose of context structures is to cache large precomputed data tables
    * that are expensive to construct, and also to maintain the randomization data
@@ -28,7 +29,7 @@ namespace Transaction {
   inline secp256k1_context *secp256k1Context;
 
   /**
-   * @brief create secp256k1 context
+   * @brief Create SECP256k1 context.
    * 
    * Must be called before using sign function.
    */
@@ -37,7 +38,7 @@ namespace Transaction {
   }
 
   /**
-   * @brief destroy secp256k1 context
+   * @brief Destroy SECP256K1 context.
    * 
    * Must be called before program exit to free dynamic memory.
    */
@@ -49,20 +50,20 @@ namespace Transaction {
    * @brief Maximum quantity buffer size.
    * 32 bytes is maximum EVM integer size.
    */
-  inline const std::size_t quantityBufferSize = 32;
+  inline constexpr std::size_t quantityBufferSize = 32;
 
   /**
    * @brief Maximum address buffer size.
    * Ethereum address contains 40 hexadecimal characters hence 20 bytes.
    */
-  inline const std::size_t addressBufferSize = 20;
+  inline constexpr std::size_t addressBufferSize = 20;
 
   /**
    * @brief Maximum data buffer size. 
    * Uniswap swapExactETHForTokens requires 228 bytes.
    * Defaults to 256.
    */
-  inline const std::size_t dataBufferSize = 256;
+  inline constexpr std::size_t dataBufferSize = 256;
 
   /**
    * @brief Struct holding QUANTITY and DATA values to RLP::encode.
