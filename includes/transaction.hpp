@@ -25,7 +25,25 @@ namespace Transaction {
    * far slower than all other API calls (~100 times slower than an ECDSA
    * verification).
    */
-  inline const secp256k1_context * const secp256k1Context { secp256k1_context_create(SECP256K1_CONTEXT_SIGN) };
+  inline secp256k1_context *secp256k1Context;
+
+  /**
+   * @brief create secp256k1 context
+   * 
+   * Must be called before using sign function.
+   */
+  inline void createSecp256k1() {
+    secp256k1Context = secp256k1_context_create(SECP256K1_CONTEXT_SIGN);
+  }
+
+  /**
+   * @brief destroy secp256k1 context
+   * 
+   * Must be called before program exit to free dynamic memory.
+   */
+  inline void destroySecp256k1() {
+    secp256k1_context_destroy(secp256k1Context);
+  }
 
   /**
    * @brief Maximum quantity buffer size.

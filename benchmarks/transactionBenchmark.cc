@@ -13,6 +13,8 @@ static void keccak256(benchmark::State &state) {
 }
 
 static void ecdsa(benchmark::State &state) {
+  Transaction::createSecp256k1();
+
   Utils::Byte hash[] = { 0x12, 0x4e, 0x6c, 0x7e, 0xea, 0xfa, 0x39, 0xdd, 0x9c, 0x2a, 0x82, 0xdf, 0x94, 0x57, 0xdd, 0xe7, 0xd8, 0xee, 0xa5, 0x1f, 0x72, 0x17, 0x60, 0xf5, 0xac, 0x41, 0x2e, 0xab, 0x0f, 0x73, 0xdc, 0xf4 };
   Utils::Byte privateKey[] = { 0x4c, 0x08, 0x83, 0xa6, 0x91, 0x02, 0x93, 0x7d, 0x62, 0x31, 0x47, 0x1b, 0x5d, 0xbb, 0x62, 0x04, 0xfe, 0x51, 0x29, 0x61, 0x70, 0x82, 0x79, 0x2a, 0xe4, 0x68, 0xd0, 0x1a, 0x3f, 0x36, 0x23, 0x18 };
   Utils::Byte signature[64];
@@ -21,9 +23,13 @@ static void ecdsa(benchmark::State &state) {
   for(auto _ : state) {
     benchmark::DoNotOptimize(Transaction::ecdsa(hash, privateKey, signature, &recid));
   }
+
+  Transaction::destroySecp256k1();
 }
 
 static void sign(benchmark::State &state) {
+  Transaction::createSecp256k1();
+
   Utils::Byte privateKey[32];
   hexStringToBuffer("4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318", privateKey);
 
@@ -41,6 +47,8 @@ static void sign(benchmark::State &state) {
   for(auto _ : state) {
     benchmark::DoNotOptimize(Transaction::sign(&values, privateKey, transaction));
   }
+
+  Transaction::destroySecp256k1();
 }
 
 BENCHMARK(keccak256)->Name("Transaction::keccak256");
