@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Uniswap Sniper Bot: UniswapSniperBot</title>
+<title>Uniswap Sniper Bot: Uniswap Sniper Bot</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,10 +64,54 @@ $(function() {
 
 <div><div class="header">
   <div class="headertitle">
-<div class="title">UniswapSniperBot </div>  </div>
+<div class="title">Uniswap Sniper Bot </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p class=""><a class="anchor" id="md_README"></a>Fast &amp;&amp; simple Uniswap sniper bot written in C++ </p>
+<div class="textblock"><p class=""><a class="anchor" id="md_README"></a> <img src="https://github.com/sszczep/UniswapSniperBot/blob/main/logo.jpg?raw=true" alt="project logo" class="inline"/></p>
+<h6>Optimized, fast and unsafe Uniswap sniping bot for buying new listings.</h6>
+<h2><a class="anchor" id="autotoc_md0"></a>
+How does it work?</h2>
+<p class="">We use <b>BloXroute's</b> <a href="https://docs.bloxroute.com/streams/newtxs-and-pendingtxs">streams</a> to listen to liquidity add transaction and call <em>swapExactETHForTokens</em> on <b>Uniswap V2 Router 02</b> contract. By sending our transaction with the same gas price, we have a very high chance of being very close to the original transaction in the block, hence buying tokens just after liquidity add and just before the price significantly rises.</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Used libraries</h2>
+<ul>
+<li><a href="https://github.com/zaphoyd/websocketpp">zaphoyd/websocketpp</a></li>
+<li><a href="https://github.com/bitcoin-core/secp256k1">bitcoin-core/secp256k1</a></li>
+<li><a href="https://github.com/XKCP/XKCP">XKCP/XKCP</a></li>
+<li><a href="https://github.com/google/googletest">google/googletest</a></li>
+<li><a href="https://github.com/google/benchmark">google/benchmark</a></li>
+<li><a href="https://github.com/doxygen/doxygen">doxygen/doxygen</a></li>
+<li><a href="https://github.com/kcwongjoe/doxygen_theme_flat_design">kcwongjoe/doxygen_theme_flat_design</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Installation guide</h2>
+<h3><a class="anchor" id="autotoc_md3"></a>
+Installing required packages on Debian</h3>
+<div class="fragment"><div class="line">sudo apt update</div>
+<div class="line">sudo apt install git make build-essential cmake autoconf libtool xsltproc libasio-dev</div>
+</div><!-- fragment --><h6>If you use macOS, you might have to manually link the OpenSSL</h6>
+<div class="fragment"><div class="line">ln -s /usr/local/opt/openssl/lib/*.dylib /usr/local/lib/</div>
+<div class="line">ln -s /usr/local/opt/openssl/lib/*.a /usr/local/lib/</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md4"></a>
+Cloning repository</h3>
+<div class="fragment"><div class="line">git clone --recurse-submodules -j8 https://github.com/sszczep/UniswapSniperBot.git</div>
+<div class="line">cd UniswapSniperBot</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md5"></a>
+Building and running main executable</h3>
+<div class="fragment"><div class="line">make main</div>
+<div class="line">./build/main</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md6"></a>
+Building and running tests</h3>
+<div class="fragment"><div class="line">make test</div>
+<div class="line">./build/test</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md7"></a>
+Building and running benchmarks</h3>
+<div class="fragment"><div class="line">make benchmark</div>
+<div class="line">./build/benchmark</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md8"></a>
+Generating documentation</h3>
+<div class="fragment"><div class="line">make docs</div>
+</div><!-- fragment --><h6>Documentation is available <a href="https://sszczep.github.io/UniswapSniperBot/">here</a>.</h6>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.9.2-->

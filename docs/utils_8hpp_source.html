@@ -89,7 +89,7 @@ $(function() {
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  }</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">   37</a></span>&#160;  <span class="keyword">inline</span> <span class="keywordtype">char</span> <a class="code" href="namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b">byteToHexChar</a>(Byte x) {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span>(x &gt;= 0 &amp;&amp; x &lt;= 9) <span class="keywordflow">return</span> x + <span class="charliteral">&#39;0&#39;</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span>(x &lt;= 9) <span class="keywordflow">return</span> x + <span class="charliteral">&#39;0&#39;</span>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">if</span>(x &gt;= 10 &amp;&amp; x &lt;= 15) <span class="keywordflow">return</span> (x - 10) + <span class="charliteral">&#39;a&#39;</span>;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid argument&quot;</span>);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  }</div>
