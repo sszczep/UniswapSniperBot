@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['values_20',['Values',['../struct_transaction_1_1_values.html',1,'Transaction']]]
+  ['uniswap_20sniper_20bot_20',['Uniswap Sniper Bot',['../index.html',1,'']]],
+  ['utils_21',['Utils',['../namespace_utils.html',1,'']]]
 ];

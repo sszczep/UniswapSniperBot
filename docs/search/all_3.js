@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['ecdsa_4',['ecdsa',['../namespace_transaction.html#a6900bf45f94d1b84970b1b0fa7333777',1,'Transaction']]],
-  ['encodeitem_5',['encodeItem',['../namespace_r_l_p.html#ad231e73604b4765f19a620a5e4d754c5',1,'RLP']]],
-  ['encodelength_6',['encodeLength',['../namespace_r_l_p.html#aebb3f48b84500a4e1286c4827d1c35a8',1,'RLP']]],
-  ['encodelist_7',['encodeList',['../namespace_r_l_p.html#a1de9991557761945e39e40d13417db85',1,'RLP']]]
+  ['databuffersize_4',['dataBufferSize',['../namespace_transaction.html#a81fa1499e33c438dcda99cc8f51f031e',1,'Transaction']]],
+  ['destroysecp256k1_5',['destroySecp256k1',['../namespace_transaction.html#a1157a566b1bb4c9bed9233c55cda62a1',1,'Transaction']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keccak256_12',['keccak256',['../namespace_transaction.html#ab40d6cc6fb99d739ae4161e146d16ae1',1,'Transaction']]]
+  ['inttobuffer_12',['intToBuffer',['../namespace_utils.html#a2e33ee8fcb5bac12d9748230ee08ce69',1,'Utils']]],
+  ['item_13',['Item',['../struct_r_l_p_1_1_item.html',1,'RLP']]]
 ];
