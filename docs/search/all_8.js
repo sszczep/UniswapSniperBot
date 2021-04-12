@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quantitybuffersize_15',['quantityBufferSize',['../namespace_transaction.html#ad3fdd0de59351b948b7b6a4a56b4906c',1,'Transaction']]]
+  ['quantitybuffersize_15',['quantityBufferSize',['../namespace_transaction.html#ac0c1b8e9c0aa12c64e7667e3b6d6d7c1',1,'Transaction']]]
 ];

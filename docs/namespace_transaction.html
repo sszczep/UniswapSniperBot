@@ -84,10 +84,10 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:abc5685459095099f16d8cf37aad6f306"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#abc5685459095099f16d8cf37aad6f306">createSecp256k1</a> ()</td></tr>
-<tr class="memdesc:abc5685459095099f16d8cf37aad6f306"><td class="mdescLeft">&#160;</td><td class="mdescRight">create secp256k1 context  <a href="namespace_transaction.html#abc5685459095099f16d8cf37aad6f306">More...</a><br /></td></tr>
+<tr class="memdesc:abc5685459095099f16d8cf37aad6f306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create SECP256k1 context.  <a href="namespace_transaction.html#abc5685459095099f16d8cf37aad6f306">More...</a><br /></td></tr>
 <tr class="separator:abc5685459095099f16d8cf37aad6f306"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1157a566b1bb4c9bed9233c55cda62a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#a1157a566b1bb4c9bed9233c55cda62a1">destroySecp256k1</a> ()</td></tr>
-<tr class="memdesc:a1157a566b1bb4c9bed9233c55cda62a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">destroy secp256k1 context  <a href="namespace_transaction.html#a1157a566b1bb4c9bed9233c55cda62a1">More...</a><br /></td></tr>
+<tr class="memdesc:a1157a566b1bb4c9bed9233c55cda62a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy SECP256K1 context.  <a href="namespace_transaction.html#a1157a566b1bb4c9bed9233c55cda62a1">More...</a><br /></td></tr>
 <tr class="separator:a1157a566b1bb4c9bed9233c55cda62a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab40d6cc6fb99d739ae4161e146d16ae1"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#ab40d6cc6fb99d739ae4161e146d16ae1">keccak256</a> (Utils::Buffer input, std::size_t inputLength, Utils::Buffer hash)</td></tr>
 <tr class="memdesc:ab40d6cc6fb99d739ae4161e146d16ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">KECCAK256 hashing function.  <a href="namespace_transaction.html#ab40d6cc6fb99d739ae4161e146d16ae1">More...</a><br /></td></tr>
@@ -102,20 +102,20 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a18c211dd2848fbd1e54eb59ee410647f"><td class="memItemLeft" align="right" valign="top">secp256k1_context *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#a18c211dd2848fbd1e54eb59ee410647f">secp256k1Context</a></td></tr>
-<tr class="memdesc:a18c211dd2848fbd1e54eb59ee410647f"><td class="mdescLeft">&#160;</td><td class="mdescRight">secp256k1 context, preinitialized as it's very slow to create.  <a href="namespace_transaction.html#a18c211dd2848fbd1e54eb59ee410647f">More...</a><br /></td></tr>
+<tr class="memdesc:a18c211dd2848fbd1e54eb59ee410647f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SECP256K1 context, allows preinitialization as it's very slow to create.  <a href="namespace_transaction.html#a18c211dd2848fbd1e54eb59ee410647f">More...</a><br /></td></tr>
 <tr class="separator:a18c211dd2848fbd1e54eb59ee410647f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3fdd0de59351b948b7b6a4a56b4906c"><td class="memItemLeft" align="right" valign="top"><a id="ad3fdd0de59351b948b7b6a4a56b4906c"></a>
-const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#ad3fdd0de59351b948b7b6a4a56b4906c">quantityBufferSize</a> = 32</td></tr>
-<tr class="memdesc:ad3fdd0de59351b948b7b6a4a56b4906c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum quantity buffer size. 32 bytes is maximum EVM integer size. <br /></td></tr>
-<tr class="separator:ad3fdd0de59351b948b7b6a4a56b4906c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cb2e235fd05c2e6259b664802db37d0"><td class="memItemLeft" align="right" valign="top"><a id="a5cb2e235fd05c2e6259b664802db37d0"></a>
-const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#a5cb2e235fd05c2e6259b664802db37d0">addressBufferSize</a> = 20</td></tr>
-<tr class="memdesc:a5cb2e235fd05c2e6259b664802db37d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum address buffer size. Ethereum address contains 40 hexadecimal characters hence 20 bytes. <br /></td></tr>
-<tr class="separator:a5cb2e235fd05c2e6259b664802db37d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81fa1499e33c438dcda99cc8f51f031e"><td class="memItemLeft" align="right" valign="top"><a id="a81fa1499e33c438dcda99cc8f51f031e"></a>
-const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#a81fa1499e33c438dcda99cc8f51f031e">dataBufferSize</a> = 256</td></tr>
-<tr class="memdesc:a81fa1499e33c438dcda99cc8f51f031e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum data buffer size. Uniswap swapExactETHForTokens requires 228 bytes. Defaults to 256. <br /></td></tr>
-<tr class="separator:a81fa1499e33c438dcda99cc8f51f031e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0c1b8e9c0aa12c64e7667e3b6d6d7c1"><td class="memItemLeft" align="right" valign="top"><a id="ac0c1b8e9c0aa12c64e7667e3b6d6d7c1"></a>
+constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#ac0c1b8e9c0aa12c64e7667e3b6d6d7c1">quantityBufferSize</a> = 32</td></tr>
+<tr class="memdesc:ac0c1b8e9c0aa12c64e7667e3b6d6d7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum quantity buffer size. 32 bytes is maximum EVM integer size. <br /></td></tr>
+<tr class="separator:ac0c1b8e9c0aa12c64e7667e3b6d6d7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff78e5b589784e93a823706ec1a1ca2"><td class="memItemLeft" align="right" valign="top"><a id="acff78e5b589784e93a823706ec1a1ca2"></a>
+constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#acff78e5b589784e93a823706ec1a1ca2">addressBufferSize</a> = 20</td></tr>
+<tr class="memdesc:acff78e5b589784e93a823706ec1a1ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum address buffer size. Ethereum address contains 40 hexadecimal characters hence 20 bytes. <br /></td></tr>
+<tr class="separator:acff78e5b589784e93a823706ec1a1ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255f75ec1809a759c704b03565d91dd9"><td class="memItemLeft" align="right" valign="top"><a id="a255f75ec1809a759c704b03565d91dd9"></a>
+constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_transaction.html#a255f75ec1809a759c704b03565d91dd9">dataBufferSize</a> = 256</td></tr>
+<tr class="memdesc:a255f75ec1809a759c704b03565d91dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum data buffer size. Uniswap swapExactETHForTokens requires 228 bytes. Defaults to 256. <br /></td></tr>
+<tr class="separator:a255f75ec1809a759c704b03565d91dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="">Functions for Ethereum transactions. Currently only supports mainnet. </p>
@@ -143,7 +143,7 @@ const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 </table>
 </div><div class="memdoc">
 
-<p>create secp256k1 context </p>
+<p>Create SECP256k1 context. </p>
 <p class="">Must be called before using sign function. </p>
 
 </div>
@@ -171,7 +171,7 @@ const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 </table>
 </div><div class="memdoc">
 
-<p>destroy secp256k1 context </p>
+<p>Destroy SECP256K1 context. </p>
 <p class="">Must be called before program exit to free dynamic memory. </p>
 
 </div>
@@ -363,8 +363,9 @@ const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 </table>
 </div><div class="memdoc">
 
-<p>secp256k1 context, preinitialized as it's very slow to create. </p>
-<p class="">The purpose of context structures is to cache large precomputed data tables that are expensive to construct, and also to maintain the randomization data for blinding.</p>
+<p>SECP256K1 context, allows preinitialization as it's very slow to create. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespace_transaction.html#abc5685459095099f16d8cf37aad6f306" title="Create SECP256k1 context.">createSecp256k1()</a> and <a class="el" href="namespace_transaction.html#a1157a566b1bb4c9bed9233c55cda62a1" title="Destroy SECP256K1 context.">destroySecp256k1()</a></dd></dl>
+<p>The purpose of context structures is to cache large precomputed data tables that are expensive to construct, and also to maintain the randomization data for blinding.</p>
 <p class="">Do not create a new context object for each operation, as construction is far slower than all other API calls (~100 times slower than an ECDSA verification). </p>
 
 </div>

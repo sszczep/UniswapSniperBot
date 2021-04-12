@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['databuffersize_42',['dataBufferSize',['../namespace_transaction.html#a81fa1499e33c438dcda99cc8f51f031e',1,'Transaction']]]
+  ['databuffersize_42',['dataBufferSize',['../namespace_transaction.html#a255f75ec1809a759c704b03565d91dd9',1,'Transaction']]]
 ];
