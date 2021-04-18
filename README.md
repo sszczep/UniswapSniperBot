@@ -37,14 +37,13 @@ cd UniswapSniperBot
 
 ### Config
 #### Saving config file
-Config file should be saved as **CONFIG**. This way we won't push commit with sensitive data as it is ignored by git.
-
+Config file should be saved as **CONFIG**. This way we won't push commit with sensitive data as it is ignored by git. \
 **.CONFIG** is just a boilerplate config file and has no impact on running code.
+
 #### Decimal vs hexadecimal values
 *BloXroute's filters* use decimal values, whereas we use hexadecimal values to generate transactions.
 
-Decimal fields: **MAX_GAS_PRICE, MIN_VALUE**
-
+Decimal fields: **MAX_GAS_PRICE, MIN_VALUE** \
 Hexadecimal fields: **NONCE, VALUE, AMOUNT_OUT_MIN, GAS_LIMIT**
 
 Hexadecimal values **cannot** be *0x* prefixed. 
