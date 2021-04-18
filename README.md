@@ -44,7 +44,7 @@ Config file should be saved as **CONFIG**. This way we won't push commit with se
 *BloXroute's filters* use decimal values, whereas we use hexadecimal values to generate transactions.
 
 Decimal fields: **MAX_GAS_PRICE, MIN_VALUE** \
-Hexadecimal fields: **NONCE, VALUE, AMOUNT_OUT_MIN, GAS_LIMIT**
+Hexadecimal fields: **TOKEN_ADDRESS, NONCE, VALUE, AMOUNT_OUT_MIN, GAS_LIMIT, ROUTER_ADDRESS, RECEIVER_ADDRESS, PRIVATE_KEY**
 
 Hexadecimal values **cannot** be *0x* prefixed. 
 
