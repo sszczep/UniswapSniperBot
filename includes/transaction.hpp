@@ -160,16 +160,6 @@ class Transaction {
    * @brief Sets the transaction field value.
    * 
    * @param field field name
-   * @param value input std::string
-   */
-  void setField(Field field, const std::string &value) {
-    setField(field, value.c_str());
-  }
-
-  /**
-   * @brief Sets the transaction field value.
-   * 
-   * @param field field name
    * @param value input buffer
    * @param size input buffer size
    */
@@ -198,18 +188,6 @@ class Transaction {
     Utils::Byte privateKeyBuffer[32];
     Utils::hexStringToBuffer(privateKey, 64, privateKeyBuffer);
     return sign(privateKeyBuffer, transaction);
-  }
-
-  /**
-   * @brief Signs transaction.
-   * 
-   * @param privateKey private key std::string to sign with
-   * @param transaction output transaction buffer
-   * 
-   * @return transaction buffer length
-   */
-  std::size_t sign(const std::string &privateKey, Utils::Buffer transaction) {
-    return sign(privateKey.c_str(), transaction);
   }
 
   /**
