@@ -38,7 +38,7 @@ Utils::Byte privateKeyBuffer[32];
 char pregeneratedTxs[MaxGasPrice - MinGasPrice][1024];
 
 #ifdef WS_TLS
-  websocketpp::lib::shared_ptr<websocketpp::lib::asio::ssl::context> BloXrouteBot::onTLSInit(websocketpp::connection_hdl) {
+  websocketpp::lib::shared_ptr<websocketpp::lib::asio::ssl::context> onTLSInit(websocketpp::connection_hdl) {
     websocketpp::lib::shared_ptr<websocketpp::lib::asio::ssl::context> context = 
       websocketpp::lib::make_shared<asio::ssl::context>(asio::ssl::context::sslv23);
 
