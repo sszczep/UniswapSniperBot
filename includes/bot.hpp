@@ -15,13 +15,13 @@ namespace TransactionDataBuilder {
    * Includes WETH token address as path[0] and maximum possible deadline.
    * It is missing amountOutMin, path[1] and to values.
    */
-  inline constexpr char const * dataBoilerplate { "7ff36ab5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000000000000000000000000000" };
+  inline constexpr char const * DataBoilerplate { "7ff36ab5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000000000000000000000000000" };
 
   /**
    * @brief Boilerplate transaction data length.
-   * @see dataBoilerplate
+   * @see DataBoilerplate
    */
-  inline constexpr std::size_t dataLength { std::char_traits<char>::length(dataBoilerplate) };
+  inline constexpr std::size_t DataLength { std::char_traits<char>::length(DataBoilerplate) };
 
   /**
    * @brief Builds swapExactETHForTokens input data.
@@ -36,14 +36,14 @@ namespace TransactionDataBuilder {
   inline std::size_t buildData(const char *amountOutMin, const char *targetTokenAddress, const char *receiverAddress, char *output) {
     std::size_t amountOutMinLength = strlen(amountOutMin);
 
-    memcpy(output, dataBoilerplate, dataLength);
+    memcpy(output, DataBoilerplate, DataLength);
     memcpy(output + 8 + 64 - amountOutMinLength, amountOutMin, amountOutMinLength);
     memcpy(output + 8 + 3 * 64 - 40, receiverAddress, 40);
     memcpy(output + 8 + 7 * 64 - 40, targetTokenAddress, 40);
 
-    output[dataLength] = '\0';
+    output[DataLength] = '\0';
 
-    return dataLength;
+    return DataLength;
   }
 }
 
@@ -52,24 +52,19 @@ namespace TransactionDataBuilder {
  */
 namespace BloXrouteMessageParser {
   /**
-   * @brief Maximum hex string length (0xFFFFFFFFFFFFFFFF).
-   */
-  inline constexpr std::size_t maxHexLength = 16;
-
-  /**
    * @brief Position of the method name in the message string.
    */
-  inline constexpr std::size_t methodPosition = 37;
+  inline constexpr std::size_t MethodPosition = 37;
 
   /**
    * @brief Position of the token address in the message string.
    */
-  inline constexpr std::size_t tokenPosition = 179;
+  inline constexpr std::size_t TokenPosition = 179;
 
   /**
    * @brief Position of the gas price hex value in the message string.
    */
-  inline constexpr std::size_t gasPricePosition = 555;
+  inline constexpr std::size_t GasPricePosition = 555;
 
   /**
    * @brief Check if message is of "subscribe" method and regards specified token address.
@@ -80,8 +75,8 @@ namespace BloXrouteMessageParser {
    */
   inline bool validateTransaction(const char *message, const char *targetTokenAddress) {
     return 
-         memcmp(message + methodPosition, "subscribe", 9) == 0
-      && memcmp(message + tokenPosition, targetTokenAddress, 40) == 0;
+         memcmp(message + MethodPosition, "subscribe", 9) == 0
+      && memcmp(message + TokenPosition, targetTokenAddress, 40) == 0;
   }
 
   /**
@@ -92,7 +87,7 @@ namespace BloXrouteMessageParser {
    * @return output gas price length
    */
   inline std::size_t extractGasPrice(const char *message, char *output) {
-    const char *gasPriceStart = message + gasPricePosition;
+    const char *gasPriceStart = message + GasPricePosition;
     const char *gasPriceEnd = strchr(gasPriceStart, '\"');
     std::size_t gasPriceLength = gasPriceEnd - gasPriceStart;
 

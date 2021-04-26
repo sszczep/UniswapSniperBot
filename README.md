@@ -35,21 +35,6 @@ git clone --recurse-submodules -j8 https://github.com/sszczep/UniswapSniperBot.g
 cd UniswapSniperBot
 ```
 
-### Config
-#### Saving config file
-Config file should be saved as **CONFIG**. This way we won't push commit with sensitive data as it is ignored by git. \
-**.CONFIG** is just a boilerplate config file and has no impact on running code.
-
-#### Decimal vs hexadecimal values
-*BloXroute's filters* use decimal values, whereas we use hexadecimal values to generate transactions.
-
-Decimal fields: **MAX_GAS_PRICE, MIN_VALUE** \
-Hexadecimal fields: **TOKEN_ADDRESS, NONCE, VALUE, AMOUNT_OUT_MIN, GAS_LIMIT, ROUTER_ADDRESS, RECEIVER_ADDRESS, PRIVATE_KEY**
-
-Hexadecimal values **cannot** be *0x* prefixed. 
-
-We recommend using [this](https://eth-converter.com/) tool to convert Ethereum units and [this](https://www.rapidtables.com/convert/number/decimal-to-hex.html) tool to convert across hexadecimal and decimal systems.
-
 ### Building and running main executable
 ```
 make main

@@ -6,6 +6,7 @@ extern "C" {
   #include <KeccakSponge.h>
 }
 
+#include "config.hpp"
 #include "utils.hpp"
 #include "rlp.hpp"
 
@@ -13,28 +14,9 @@ class Transaction {
   public:
 
   /**
-   * @brief Maximum quantity buffer size.
-   * 32 bytes is maximum EVM integer size.
-   */
-  static inline constexpr std::size_t quantityBufferSize = 32;
-
-  /**
-   * @brief Maximum address buffer size.
-   * Ethereum address contains 40 hexadecimal characters hence 20 bytes.
-   */
-  static inline constexpr std::size_t addressBufferSize = 20;
-
-  /**
-   * @brief Maximum data buffer size. 
-   * Uniswap swapExactETHForTokens requires 228 bytes.
-   * Defaults to 512 bytes.
-   */
-  static inline constexpr std::size_t dataBufferSize = 512;
-
-  /**
    * @brief Transaction's fields count.
    */
-  static inline constexpr std::size_t fieldsCount = 9;
+  static inline constexpr std::size_t FieldsCount = 9;
 
   /**
    * @brief Enum containing available transaction fields.
@@ -55,7 +37,7 @@ class Transaction {
   /**
    * @brief Transaction field to its type mapping.
    */
-  static inline constexpr FieldType fieldTypeMapping[fieldsCount] = { QUANTITY, QUANTITY, QUANTITY, DATA, QUANTITY, DATA, QUANTITY, QUANTITY, QUANTITY };
+  static inline constexpr FieldType fieldTypeMapping[FieldsCount] = { QUANTITY, QUANTITY, QUANTITY, DATA, QUANTITY, DATA, QUANTITY, QUANTITY, QUANTITY };
 
   /**
    * @brief SECP256K1 context, allows preinitialization as it's very slow to create.
@@ -70,20 +52,20 @@ class Transaction {
    */
   secp256k1_context *secp256k1Context;
 
-  Utils::Byte nonce[quantityBufferSize];
-  Utils::Byte gasPrice[quantityBufferSize];
-  Utils::Byte gasLimit[quantityBufferSize];
-  Utils::Byte to[addressBufferSize];
-  Utils::Byte value[quantityBufferSize];
-  Utils::Byte data[dataBufferSize];
-  Utils::Byte v[quantityBufferSize];
-  Utils::Byte r[quantityBufferSize];
-  Utils::Byte s[quantityBufferSize];
+  Utils::Byte nonce[Config::Size::TransactionQuantityBuffer];
+  Utils::Byte gasPrice[Config::Size::TransactionQuantityBuffer];
+  Utils::Byte gasLimit[Config::Size::TransactionQuantityBuffer];
+  Utils::Byte to[Config::Size::TransactionAddressBuffer];
+  Utils::Byte value[Config::Size::TransactionQuantityBuffer];
+  Utils::Byte data[Config::Size::TransactionDataBuffer];
+  Utils::Byte v[Config::Size::TransactionQuantityBuffer];
+  Utils::Byte r[Config::Size::TransactionQuantityBuffer];
+  Utils::Byte s[Config::Size::TransactionQuantityBuffer];
 
   /**
    * @brief RLP input data to encode.
    */
-  RLP::Item rlpInput[fieldsCount] = {
+  RLP::Item rlpInput[FieldsCount] = {
     { .buffer = nonce, .length = 0 },
     { .buffer = gasPrice, .length = 0 },
     { .buffer = gasLimit, .length = 0 },
@@ -208,7 +190,7 @@ class Transaction {
     rlpInput[Field::S].length = 0;
 
     // Encode transaction
-    std::size_t transactionLength = RLP::encodeList(rlpInput, fieldsCount, transaction);
+    std::size_t transactionLength = RLP::encodeList(rlpInput, FieldsCount, transaction);
 
     // Get transaction hash
     Utils::Byte hash[32];
@@ -225,6 +207,6 @@ class Transaction {
     setField(Field::S, signature + 32, 32);
 
     // Encode signed transaction and return buffer length
-    return RLP::encodeList(rlpInput, fieldsCount, transaction);
+    return RLP::encodeList(rlpInput, FieldsCount, transaction);
   }
 };

@@ -1,112 +1,71 @@
 #pragma once
 
-#include <stdexcept>
-#include <unordered_map>
-#include <fstream>
+#include <cstdlib>
 
-/**
- * @brief Class for parsing config file.
- */
-class Config {
-  private:
+namespace Config {
+  namespace Transaction {
+    // Transaction nonce
+    inline constexpr char Nonce[] = "1";
 
-  std::unordered_map<std::string, std::string> fields;
+    // Transaction value
+    inline constexpr char Value[] = "0de0b6b3a7640000";
 
-  /**
-   * @brief Trims leading whitespaces.
-   * 
-   * @param input string 
-   */
-  static void leftTrim(std::string &str) {
-    str.erase(
-      str.begin(), 
-      std::find_if(
-        str.begin(), 
-        str.end(), 
-        [](unsigned char ch) { return !std::isspace(ch); }
-      )
-    );
-  }
+    // Receiver of the transaction (Uniswap V2 Router 02)
+    inline constexpr char To[] = "7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
 
-  /**
-   * @brief Trims following whitespaces.
-   * 
-   * @param input string 
-   */
-  static void rightTrim(std::string &str) {
-    str.erase(
-      std::find_if(
-        str.rbegin(), 
-        str.rend(), 
-        [](unsigned char ch) { return !std::isspace(ch); }
-      ).base(),
-      str.end()
-    );
-  }
+    // Gas limit of transaction (200000 units is enough for most swapExactETHForTokens calls)
+    inline constexpr char GasLimit[] = "30d40";
 
-  /**
-   * @brief Trims whitespaces from both ends.
-   * 
-   * @param input string 
-   */
-  static void trim(std::string &str) {
-    leftTrim(str);
-    rightTrim(str);
-  }
+    // Private key of sending wallet
+    inline constexpr char PrivateKey[] = "4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318";
 
-  /**
-   * @brief Trims comments.
-   * 
-   * @param input string 
-   */
-  static void trimComment(std::string &str) {
-    std::size_t commentPosition = str.find('#');
-    if(commentPosition == std::string::npos) return;
-    str.erase(commentPosition, std::string::npos);
-  }
+    namespace SwapExactETHForTokens {
+      // Minimum amount of tokens to receive from the swap
+      inline constexpr char AmountOutMin[] = "3635C9ADC5DEA00000";
 
-  public:
+      // Token address
+      inline constexpr char TokenAddress[] = "48bef6bd05bd23b5e6800cf0406e524b517af250";
 
-  /**
-   * @brief Constructs a new Config object and loads key/value pairs.
-   * 
-   * @param config file path 
-   */
-  Config(const char *path) {
-    std::ifstream file(path);
-    if(file.is_open()) {
-      std::string line;
-      while(std::getline(file, line)) {
-        trimComment(line);
-        
-        std::size_t keyValueSeparator = line.find('=');
-        if(keyValueSeparator == std::string::npos) continue;
-
-        std::string key = line.substr(0, keyValueSeparator);
-        std::string value = line.substr(keyValueSeparator + 1);
-
-        trim(key);
-        trim(value);
-
-        fields.insert({ key, value });
-      }
-
-      file.close();
-    } else {
-      throw std::runtime_error("Could not open config file");
+      // Address of receiving wallet
+      inline constexpr char ReceiverAddress[] = "f82d59152f33E6F65Aa4aE1a3B38eD2Ca1B7633b";
     }
   }
 
-  /**
-   * @brief Gets the value at the given key.
-   * 
-   * @param key 
-   * @return value
-   */
-  std::string getValue(std::string key) {
-    auto pair = fields.find(key);
-    if(pair != fields.end()) {
-      return pair->second;
-    } else throw std::runtime_error("Could not get field with given key");
+  namespace BloXroute {
+    namespace Connection {
+      // BloXroute Cloud API server address
+      inline constexpr char Address[] = "ws://localhost:3000";
+
+      // BloXroute Cloud API auth token
+      inline constexpr char AuthToken[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    }
+
+    namespace Filters {
+      // Listen for transactions below specified max gas price
+      inline constexpr char MaxGasPrice[] = "1000000000000";
+
+      // Listen for transactions above specified min value (avoid tokens with small added liquidity)
+      inline constexpr char MinValue[] = "0";
+
+      // Token address, alias to Config::Transaction::SwapExactETHForTokens::TokenAddress
+      inline constexpr char *TokenAddress = (char*) Config::Transaction::SwapExactETHForTokens::TokenAddress;
+    }
   }
-};
+
+  namespace TransactionPreGen {
+    inline constexpr uint64_t GasPriceGweiFrom = 100;
+    inline constexpr uint64_t GasPriceGweiTo = 500;
+    inline constexpr uint64_t GasPriceGweiDecimals = 100;
+
+    inline constexpr std::size_t ArraySize = (GasPriceGweiTo - GasPriceGweiFrom) * GasPriceGweiDecimals + 1;
+  }
+
+  namespace Size {
+    inline constexpr std::size_t TransactionQuantityBuffer = 32;
+    inline constexpr std::size_t TransactionAddressBuffer = 20;
+    inline constexpr std::size_t TransactionDataBuffer = 512;
+    inline constexpr std::size_t TransactionRawBuffer = 512;
+
+    inline constexpr std::size_t BloXrouteTransactionMessageString = 1024;
+  }
+}
