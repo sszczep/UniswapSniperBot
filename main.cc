@@ -1,5 +1,8 @@
 #include <charconv>
 
+#define __STDC_FORMAT_MACROS
+#include <inttypes.h>
+
 #include <config.hpp>
 #include <utils.hpp>
 #include <transaction.hpp>
@@ -69,9 +72,9 @@ int main () {
   printf("Transaction fields:\n");
   printf("Nonce: %s\n", Config::Transaction::Nonce);
   printf("Gas price: to be determined\n");
-  printf("Gas limit: %llu\n", gasLimit);
+  printf("Gas limit: %" PRIu64 "\n", gasLimit);
   printf("To: 0x%s\n", Config::Transaction::To);
-  printf("Value: %llu wei\n", value);
+  printf("Value: %" PRIu64 " wei\n", value);
   printf("Data: 0x%s\n", data);
 
   printf("\nListener filters:\n");
@@ -116,7 +119,7 @@ int main () {
   }
 
   printf(
-    "Successfully pregenerated transactions with gas price from %llu to %llu gwei (%zu in total)\n",
+    "Successfully pregenerated transactions with gas price from %" PRIu64 " to %" PRIu64 " gwei (%zu in total)\n",
     Config::TransactionPreGen::GasPriceGweiFrom,
     Config::TransactionPreGen::GasPriceGweiTo,
     Config::TransactionPreGen::ArraySize   
@@ -194,7 +197,7 @@ void onMessage(websocketpp::connection_hdl connectionHdl, websocketpp::client<Cu
   std::size_t gasPriceStrLength = BloXrouteMessageParser::extractGasPrice(messageStr, gasPriceStr);
 
   if(gasPriceStrLength <= 16) {
-    uint64_t gasPrice;
+    uint64_t gasPrice = 0;
     std::from_chars(gasPriceStr, gasPriceStr + gasPriceStrLength, gasPrice, 16);
 
     if(gasPrice % (1000000000 / Config::TransactionPreGen::GasPriceGweiDecimals) == 0) {
