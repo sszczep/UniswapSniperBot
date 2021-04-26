@@ -211,7 +211,6 @@ void onMessage(websocketpp::connection_hdl connectionHdl, websocketpp::client<Cu
         printf("\nReceived message: %s\n", messageStr);
         printf("Sent pregenerated transaction: %s\n", pregenTxs[gasPrice - Config::TransactionPreGen::GasPriceGweiFrom * Config::TransactionPreGen::GasPriceGweiDecimals]);
         printf("\nClosing connection...\n");
-        wsTimer->cancel();
         wsClient.close(connectionHdl, websocketpp::close::status::normal, "Connection closed by client");
         return;
       }
@@ -232,12 +231,13 @@ void onMessage(websocketpp::connection_hdl connectionHdl, websocketpp::client<Cu
     printf("\nReceived message: %s\n", messageStr);
     printf("Sent transaction: %s\n", message);
     printf("\nClosing connection...\n");
-    wsTimer->cancel();
     wsClient.close(connectionHdl, websocketpp::close::status::normal, "Connection closed by client.");
   }
 }
 
 void onClose(websocketpp::connection_hdl connectionHdl) {
+  wsTimer->cancel();
+  
   websocketpp::client<CustomWSConfig>::connection_ptr connection = wsClient.get_con_from_hdl(connectionHdl);
   printf(
     "Connection closed, code: %s, reason: %s\n", 
