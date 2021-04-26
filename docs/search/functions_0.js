@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['buffertohexstring_28',['bufferToHexString',['../namespace_utils.html#a89a60079c452d7f63763a0f5401d5c41',1,'Utils']]],
-  ['bytetohexchar_29',['byteToHexChar',['../namespace_utils.html#ab9ebab0bc42f100ee26f57b15605483b',1,'Utils']]]
+  ['_ecdsa_44',['_ecdsa',['../class_transaction.html#ad4b072d14ddc78661f70db64eb645f76',1,'Transaction']]],
+  ['_keccak256_45',['_keccak256',['../class_transaction.html#a541553cdb997fbbeb986b1e3332ee653',1,'Transaction']]]
 ];

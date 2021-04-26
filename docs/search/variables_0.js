@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['addressbuffersize_41',['addressBufferSize',['../namespace_transaction.html#acff78e5b589784e93a823706ec1a1ca2',1,'Transaction']]]
+  ['databoilerplate_63',['DataBoilerplate',['../namespace_transaction_data_builder.html#ab935fd77fed3c3e79562b1dc0e0a5608',1,'TransactionDataBuilder']]],
+  ['datalength_64',['DataLength',['../namespace_transaction_data_builder.html#a3facf25992c1e9fa5d9cad26c162605d',1,'TransactionDataBuilder']]]
 ];

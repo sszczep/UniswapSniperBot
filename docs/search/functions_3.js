@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['ecdsa_32',['ecdsa',['../namespace_transaction.html#a6900bf45f94d1b84970b1b0fa7333777',1,'Transaction']]],
-  ['encodeitem_33',['encodeItem',['../namespace_r_l_p.html#ad231e73604b4765f19a620a5e4d754c5',1,'RLP']]],
-  ['encodelength_34',['encodeLength',['../namespace_r_l_p.html#aebb3f48b84500a4e1286c4827d1c35a8',1,'RLP']]],
-  ['encodelist_35',['encodeList',['../namespace_r_l_p.html#a1de9991557761945e39e40d13417db85',1,'RLP']]]
+  ['hexchartobyte_55',['hexCharToByte',['../namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d',1,'Utils']]],
+  ['hexstringtobuffer_56',['hexStringToBuffer',['../namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d',1,'Utils::hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output, bool stripZeroes=false)'],['../namespace_utils.html#ac8dd0e7f428459c6b023f01998e8a99a',1,'Utils::hexStringToBuffer(const char *input, Buffer output, bool stripZeroes=false)']]]
 ];

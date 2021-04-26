@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['databuffersize_42',['dataBufferSize',['../namespace_transaction.html#a255f75ec1809a759c704b03565d91dd9',1,'Transaction']]]
+  ['fieldscount_65',['FieldsCount',['../class_transaction.html#ab2528b4e61d8063772354db150b9c8a1',1,'Transaction']]],
+  ['fieldtypemapping_66',['fieldTypeMapping',['../class_transaction.html#a4e31e7ca3fc11011cdf7ca6ecca6aa2b',1,'Transaction']]]
 ];

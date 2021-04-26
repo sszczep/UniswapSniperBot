@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quantitybuffersize_43',['quantityBufferSize',['../namespace_transaction.html#ac0c1b8e9c0aa12c64e7667e3b6d6d7c1',1,'Transaction']]]
+  ['gaspriceposition_67',['GasPricePosition',['../namespace_blo_xroute_message_parser.html#a744b7f83e2b9b37abefe0620c2d9dc1a',1,'BloXrouteMessageParser']]]
 ];

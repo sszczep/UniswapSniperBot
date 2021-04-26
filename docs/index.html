@@ -67,13 +67,41 @@ $(function() {
 <div class="title">Uniswap Sniper Bot </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p class=""><a class="anchor" id="md_README"></a> <img src="https://github.com/sszczep/UniswapSniperBot/blob/main/logo.jpg?raw=true" alt="project logo" class="inline"/></p>
+<div class="textblock"><p class=""><a class="anchor" id="md_README"></a> <img src="https://github.com/sszczep/UniswapSniperBot/blob/main/img/logo.png?raw=true" alt="project logo" class="inline"/></p>
 <h6>Optimized, fast and unsafe Uniswap sniping bot for buying new listings.</h6>
-<h2><a class="anchor" id="autotoc_md0"></a>
-How does it work?</h2>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Table of content</h1>
+<ul>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#how-does-it-work">How does it work?</a><ul>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#pregeneration">Pregeneration</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#used-libraries">Used libraries</a></li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#project-structure">Project structure</a><ul>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#directory-structure">Directory structure</a></li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#headers">Headers</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#configuration">Configuration</a></li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#installation-guide">Installation guide</a><ul>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#installing-required-packages-on-debian">Installing required packages on Debian</a></li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#cloning-repository">Cloning repository</a></li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#building-and-running-main-executable">Building and running main executable</a></li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#building-and-running-tests">Building and running tests</a></li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#building-and-running-benchmarks">Building and running benchmarks</a></li>
+<li><a href="https://github.com/sszczep/UniswapSniperBot#generating-documentation">Generating documentation</a></li>
+</ul>
+</li>
+<li><a href="https://sszczep.github.io/UniswapSniperBot">Documentation</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md1"></a>
+How does it work?</h1>
 <p class="">We use <b>BloXroute's</b> <a href="https://docs.bloxroute.com/streams/newtxs-and-pendingtxs">streams</a> to listen to liquidity add transaction and call <em>swapExactETHForTokens</em> on <b>Uniswap V2 Router 02</b> contract. By sending our transaction with the same gas price, we have a very high chance of being very close to the original transaction in the block, hence buying tokens just after liquidity add and just before the price significantly rises.</p>
-<h2><a class="anchor" id="autotoc_md1"></a>
-Used libraries</h2>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Pregeneration</h2>
+<p class=""><img src="https://github.com/sszczep/UniswapSniperBot/blob/main/img/pregen-diagram.png?raw=true" alt="pregen-diagram" class="inline"/> We pregenerate transactions with the most probable gas prices to send them instantly, hence skip signing process which is rather slow. This solution turned out to be around <b>2.5x faster</b> on our testing machines.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Used libraries</h1>
 <ul>
 <li><a href="https://github.com/zaphoyd/websocketpp">zaphoyd/websocketpp</a></li>
 <li><a href="https://github.com/bitcoin-core/secp256k1">bitcoin-core/secp256k1</a></li>
@@ -83,33 +111,92 @@ Used libraries</h2>
 <li><a href="https://github.com/doxygen/doxygen">doxygen/doxygen</a></li>
 <li><a href="https://github.com/kcwongjoe/doxygen_theme_flat_design">kcwongjoe/doxygen_theme_flat_design</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Installation guide</h2>
-<h3><a class="anchor" id="autotoc_md3"></a>
-Installing required packages on Debian</h3>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Project structure</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Directory structure</h2>
+<p class=""><code>libs/</code> - contains all external libraries, see <a href="https://github.com/sszczep/UniswapSniperBot#used-libraries">Used libraries</a> \ <code>includes/</code> - contains all headers \ <code>tests/</code> - contains code testing \ <code>benchmarks/</code> - contains code benchmarking \ <code>doxygen/</code> - contains <b>Doxygen</b> configuration \ <code>img/</code> - contains images \ <code>libs.build/</code> - contains built libraries \ <code>build/</code> - contains built executables \ <code>docs/</code> - contains generated documentation</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Headers</h2>
+<p class=""><code><a class="el" href="utils_8hpp_source.html">includes/utils.hpp</a></code> - converters and other utilities \ <code><a class="el" href="rlp_8hpp_source.html">includes/rlp.hpp</a></code> - Recursive Length Prefix Encoding used to serialize objects in Ethereum \ <code><a class="el" href="transaction_8hpp_source.html">includes/transaction.hpp</a></code> - creating and signing Ethereum transactions \ <code><a class="el" href="bot_8hpp_source.html">includes/bot.hpp</a></code> - tools to parse <b>BloXroute</b> messages, build transaction data, etc. \ <code><a class="el" href="config_8hpp_source.html">includes/config.hpp</a></code> - configuration file, see <a href="https://github.com/sszczep/UniswapSniperBot#configuration">Configuration</a></p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Configuration</h1>
+<p class="">Configuration is saved in <code><a class="el" href="config_8hpp_source.html">includes/config.hpp</a></code>.</p>
+<ul>
+<li>Config<ul>
+<li><a class="el" href="class_transaction.html">Transaction</a> - transaction fields<ul>
+<li>Nonce - transaction nonce (hexadecimal)</li>
+<li>Value - transaction value (hexadecimal, wei)</li>
+<li>To - receiver of the transaction, mostly <b>Uniswap V2 Router 02</b> (address)</li>
+<li>GasLimit - transaction gas limit (hexadecimal)</li>
+<li>PrivateKey - private key of sending wallet</li>
+</ul>
+</li>
+<li>SwapExactETHForTokens - values to construct transaction data to call <em>SwapExactETHForTokens</em> method<ul>
+<li>AmountOutMin - minimum amount of tokens to receive from the swap (hexadecimal)</li>
+<li>TokenAddress - token's address we want to buy (address)</li>
+<li>ReceiverAddress - address of receiving wallet (address)</li>
+</ul>
+</li>
+<li>BloXroute<ul>
+<li>Connection - <b>BloXroute</b> Cloud API connection credentials<ul>
+<li>Address - address of the server</li>
+<li>AuthToken - authorization token</li>
+</ul>
+</li>
+<li>Filters - newTxs stream filters<ul>
+<li>MaxGasPrice - maximum gas price of the transaction (we do not want to lose millions on gas, do we?) (decimal, wei)</li>
+<li>MinValue - minimum transaction value, skips fake liquidity adds or tokens with small liquidity (decimal, wei)</li>
+<li>TokenAddress - alias for <code>Config::SwapExactETHForTokens::TokenAddress</code>, left for consistency (<b>do not change!</b>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TransactionPreGen - configuration for transaction pregeneration, for further explanation see <a href="https://github.com/sszczep/UniswapSniperBot#pregeneration">Pregeneration</a><ul>
+<li>GasPriceGweiFrom - from gwei</li>
+<li>GasPriceGweiTo - to gwei</li>
+<li>GasPriceGweiDecimals - gwei decimals (eg. 1000 means generating transactions with gas price steps of 0.001 gwei)</li>
+<li>ArraySize - precalculated based on above values (<b>do not change!</b>)</li>
+</ul>
+</li>
+<li>Size<ul>
+<li>TransactionQuantityBuffer - size of transaction quantity buffer (<b>do not change!</b>)</li>
+<li>TransactionAddressBuffer - size of transaction address buffer (<b>do not change!</b>)</li>
+<li>TransactionDataBuffer - size of transaction data buffer, change when necessary (eg. when calling different method requiring more arguments)</li>
+<li>TransactionRawBuffer - size of raw signed transaction, change when necessary (see above)</li>
+<li>BloXrouteTransactionMessageString - size of both incoming and outcoming messages to the Cloud API</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Installation guide</h1>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Installing required packages on Debian</h2>
 <div class="fragment"><div class="line">sudo apt update</div>
 <div class="line">sudo apt install git make build-essential cmake autoconf libtool xsltproc libasio-dev</div>
 </div><!-- fragment --><h6>If you use macOS, you might have to manually link the OpenSSL</h6>
 <div class="fragment"><div class="line">ln -s /usr/local/opt/openssl/lib/*.dylib /usr/local/lib/</div>
 <div class="line">ln -s /usr/local/opt/openssl/lib/*.a /usr/local/lib/</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md4"></a>
-Cloning repository</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+Cloning repository</h2>
 <div class="fragment"><div class="line">git clone --recurse-submodules -j8 https://github.com/sszczep/UniswapSniperBot.git</div>
 <div class="line">cd UniswapSniperBot</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md5"></a>
-Building and running main executable</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
+Building and running main executable</h2>
 <div class="fragment"><div class="line">make main</div>
 <div class="line">./build/main</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md6"></a>
-Building and running tests</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+Building and running tests</h2>
 <div class="fragment"><div class="line">make test</div>
 <div class="line">./build/test</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md7"></a>
-Building and running benchmarks</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
+Building and running benchmarks</h2>
 <div class="fragment"><div class="line">make benchmark</div>
 <div class="line">./build/benchmark</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md8"></a>
-Generating documentation</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md14"></a>
+Generating documentation</h2>
 <div class="fragment"><div class="line">make docs</div>
 </div><!-- fragment --><h6>Documentation is available <a href="https://sszczep.github.io/UniswapSniperBot/">here</a>.</h6>
 </div></div><!-- PageDoc -->

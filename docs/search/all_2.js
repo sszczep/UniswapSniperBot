@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['createsecp256k1_3',['createSecp256k1',['../namespace_transaction.html#abc5685459095099f16d8cf37aad6f306',1,'Transaction']]]
+  ['databoilerplate_9',['DataBoilerplate',['../namespace_transaction_data_builder.html#ab935fd77fed3c3e79562b1dc0e0a5608',1,'TransactionDataBuilder']]],
+  ['datalength_10',['DataLength',['../namespace_transaction_data_builder.html#a3facf25992c1e9fa5d9cad26c162605d',1,'TransactionDataBuilder']]]
 ];

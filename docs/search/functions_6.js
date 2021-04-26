@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keccak256_39',['keccak256',['../namespace_transaction.html#ab40d6cc6fb99d739ae4161e146d16ae1',1,'Transaction']]]
+  ['transaction_60',['Transaction',['../class_transaction.html#ab47005b855d38bc324bb79fd023baa13',1,'Transaction']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sign_40',['sign',['../namespace_transaction.html#a5620a70500a1ff0b5bde87adb4612fb4',1,'Transaction']]]
+  ['validatetransaction_61',['validateTransaction',['../namespace_blo_xroute_message_parser.html#a7a09728480436685697d56e18095280e',1,'BloXrouteMessageParser']]]
 ];

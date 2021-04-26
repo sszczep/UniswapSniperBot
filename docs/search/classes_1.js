@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['values_24',['Values',['../struct_transaction_1_1_values.html',1,'Transaction']]]
+  ['transaction_38',['Transaction',['../class_transaction.html',1,'']]]
 ];
