@@ -1,13 +1,14 @@
 #include <gmock/gmock.h>
 
+#include <config.hpp>
 #include <bot.hpp>
 
 // https://etherscan.io/tx/0x8669f2da90e50b96000429e7159538115cc782e0588cd9a81d15ef8fda6a51df
 TEST(TransactionDataBuilder, buildData) {
-  char output[TransactionDataBuilder::dataLength + 1];
+  char output[TransactionDataBuilder::DataLength + 1];
 
   std::size_t outputLength = TransactionDataBuilder::buildData("1cdcc708f12769b25", "c242eb8e4e27eae6a2a728a41201152f19595c83", "86f779f4c6288158a4330db68acd5b55a4450323", output);
-  ASSERT_EQ(outputLength, TransactionDataBuilder::dataLength);
+  ASSERT_EQ(outputLength, TransactionDataBuilder::DataLength);
   ASSERT_STREQ("7ff36ab5000000000000000000000000000000000000000000000001cdcc708f12769b25000000000000000000000000000000000000000000000000000000000000008000000000000000000000000086f779f4c6288158a4330db68acd5b55a4450323ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000c242eb8e4e27eae6a2a728a41201152f19595c83", output);
 }
 
@@ -19,7 +20,7 @@ TEST(BloXrouteMessageParser, validateTransaction) {
 }
 
 TEST(BloXrouteMessageParser, extractGasPrice) {
-  char output[BloXrouteMessageParser::maxHexLength + 1];
+  char output[Config::Size::TransactionQuantityBuffer * 2 + 1];
 
   BloXrouteMessageParser::extractGasPrice("{\"jsonrpc\":\"2.0\",\"id\":null,\"method\":\"subscribe\",\"params\":{\"subscription\":\"736d201d-540a-45c4-9bb3-a9f932ee885e\",\"result\":{\"txContents\":{\"input\":\"0xf305d719000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec70000000000000000000000000000000000000000000000000000000001e4324d0000000000000000000000000000000000000000000000000000000001e1c6870000000000000000000000000000000000000000000000000046114844c27ec900000000000000000000000064177643cf0e8e96dd0205983aadeafbd871dfc900000000000000000000000000000000000000000000000000000000605ca9eb\",\"gasPrice\":\"0x355176b200\"}}}}", output);
   ASSERT_STREQ(output, "355176b200");
