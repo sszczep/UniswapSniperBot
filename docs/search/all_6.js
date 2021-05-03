@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['hexchartobyte_20',['hexCharToByte',['../namespace_utils.html#ac27cca59cdf2ce0a04b59db27aac4c2d',1,'Utils']]],
-  ['hexstringtobuffer_21',['hexStringToBuffer',['../namespace_utils.html#a9dd0c827b2b115c0f9f4a4935eea051d',1,'Utils::hexStringToBuffer(const char *input, std::size_t inputLength, Buffer output, bool stripZeroes=false)'],['../namespace_utils.html#ac8dd0e7f428459c6b023f01998e8a99a',1,'Utils::hexStringToBuffer(const char *input, Buffer output, bool stripZeroes=false)']]]
+  ['field_36',['Field',['../class_transaction.html#a68df63f6de05847c91979021f46d76d7',1,'Transaction']]],
+  ['fieldscount_37',['FieldsCount',['../class_transaction.html#ab2528b4e61d8063772354db150b9c8a1',1,'Transaction']]],
+  ['fieldtype_38',['FieldType',['../class_transaction.html#aea00724d26b9cf1fa5cc9c7873e81156',1,'Transaction']]],
+  ['fieldtypemapping_39',['fieldTypeMapping',['../class_transaction.html#a4e31e7ca3fc11011cdf7ca6ecca6aa2b',1,'Transaction']]]
 ];

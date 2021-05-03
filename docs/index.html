@@ -115,56 +115,68 @@ Used libraries</h1>
 Project structure</h1>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Directory structure</h2>
-<p class=""><code>libs/</code> - contains all external libraries, see <a href="https://github.com/sszczep/UniswapSniperBot#used-libraries">Used libraries</a> \ <code>includes/</code> - contains all headers \ <code>tests/</code> - contains code testing \ <code>benchmarks/</code> - contains code benchmarking \ <code>doxygen/</code> - contains <b>Doxygen</b> configuration \ <code>img/</code> - contains images \ <code>libs.build/</code> - contains built libraries \ <code>build/</code> - contains built executables \ <code>docs/</code> - contains generated documentation</p>
+<p class=""><code>libs/</code> - contains all external libraries, see <a href="https://github.com/sszczep/UniswapSniperBot#used-libraries">Used libraries</a> <br  />
+ <code>includes/</code> - contains all headers <br  />
+ <code>tests/</code> - contains code testing <br  />
+ <code>benchmarks/</code> - contains code benchmarking <br  />
+ <code>doxygen/</code> - contains <b>Doxygen</b> configuration <br  />
+ <code>img/</code> - contains images <br  />
+ <code>libs.build/</code> - contains built libraries <br  />
+ <code>build/</code> - contains built executables <br  />
+ <code>docs/</code> - contains generated documentation</p>
 <h2><a class="anchor" id="autotoc_md6"></a>
 Headers</h2>
-<p class=""><code><a class="el" href="utils_8hpp_source.html">includes/utils.hpp</a></code> - converters and other utilities \ <code><a class="el" href="rlp_8hpp_source.html">includes/rlp.hpp</a></code> - Recursive Length Prefix Encoding used to serialize objects in Ethereum \ <code><a class="el" href="transaction_8hpp_source.html">includes/transaction.hpp</a></code> - creating and signing Ethereum transactions \ <code><a class="el" href="bot_8hpp_source.html">includes/bot.hpp</a></code> - tools to parse <b>BloXroute</b> messages, build transaction data, etc. \ <code><a class="el" href="config_8hpp_source.html">includes/config.hpp</a></code> - configuration file, see <a href="https://github.com/sszczep/UniswapSniperBot#configuration">Configuration</a></p>
+<p class=""><code><a class="el" href="utils_8hpp.html">includes/utils.hpp</a></code> - converters and other utilities <br  />
+ <code><a class="el" href="rlp_8hpp.html">includes/rlp.hpp</a></code> - Recursive Length Prefix Encoding used to serialize objects in Ethereum <br  />
+ <code><a class="el" href="transaction_8hpp.html">includes/transaction.hpp</a></code> - creating and signing Ethereum transactions <br  />
+ <code><a class="el" href="bot_8hpp.html">includes/bot.hpp</a></code> - tools to parse <b>BloXroute</b> messages, build transaction data, etc. <br  />
+ <code><a class="el" href="config_8hpp.html">includes/config.hpp</a></code> - configuration file, see <a href="https://github.com/sszczep/UniswapSniperBot#configuration">Configuration</a></p>
 <h1><a class="anchor" id="autotoc_md7"></a>
 Configuration</h1>
-<p class="">Configuration is saved in <code><a class="el" href="config_8hpp_source.html">includes/config.hpp</a></code>.</p>
+<p class="">Configuration is saved in <code><a class="el" href="config_8hpp.html">includes/config.hpp</a></code>.</p>
 <ul>
-<li>Config<ul>
-<li><a class="el" href="class_transaction.html">Transaction</a> - transaction fields<ul>
-<li>Nonce - transaction nonce (hexadecimal)</li>
-<li>Value - transaction value (hexadecimal, wei)</li>
-<li>To - receiver of the transaction, mostly <b>Uniswap V2 Router 02</b> (address)</li>
-<li>GasLimit - transaction gas limit (hexadecimal)</li>
-<li>PrivateKey - private key of sending wallet</li>
+<li><a class="el" href="namespace_config.html">Config</a><ul>
+<li><a class="el" href="namespace_config_1_1_transaction.html">Config::Transaction</a> - transaction fields<ul>
+<li><a class="el" href="namespace_config_1_1_transaction.html#af4dac31e9a979a9ed7aba7b743952ed1" title="Transaction nonce.">Config::Transaction::Nonce</a> - transaction nonce (hexadecimal)</li>
+<li><a class="el" href="namespace_config_1_1_transaction.html#a9af9e89b8901f706ad5df30d6ffef42f" title="Transaction value.">Config::Transaction::Value</a> - transaction value (hexadecimal, wei)</li>
+<li><a class="el" href="namespace_config_1_1_transaction.html#ad90d57825ff33c1f0990016abf3a146f" title="Receiver of the transaction (Uniswap V2 Router 02).">Config::Transaction::To</a> - receiver of the transaction, mostly <b>Uniswap V2 Router 02</b> (address)</li>
+<li><a class="el" href="namespace_config_1_1_transaction.html#ad59a363435918f6169d761d14afc322e" title="Gas limit of transaction (200000 units is enough for most swapExactETHForTokens calls).">Config::Transaction::GasLimit</a> - transaction gas limit (hexadecimal)</li>
+<li><a class="el" href="namespace_config_1_1_transaction.html#a56d7e8c577eddbfbe1df5929da6b0f80" title="Private key of sending wallet.">Config::Transaction::PrivateKey</a> - private key of sending wallet</li>
 </ul>
 </li>
-<li>SwapExactETHForTokens - values to construct transaction data to call <em>SwapExactETHForTokens</em> method<ul>
-<li>AmountOutMin - minimum amount of tokens to receive from the swap (hexadecimal)</li>
-<li>TokenAddress - token's address we want to buy (address)</li>
-<li>ReceiverAddress - address of receiving wallet (address)</li>
+<li><a class="el" href="namespace_config_1_1_transaction_1_1_swap_exact_e_t_h_for_tokens.html">Config::Transaction::SwapExactETHForTokens</a> - values to construct transaction data to call <em>SwapExactETHForTokens</em> method<ul>
+<li><a class="el" href="namespace_config_1_1_transaction_1_1_swap_exact_e_t_h_for_tokens.html#a523e029ef19088773138baff096c4ff2" title="Minimum amount of tokens to receive from the swap.">Config::Transaction::SwapExactETHForTokens::AmountOutMin</a> - minimum amount of tokens to receive from the swap (hexadecimal)</li>
+<li><a class="el" href="namespace_config_1_1_transaction_1_1_swap_exact_e_t_h_for_tokens.html#af81b18d7401b5bdde27583a9b626f9a4" title="Token address.">Config::Transaction::SwapExactETHForTokens::TokenAddress</a> - token's address we want to buy (address)</li>
+<li><a class="el" href="namespace_config_1_1_transaction_1_1_swap_exact_e_t_h_for_tokens.html#af0f8325349bec37c27dd7d00df69cd3c" title="Address of receiving wallet.">Config::Transaction::SwapExactETHForTokens::ReceiverAddress</a> - address of receiving wallet (address)</li>
 </ul>
 </li>
-<li>BloXroute<ul>
-<li>Connection - <b>BloXroute</b> Cloud API connection credentials<ul>
-<li>Address - address of the server</li>
-<li>AuthToken - authorization token</li>
+<li><a class="el" href="namespace_config_1_1_blo_xroute.html">Config::BloXroute</a><ul>
+<li><a class="el" href="namespace_config_1_1_blo_xroute_1_1_connection.html">Config::BloXroute::Connection</a> - <b>BloXroute</b> Cloud API connection credentials<ul>
+<li><a class="el" href="namespace_config_1_1_blo_xroute_1_1_connection.html#a394eb291aac1e3a635ca6e5c1460d086" title="BloXroute Cloud API server address.">Config::BloXroute::Connection::Address</a> - address of the server</li>
+<li><a class="el" href="namespace_config_1_1_blo_xroute_1_1_connection.html#aa57b7a49411150cc51da1909567fcf73" title="BloXroute Cloud API auth token.">Config::BloXroute::Connection::AuthToken</a> - authorization token</li>
 </ul>
 </li>
-<li>Filters - newTxs stream filters<ul>
-<li>MaxGasPrice - maximum gas price of the transaction (we do not want to lose millions on gas, do we?) (decimal, wei)</li>
-<li>MinValue - minimum transaction value, skips fake liquidity adds or tokens with small liquidity (decimal, wei)</li>
-<li>TokenAddress - alias for <code>Config::SwapExactETHForTokens::TokenAddress</code>, left for consistency (<b>do not change!</b>)</li>
+<li><a class="el" href="namespace_config_1_1_blo_xroute_1_1_filters.html">Config::BloXroute::Filters</a> - newTxs stream filters<ul>
+<li><a class="el" href="namespace_config_1_1_blo_xroute_1_1_filters.html#a81b9194a5c9b11697ed5fb63c2d6a03e" title="Listen for transactions below specified max gas price.">Config::BloXroute::Filters::MaxGasPrice</a> - maximum gas price of the transaction (we do not want to lose millions on gas, do we?) (decimal, wei)</li>
+<li><a class="el" href="namespace_config_1_1_blo_xroute_1_1_filters.html#af238e93291a350c6a55a0fd04f0d718b" title="Listen for transactions above specified min value (avoid tokens with small added liquidity).">Config::BloXroute::Filters::MinValue</a> - minimum transaction value, skips fake liquidity adds or tokens with small liquidity (decimal, wei)</li>
+<li><a class="el" href="namespace_config_1_1_blo_xroute_1_1_filters.html#abf5186937707cb038c47a36355b1567e" title="Token address, alias to Config::Transaction::SwapExactETHForTokens::TokenAddress.">Config::BloXroute::Filters::TokenAddress</a> - alias for <code>Config::SwapExactETHForTokens::TokenAddress</code>, left for consistency (<b>do not change!</b>)</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>TransactionPreGen - configuration for transaction pregeneration, for further explanation see <a href="https://github.com/sszczep/UniswapSniperBot#pregeneration">Pregeneration</a><ul>
-<li>GasPriceGweiFrom - from gwei</li>
-<li>GasPriceGweiTo - to gwei</li>
-<li>GasPriceGweiDecimals - gwei decimals (eg. 1000 means generating transactions with gas price steps of 0.001 gwei)</li>
-<li>ArraySize - precalculated based on above values (<b>do not change!</b>)</li>
+<li><a class="el" href="namespace_config_1_1_transaction_pre_gen.html">Config::TransactionPreGen</a> - configuration for transaction pregeneration, for further explanation see <a href="https://github.com/sszczep/UniswapSniperBot#pregeneration">Pregeneration</a><ul>
+<li><a class="el" href="namespace_config_1_1_transaction_pre_gen.html#a15f439bb22d004594a068bf6c6737e5f">Config::TransactionPreGen::GasPriceGweiFrom</a> - from gwei</li>
+<li><a class="el" href="namespace_config_1_1_transaction_pre_gen.html#ab3532ed653078ac9b16877971ed920b0">Config::TransactionPreGen::GasPriceGweiTo</a> - to gwei</li>
+<li><a class="el" href="namespace_config_1_1_transaction_pre_gen.html#a30f228c074cfb567b1438eabb297b213">Config::TransactionPreGen::GasPriceGweiDecimals</a> - gwei decimals (eg. 1000 means generating transactions with gas price steps of 0.001 gwei)</li>
+<li><a class="el" href="namespace_config_1_1_transaction_pre_gen.html#a1fe93ca10afdfebc9bd9595bbe30facb">Config::TransactionPreGen::ArraySize</a> - precalculated based on above values (<b>do not change!</b>)</li>
 </ul>
 </li>
-<li>Size<ul>
-<li>TransactionQuantityBuffer - size of transaction quantity buffer (<b>do not change!</b>)</li>
-<li>TransactionAddressBuffer - size of transaction address buffer (<b>do not change!</b>)</li>
-<li>TransactionDataBuffer - size of transaction data buffer, change when necessary (eg. when calling different method requiring more arguments)</li>
-<li>TransactionRawBuffer - size of raw signed transaction, change when necessary (see above)</li>
-<li>BloXrouteTransactionMessageString - size of both incoming and outcoming messages to the Cloud API</li>
+<li><a class="el" href="namespace_config_1_1_size.html">Config::Size</a><ul>
+<li><a class="el" href="namespace_config_1_1_size.html#a292235cd8c6828e8fe4e63c3f7c16ea1">Config::Size::TransactionQuantityBuffer</a> - size of transaction quantity buffer (<b>do not change!</b>)</li>
+<li><a class="el" href="namespace_config_1_1_size.html#ae359b9c59749e9d507281e44f67f77cf">Config::Size::TransactionAddressBuffer</a> - size of transaction address buffer (<b>do not change!</b>)</li>
+<li><a class="el" href="namespace_config_1_1_size.html#aa8e65b21b2e8e577d60087e4f88f8b40">Config::Size::TransactionDataBuffer</a> - size of transaction data buffer, change when necessary (eg. when calling different method requiring more arguments)</li>
+<li><a class="el" href="namespace_config_1_1_size.html#a9ab3983ec9bc2a830da1fc75fa485fe3">Config::Size::TransactionRawBuffer</a> - size of raw signed transaction, change when necessary (see above)</li>
+<li><a class="el" href="namespace_config_1_1_size.html#ac1e76a6522b406d86dce85dba55d665d">Config::Size::BloXrouteTransactionMessageString</a> - size of both incoming and outcoming messages to the Cloud API</li>
 </ul>
 </li>
 </ul>

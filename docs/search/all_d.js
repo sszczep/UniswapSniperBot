@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['validatetransaction_35',['validateTransaction',['../namespace_blo_xroute_message_parser.html#a7a09728480436685697d56e18095280e',1,'BloXrouteMessageParser']]]
+  ['privatekey_60',['PrivateKey',['../namespace_config_1_1_transaction.html#a56d7e8c577eddbfbe1df5929da6b0f80',1,'Config::Transaction']]]
 ];
