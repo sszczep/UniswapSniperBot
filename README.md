@@ -59,36 +59,36 @@ We pregenerate transactions with the most probable gas prices to send them insta
 # Configuration
 Configuration is saved in `includes/config.hpp`.
 
-- Config
-  - Config::Transaction - transaction fields
-    - Config::Transaction::Nonce - transaction nonce (hexadecimal)
-    - Config::Transaction::Value - transaction value (hexadecimal, wei)
-    - Config::Transaction::To - receiver of the transaction, mostly **Uniswap V2 Router 02** (address)
-    - Config::Transaction::GasLimit - transaction gas limit (hexadecimal)
-    - Config::Transaction::PrivateKey - private key of sending wallet
-  - Config::Transaction::SwapExactETHForTokens - values to construct transaction data to call *SwapExactETHForTokens* method
-    - Config::Transaction::SwapExactETHForTokens::AmountOutMin - minimum amount of tokens to receive from the swap (hexadecimal)
-    - Config::Transaction::SwapExactETHForTokens::TokenAddress - token's address we want to buy (address)
-    - Config::Transaction::SwapExactETHForTokens::ReceiverAddress - address of receiving wallet (address)
-  - Config::BloXroute
-    - Config::BloXroute::Connection - **BloXroute** Cloud API connection credentials
-      - Config::BloXroute::Connection::Address - address of the server
-      - Config::BloXroute::Connection::AuthToken - authorization token
-    - Config::BloXroute::Filters - newTxs stream filters
-      - Config::BloXroute::Filters::MaxGasPrice - maximum gas price of the transaction (we do not want to lose millions on gas, do we?) (decimal, wei)
-      - Config::BloXroute::Filters::MinValue - minimum transaction value, skips fake liquidity adds or tokens with small liquidity (decimal, wei)
-      - Config::BloXroute::Filters::TokenAddress - alias for `Config::SwapExactETHForTokens::TokenAddress`, left for consistency (**do not change!**)
-  - Config::TransactionPreGen - configuration for transaction pregeneration, for further explanation see [Pregeneration](https://github.com/sszczep/UniswapSniperBot#pregeneration)
-    - Config::TransactionPreGen::GasPriceGweiFrom - from gwei
-    - Config::TransactionPreGen::GasPriceGweiTo - to gwei
-    - Config::TransactionPreGen::GasPriceGweiDecimals - gwei decimals (eg. 1000 means generating transactions with gas price steps of 0.001 gwei)
-    - Config::TransactionPreGen::ArraySize - precalculated based on above values (**do not change!**)
+- `Config`
+  - `Config::Transaction` - transaction fields
+    - `Config::Transaction::Nonce` - transaction nonce (hexadecimal)
+    - `Config::Transaction::Value` - transaction value (hexadecimal, wei)
+    - `Config::Transaction::To` - receiver of the transaction, mostly **Uniswap V2 Router 02** (address)
+    - `Config::Transaction::GasLimit` - transaction gas limit (hexadecimal)
+    - `Config::Transaction::PrivateKey` - private key of sending wallet
+  - `Config::Transaction::SwapExactETHForTokens` - values to construct transaction data to call *SwapExactETHForTokens* method
+    - `Config::Transaction::SwapExactETHForTokens::AmountOutMin` - minimum amount of tokens to receive from the swap (hexadecimal)
+    - `Config::Transaction::SwapExactETHForTokens::TokenAddress` - token's address we want to buy (address)
+    - `Config::Transaction::SwapExactETHForTokens::ReceiverAddress` - address of receiving wallet (address)
+  - `Config::BloXroute`
+    - `Config::BloXroute::Connection` - **BloXroute** Cloud API connection credentials
+      - `Config::BloXroute::Connection::Address` - address of the server
+      - `Config::BloXroute::Connection::AuthToken` - authorization token
+    - `Config::BloXroute::Filters` - newTxs stream filters
+      - `Config::BloXroute::Filters::MaxGasPrice` - maximum gas price of the transaction (we do not want to lose millions on gas, do we?) (decimal, wei)
+      - `Config::BloXroute::Filters::MinValue` - minimum transaction value, skips fake liquidity adds or tokens with small liquidity (decimal, wei)
+      - `Config::BloXroute::Filters::TokenAddress` - alias for `Config::SwapExactETHForTokens::TokenAddress`, left for consistency (**do not change!**)
+  - `Config::TransactionPreGen` - configuration for transaction pregeneration, for further explanation see [Pregeneration](https://github.com/sszczep/UniswapSniperBot#pregeneration)
+    - `Config::TransactionPreGen::GasPriceGweiFrom` - from gwei
+    - `Config::TransactionPreGen::GasPriceGweiTo` - to gwei
+    - `Config::TransactionPreGen::GasPriceGweiDecimals` - gwei decimals (eg. 1000 means generating transactions with gas price steps of 0.001 gwei)
+    - `Config::TransactionPreGen::ArraySize` - precalculated based on above values (**do not change!**)
   - Config::Size
-    - Config::Size::TransactionQuantityBuffer - size of transaction quantity buffer (**do not change!**)
-    - Config::Size::TransactionAddressBuffer - size of transaction address buffer (**do not change!**)
-    - Config::Size::TransactionDataBuffer - size of transaction data buffer, change when necessary (eg. when calling different method requiring more arguments)
-    - Config::Size::TransactionRawBuffer - size of raw signed transaction, change when necessary (see above)
-    - Config::Size::BloXrouteTransactionMessageString - size of both incoming and outcoming messages to the Cloud API
+    - `Config::Size::TransactionQuantityBuffer` - size of transaction quantity buffer (**do not change!**)
+    - `Config::Size::TransactionAddressBuffer` - size of transaction address buffer (**do not change!**)
+    - `Config::Size::TransactionDataBuffer` - size of transaction data buffer, change when necessary (eg. when calling different method requiring more arguments)
+    - `Config::Size::TransactionRawBuffer` - size of raw signed transaction, change when necessary (see above)
+    - `Config::Size::BloXrouteTransactionMessageString` - size of both incoming and outcoming messages to the Cloud API
 
 # Installation guide
 
