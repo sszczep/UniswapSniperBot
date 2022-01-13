@@ -1,6 +1,14 @@
+```diff
+@@   This project is not maintained anymore.                      @@
+@@   Feel free to contact me directly in case of any questions.   @@
+```
+
 ![project logo](https://github.com/sszczep/UniswapSniperBot/blob/main/img/logo.png?raw=true)
 
 ###### Optimized, fast and unsafe Uniswap sniping bot for buying new listings. 
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/sszczep)
+
 
 # Table of content
 - [How does it work?](https://github.com/sszczep/UniswapSniperBot#how-does-it-work)
