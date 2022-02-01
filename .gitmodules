@@ -1,7 +1,3 @@
-[submodule "libs/websocketpp"]
-	path = libs/websocketpp
-	url = https://github.com/zaphoyd/websocketpp.git
-	ignore = dirty
 [submodule "libs/secp256k1"]
 	path = libs/secp256k1
 	url = https://github.com/bitcoin-core/secp256k1.git
@@ -10,20 +6,3 @@
 	path = libs/XKCP
 	url = https://github.com/XKCP/XKCP.git
 	ignore = dirty
-[submodule "libs/googletest"]
-	path = libs/googletest
-	url = https://github.com/google/googletest.git
-	ignore = dirty
-[submodule "libs/benchmark"]
-	path = libs/benchmark
-	url = https://github.com/google/benchmark.git
-	ignore = dirty
-[submodule "libs/doxygen"]
-	path = libs/doxygen
-	url = https://github.com/doxygen/doxygen.git
-	ignore = dirty
-[submodule "doxygen/theme"]
-	path = doxygen/theme
-	url = https://github.com/kcwongjoe/doxygen_theme_flat_design.git
-	ignore = dirty
-	
