@@ -16,20 +16,22 @@ public:
   /**
    * @brief Transaction's fields count.
    */
-  static inline constexpr std::size_t FieldsCount = 9;
+  static inline constexpr std::size_t FieldsCount = 11;
 
   /**
    * @brief Enum containing available transaction fields.
    */
   enum Field
   {
+    ChainID,
     Nonce,
-    GasPrice,
+    MaxPriorityFeePerGas,
+    MaxFeePerGas,
     GasLimit,
     To,
     Value,
     Data,
-    V,
+    Parity,
     R,
     S,
   };
@@ -47,7 +49,7 @@ private:
   /**
    * @brief Transaction field to its type mapping.
    */
-  static inline constexpr FieldType fieldTypeMapping[FieldsCount] = {QUANTITY, QUANTITY, QUANTITY, DATA, QUANTITY, DATA, QUANTITY, QUANTITY, QUANTITY};
+  static inline constexpr FieldType fieldTypeMapping[FieldsCount] = {QUANTITY, QUANTITY, QUANTITY, QUANTITY, QUANTITY, DATA, QUANTITY, DATA, QUANTITY, QUANTITY, QUANTITY};
 
   /**
    * @brief SECP256K1 context, allows preinitialization as it's very slow to create.
@@ -62,13 +64,15 @@ private:
    */
   secp256k1_context *secp256k1Context;
 
+  Utils::Byte chainID[32];
   Utils::Byte nonce[32];
-  Utils::Byte gasPrice[32];
+  Utils::Byte maxPriorityFeePerGas[32];
+  Utils::Byte maxFeePerGas[32];
   Utils::Byte gasLimit[32];
   Utils::Byte to[20];
   Utils::Byte value[32];
   Utils::Byte data[1024];
-  Utils::Byte v[32];
+  Utils::Byte parity[32];
   Utils::Byte r[32];
   Utils::Byte s[32];
 
@@ -76,13 +80,15 @@ private:
    * @brief RLP input data to encode.
    */
   RLP::Item rlpInput[FieldsCount] = {
+      {.buffer = chainID, .length = 0},
       {.buffer = nonce, .length = 0},
-      {.buffer = gasPrice, .length = 0},
+      {.buffer = maxPriorityFeePerGas, .length = 0},
+      {.buffer = maxFeePerGas, .length = 0},
       {.buffer = gasLimit, .length = 0},
       {.buffer = to, .length = 0},
       {.buffer = value, .length = 0},
       {.buffer = data, .length = 0},
-      {.buffer = v, .length = 0},
+      {.buffer = parity, .length = 0},
       {.buffer = r, .length = 0},
       {.buffer = s, .length = 0},
   };
@@ -199,16 +205,18 @@ public:
    */
   std::size_t sign(Utils::Buffer privateKey, Utils::Buffer transaction)
   {
-    // Inject Chain ID as v
-    rlpInput[Field::V].buffer[0] = 0x01;
-    rlpInput[Field::V].length = 1;
-
     // Reset signature
+    rlpInput[Field::Parity].length = 0;
     rlpInput[Field::R].length = 0;
     rlpInput[Field::S].length = 0;
 
     // Encode transaction
-    std::size_t transactionLength = RLP::encodeList(rlpInput, FieldsCount, transaction);
+    std::size_t transactionLength = RLP::encodeList(rlpInput, FieldsCount, transaction, false);
+
+    // Wrap in EIP1559 envelope
+    memmove(transaction + 1, transaction, transactionLength);
+    transaction[0] = 0x02;
+    ++transactionLength;
 
     // Get transaction hash
     Utils::Byte hash[32];
@@ -220,11 +228,17 @@ public:
     _ecdsa(hash, privateKey, signature, &recid);
 
     // Inject signature
-    rlpInput[Field::V].buffer[0] = recid + 37;
     setField(Field::R, signature, 32);
     setField(Field::S, signature + 32, 32);
 
-    // Encode signed transaction and return buffer length
-    return RLP::encodeList(rlpInput, FieldsCount, transaction);
+    // Encode signed transaction
+    transactionLength = RLP::encodeList(rlpInput, FieldsCount, transaction, true);
+
+    // Wrap in EIP1559 envelope
+    memmove(transaction + 1, transaction, transactionLength);
+    transaction[0] = 0x02;
+    ++transactionLength;
+
+    return transactionLength;
   }
 };

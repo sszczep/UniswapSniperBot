@@ -17,7 +17,7 @@ int main()
   Utils::hexStringToBuffer(privateKeyHex, privateKey);
 
   // Generate transaction data
-  char data[TransactionDataBuilder::DataLength + 1];
+  char data[TransactionDataBuilder::DataLength];
   TransactionDataBuilder::buildData(
       "0",
       "f4d2888d29D722226FafA5d9B24F9164c092421E",
@@ -25,11 +25,13 @@ int main()
       data);
 
   // Set transaction fields
+  tx.setField(Transaction::Field::ChainID, "1");
   tx.setField(Transaction::Field::Nonce, "0");
-  tx.setField(Transaction::Field::GasPrice, "1000000000000");
-  tx.setField(Transaction::Field::GasLimit, "30d40");
+  tx.setField(Transaction::Field::MaxPriorityFeePerGas, "3B9ACA00");
+  tx.setField(Transaction::Field::MaxFeePerGas, "31AA0666E6");
+  tx.setField(Transaction::Field::GasLimit, "034bae");
   tx.setField(Transaction::Field::To, "7a250d5630B4cF539739dF2C5dAcb4c659F2488D");
-  tx.setField(Transaction::Field::Value, "0de0b6b3a7640000");
+  tx.setField(Transaction::Field::Value, "2386f26fc10000");
   tx.setField(Transaction::Field::Data, data);
 
   Utils::Byte transactionBuffer[1024];
@@ -38,5 +40,5 @@ int main()
   char transactionString[1024 * 2];
   Utils::bufferToHexString(transactionBuffer, transactionBufferSize, transactionString, true);
 
-  printf("%s\n", transactionString);
+  printf("0x%s\n", transactionString);
 }
