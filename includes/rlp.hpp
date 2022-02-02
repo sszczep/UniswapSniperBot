@@ -14,11 +14,13 @@ using namespace Utils;
  * 
  * @see https://eth.wiki/fundamentals/rlp
  */
-namespace RLP {
+namespace RLP
+{
   /**
    * @brief Struct holding single item data - its byte representation and length.
    */
-  struct Item {
+  struct Item
+  {
     Buffer buffer;
     std::size_t length;
   };
@@ -31,8 +33,10 @@ namespace RLP {
    * @param output output buffer
    * @return output buffer length
    */
-  inline std::size_t encodeLength(std::size_t length, std::size_t offset, Buffer output) {
-    if(length < 56) {
+  inline std::size_t encodeLength(std::size_t length, std::size_t offset, Buffer output)
+  {
+    if (length < 56)
+    {
       *output = length + offset;
       return 1;
     }
@@ -40,7 +44,7 @@ namespace RLP {
     std::size_t bytesLength = intToBuffer(length, output + 1);
 
     // Why 55?
-    // Documentation outlines: 
+    // Documentation outlines:
     // If a string is more than 55 bytes long, the RLP encoding consists of a single byte with value 0xb7 [...]
     // If the total payload of a list is more than 55 bytes long, the RLP encoding consists of a single byte with value 0xf7 [...]
     // When encoding string, we specify offset of 128 (0x80), add 55 and receive 183 (0xb7)
@@ -56,15 +60,18 @@ namespace RLP {
    * @param output output buffer
    * @return output buffer length
    */
-  inline std::size_t encodeItem(Item *input, Buffer output) {
+  inline std::size_t encodeItem(Item *input, Buffer output)
+  {
     // Empty item encoding returns 0x80
-    if(input->length == 0) {
+    if (input->length == 0)
+    {
       *output = 0x80;
       return 1;
     }
 
     // For a single byte whose value is in the [0x00, 0x7f] range, that byte is its own RLP encoding
-    if(input->length == 1 && *(input->buffer) < 0x80){
+    if (input->length == 1 && *(input->buffer) < 0x80)
+    {
       *output = *(input->buffer);
       return 1;
     }
@@ -83,9 +90,11 @@ namespace RLP {
    * @param output output buffer
    * @return output buffer length
    */
-  inline std::size_t encodeList(Item input[], std::size_t inputLength, Buffer output) {
+  inline std::size_t encodeList(Item input[], std::size_t inputLength, Buffer output)
+  {
     std::size_t payloadLength = 0;
-    for(std::size_t i = 0; i < inputLength; i++) {
+    for (std::size_t i = 0; i < inputLength; i++)
+    {
       // Shift output buffer by 9 as it is maximum encodeLength length
       payloadLength += encodeItem(input + i, output + payloadLength + 9);
     }

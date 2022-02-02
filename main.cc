@@ -38,5 +38,5 @@ int main()
   char transactionString[1024 * 2];
   Utils::bufferToHexString(transactionBuffer, transactionBufferSize, transactionString, true);
 
-  printf("%s\n", transactionString);
+  printf("0x%s\n", transactionString);
 }
